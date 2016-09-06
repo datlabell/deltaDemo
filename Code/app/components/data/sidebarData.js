@@ -6,11 +6,11 @@ var SidebarSections = [
         links: [
             {
                 name: "נסח טאבו",
-                href: "/apartment/1/government/tabu"
+                href: "#tabu"
             },
             {
                 name: "שרטוט",
-                href: "/apartment/1/government/sketch"
+                href: "#sketch"
             },
             {
                 name: "מידע מרשות המסים"
@@ -30,7 +30,7 @@ var SidebarSections = [
         links: [
             {
                 name: "תיק בניין",
-                href: "/apartment/1/city-council/building-doc"
+                href: "#buildingDoc"
             },
             {
                 name: "היטל השבחה"
@@ -45,11 +45,11 @@ var SidebarSections = [
         links: [
             {
                 name: "חוות דעת גולשים",
-                href: "/apartment/1/social/reviews"
+                href: "#reviews"
             },
             {
                 name: "מידע מבעל הנכס",
-                href: "/apartment/1/social/owner-notes"
+                href: "#ownerNotes"
             }
         ]
     },
@@ -58,23 +58,23 @@ var SidebarSections = [
         links: [
             {
                 name: "מפה",
-                href: "/apartment/1/visual/map"
+                href: "#map"
             },
             {
                 name: "תמונות",
-                href: "/apartment/1/visual/pictures"
+                href: "#pictures"
             },
             {
                 name: "סיור תלת מימדי",
-                href: "/apartment/1/visual/tour"
+                href: "#tour"
             },
             {
                 name: "הדמית תלת מימד",
-                href: "/apartment/1/visual/virtualization"
+                href: "#virtualization"
             },
             {
                 name: "וידאו",
-                href: "/apartment/1/visual/video"
+                href: "#video"
             },
         ]
     },

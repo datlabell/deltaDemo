@@ -46,6 +46,18 @@
     padding-top: 20px;
 }
 
+.apt-items-container {
+    padding-top: 50px;
+    padding-bottom: 130px;
+}
+
+.apt-content-item-body {
+    margin-bottom: 40px;
+    min-height: 80px;
+    background-color: #f8f8f8;
+    box-shadow: 0 -1px 0 #e0e0e0,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+
 .sidebar {
     padding-bottom: 50px;
      padding-left: 10px;
@@ -81,3 +93,7 @@
     text-decoration: none; 
 }
 
+
+.affix {
+    top: 20px;
+}

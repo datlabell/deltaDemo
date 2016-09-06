@@ -1,6 +1,6 @@
 var React = require('react');
 
-var SketchView = React.createClass( {
+var MapView = React.createClass( {
   render: function() {
     return (
       <div className="text-center">
@@ -9,4 +9,4 @@ var SketchView = React.createClass( {
   }
 });
 
-module.exports = SketchView;
+module.exports = MapView;

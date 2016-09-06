@@ -67,44 +67,20 @@
 	var SearchLayout = __webpack_require__(503);
 	var ApartmentLayout = __webpack_require__(504);
 
-	//Get apartment inner views
-	var TabuView = __webpack_require__(508);
-	var SketchView = __webpack_require__(509);
-	var BuildingDocView = __webpack_require__(510);
-	var ReviewsView = __webpack_require__(511);
-	var OwnerNotesView = __webpack_require__(512);
-	var PicturesView = __webpack_require__(513);
-	var TourView = __webpack_require__(514);
-	var VirtualizationView = __webpack_require__(515);
-	var VideoView = __webpack_require__(516);
-
 	//Routing
 	ReactDOM.render(React.createElement(
-	    Router,
-	    { history: BrowserHistory },
-	    React.createElement(
-	        Route,
-	        { path: '/', component: MainLayout },
-	        React.createElement(IndexRoute, { component: HomeLayout }),
-	        React.createElement(Route, { path: 'home', component: HomeLayout }),
-	        React.createElement(Route, { path: 'map', component: MapLayout }),
-	        React.createElement(Route, { path: 'search', component: SearchLayout }),
-	        React.createElement(
-	            Route,
-	            { path: 'apartment/:id/', component: ApartmentLayout },
-	            React.createElement(IndexRedirect, { to: 'government/tabu' }),
-	            React.createElement(Route, { path: 'government/tabu', component: TabuView }),
-	            React.createElement(Route, { path: 'government/sketch', component: SketchView }),
-	            React.createElement(Route, { path: 'city-council/building-doc', component: BuildingDocView }),
-	            React.createElement(Route, { path: 'social/reviews', component: ReviewsView }),
-	            React.createElement(Route, { path: 'social/owner-notes', component: OwnerNotesView }),
-	            React.createElement(Route, { path: 'visual/map', component: MapLayout }),
-	            React.createElement(Route, { path: 'visual/pictures', component: PicturesView }),
-	            React.createElement(Route, { path: 'visual/tour', component: TourView }),
-	            React.createElement(Route, { path: 'visual/virtualization', component: VirtualizationView }),
-	            React.createElement(Route, { path: 'visualvideo', component: VideoView })
-	        )
-	    )
+	  Router,
+	  { history: BrowserHistory },
+	  React.createElement(
+	    Route,
+	    { path: '/', component: MainLayout },
+	    React.createElement(IndexRoute, { component: HomeLayout }),
+	    React.createElement(Route, { path: 'home', component: HomeLayout }),
+	    React.createElement(Route, { path: 'map', component: MapLayout }),
+	    React.createElement(Route, { path: 'search', component: SearchLayout }),
+	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout }),
+	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout })
+	  )
 	), document.getElementById('main'));
 
 /***/ },
@@ -226,25 +202,40 @@
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
 	(function () {
 	    try {
-	        cachedSetTimeout = setTimeout;
-	    } catch (e) {
-	        cachedSetTimeout = function () {
-	            throw new Error('setTimeout is not defined');
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
 	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
 	    }
 	    try {
-	        cachedClearTimeout = clearTimeout;
-	    } catch (e) {
-	        cachedClearTimeout = function () {
-	            throw new Error('clearTimeout is not defined');
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
 	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -265,6 +256,11 @@
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -27522,7 +27518,7 @@
 
 
 	// module
-	exports.push([module.id, ".navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n#delta-brand-color {\n    color: #0f9d58;\n}\n\n.navbar-nav > li > a > span {\n    color: #ef6c00;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n.apt-headline {\n    padding-top: 20px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 80px;\n    background-color: #eee;\n    box-shadow: 0 0 4px rgba(66,139,202,.14),0 4px 8px rgba(66,139,202,.28);\n}\n\n.apt-section > .row {\n    font-size: 14px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.sidebar {\n    padding-bottom: 50px;\n     padding-left: 10px;\n    font-size: 18px;\n    border-width: 0;\n    border-style: solid;\n    border-left-width: 1px;\n    border-left-color: #d6e9c6;\n}\n\n.sidebar > ul > li {\n    padding-bottom: 15px;\n}\n.sidebar-section-title {\n    color: #337ab7;\n    font-size: 20px;\n}\n\n.sidebar-section-links {\n    list-style: none;\n    font-size: 16px;\n    padding-top: 3px;\n    padding-right: 10px;\n}\n\n.sidebar-section-link > a {\n    color: #777;\n}\n\n.sidebar-section-link > a:hover,  .sidebar-section-link > a:active{\n    font-weight: bold;\n    color: #777;\n    text-decoration: none; \n}\n\n", ""]);
+	exports.push([module.id, ".navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n#delta-brand-color {\n    color: #0f9d58;\n}\n\n.navbar-nav > li > a > span {\n    color: #ef6c00;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n.apt-headline {\n    padding-top: 20px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 80px;\n    background-color: #eee;\n    box-shadow: 0 0 4px rgba(66,139,202,.14),0 4px 8px rgba(66,139,202,.28);\n}\n\n.apt-section > .row {\n    font-size: 14px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-top: 50px;\n    padding-bottom: 130px;\n}\n\n.apt-content-item-body {\n    margin-bottom: 40px;\n    min-height: 80px;\n    background-color: #f8f8f8;\n    box-shadow: 0 -1px 0 #e0e0e0,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);\n}\n\n.sidebar {\n    padding-bottom: 50px;\n     padding-left: 10px;\n    font-size: 18px;\n    border-width: 0;\n    border-style: solid;\n    border-left-width: 1px;\n    border-left-color: #d6e9c6;\n}\n\n.sidebar > ul > li {\n    padding-bottom: 15px;\n}\n.sidebar-section-title {\n    color: #337ab7;\n    font-size: 20px;\n}\n\n.sidebar-section-links {\n    list-style: none;\n    font-size: 16px;\n    padding-top: 3px;\n    padding-right: 10px;\n}\n\n.sidebar-section-link > a {\n    color: #777;\n}\n\n.sidebar-section-link > a:hover,  .sidebar-section-link > a:active{\n    font-weight: bold;\n    color: #777;\n    text-decoration: none; \n}\n\n\n.affix {\n    top: 20px;\n}", ""]);
 
 	// exports
 
@@ -46512,7 +46508,19 @@
 	var Sidebar = __webpack_require__(506);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(507);
+	var ApartmentData = __webpack_require__(513);
+
+	//Get apartment inner views
+	var TabuView = __webpack_require__(514);
+	var SketchView = __webpack_require__(515);
+	var BuildingDocView = __webpack_require__(516);
+	var ReviewsView = __webpack_require__(517);
+	var OwnerNotesView = __webpack_require__(518);
+	var MapView = __webpack_require__(519);
+	var PicturesView = __webpack_require__(520);
+	var TourView = __webpack_require__(521);
+	var VirtualizationView = __webpack_require__(522);
+	var VideoView = __webpack_require__(523);
 
 	var ApartmentSection = React.createClass({
 	  displayName: 'ApartmentSection',
@@ -46565,6 +46573,37 @@
 	  }
 	});
 
+	var ApartmentContentItem = React.createClass({
+	  displayName: 'ApartmentContentItem',
+
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'row' },
+	      React.createElement('a', { className: 'anchorjs-link ', id: this.props.id }),
+	      React.createElement(
+	        'div',
+	        { className: 'col-xs-10 col-xs-offset-1' },
+	        React.createElement(
+	          'div',
+	          { className: 'row apt-content-item-title' },
+	          React.createElement(
+	            'h1',
+	            { className: 'page-header' },
+	            this.props.title
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'row apt-content-item-body' },
+	          React.createElement(this.props.component)
+	        )
+	      )
+	    );
+	  }
+	});
+
 	var ApartmentLayout = React.createClass({
 	  displayName: 'ApartmentLayout',
 
@@ -46573,6 +46612,7 @@
 	  },
 
 	  render: function () {
+	    console.log("apartment id : " + this.props.params.id);
 	    return React.createElement(
 	      'div',
 	      { className: 'container-fluid container-rtl' },
@@ -46583,13 +46623,22 @@
 	        { className: 'row apt-content' },
 	        React.createElement(
 	          'div',
-	          { className: 'col-xs-2 pull-right' },
+	          { className: 'col-xs-2 pull-right', 'data-spy': 'affix', 'data-offset-top': '210' },
 	          React.createElement(Sidebar, { sections: Sections })
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'col-xs-10 pull-right' },
-	          this.props.children
+	          { className: 'col-xs-10 apt-items-container' },
+	          React.createElement(ApartmentContentItem, { component: TabuView, title: 'טאבו', id: 'tabu' }),
+	          React.createElement(ApartmentContentItem, { component: SketchView, title: 'שרטוט', id: 'sketch' }),
+	          React.createElement(ApartmentContentItem, { component: BuildingDocView, title: 'תיק בניין', id: 'buildingDoc' }),
+	          React.createElement(ApartmentContentItem, { component: ReviewsView, title: 'חוות דעת גולשים', id: 'reviews' }),
+	          React.createElement(ApartmentContentItem, { component: OwnerNotesView, title: 'מידע מבעל הנכס', id: 'ownerNotes' }),
+	          React.createElement(ApartmentContentItem, { component: MapView, title: 'מפה', id: 'map' }),
+	          React.createElement(ApartmentContentItem, { component: PicturesView, title: 'תמונות', id: 'pictures' }),
+	          React.createElement(ApartmentContentItem, { component: TourView, title: 'סיור תלת מימדי', id: 'tour' }),
+	          React.createElement(ApartmentContentItem, { component: VirtualizationView, title: 'הדמיית תלת מימד', id: 'virtualization' }),
+	          React.createElement(ApartmentContentItem, { component: VideoView, title: 'וידאו', id: 'video' })
 	        )
 	      )
 	    );
@@ -46607,10 +46656,10 @@
 	    title: "מידע ממשלתי",
 	    links: [{
 	        name: "נסח טאבו",
-	        href: "/apartment/1/government/tabu"
+	        href: "#tabu"
 	    }, {
 	        name: "שרטוט",
-	        href: "/apartment/1/government/sketch"
+	        href: "#sketch"
 	    }, {
 	        name: "מידע מרשות המסים"
 	    }]
@@ -46623,7 +46672,7 @@
 	    title: "מידע עירוני",
 	    links: [{
 	        name: "תיק בניין",
-	        href: "/apartment/1/city-council/building-doc"
+	        href: "#buildingDoc"
 	    }, {
 	        name: "היטל השבחה"
 	    }, {
@@ -46633,28 +46682,28 @@
 	    title: "מידע חברתי",
 	    links: [{
 	        name: "חוות דעת גולשים",
-	        href: "/apartment/1/social/reviews"
+	        href: "#reviews"
 	    }, {
 	        name: "מידע מבעל הנכס",
-	        href: "/apartment/1/social/owner-notes"
+	        href: "#ownerNotes"
 	    }]
 	}, {
 	    title: "מידע ויזואלי",
 	    links: [{
 	        name: "מפה",
-	        href: "/apartment/1/visual/map"
+	        href: "#map"
 	    }, {
 	        name: "תמונות",
-	        href: "/apartment/1/visual/pictures"
+	        href: "#pictures"
 	    }, {
 	        name: "סיור תלת מימדי",
-	        href: "/apartment/1/visual/tour"
+	        href: "#tour"
 	    }, {
 	        name: "הדמית תלת מימד",
-	        href: "/apartment/1/visual/virtualization"
+	        href: "#virtualization"
 	    }, {
 	        name: "וידאו",
-	        href: "/apartment/1/visual/video"
+	        href: "#video"
 	    }]
 	}];
 
@@ -46666,8 +46715,7 @@
 
 	//React requirements
 	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(172);
-	var Link = ReactRouter.Link;
+	var HashLink = __webpack_require__(507).HashLink;
 
 	//Bootstrap requirements
 	var ReactBootstrap = __webpack_require__(248);
@@ -46684,7 +46732,7 @@
 	            null,
 	            link.name
 	        ) : React.createElement(
-	            Link,
+	            HashLink,
 	            { to: link.href },
 	            link.name
 	        );
@@ -46742,6 +46790,283 @@
 
 /***/ },
 /* 507 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.HashLinkHistory = exports.HashLink = undefined;
+
+	var _HashLink2 = __webpack_require__(508);
+
+	var _HashLink3 = _interopRequireDefault(_HashLink2);
+
+	var _HashLinkHistory2 = __webpack_require__(512);
+
+	var _HashLinkHistory3 = _interopRequireDefault(_HashLinkHistory2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.HashLink = _HashLink3.default;
+	exports.HashLinkHistory = _HashLinkHistory3.default;
+
+/***/ },
+/* 508 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = HashLink;
+
+	var _hashLink2 = __webpack_require__(509);
+
+	var _hashLink3 = _interopRequireDefault(_hashLink2);
+
+	var _scroll = __webpack_require__(510);
+
+	var _scroll2 = _interopRequireDefault(_scroll);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _animateScroll(event, animate) {
+	  event.preventDefault();
+	  var hash = event.target.hash;
+	  (0, _scroll2.default)(hash, animate);
+	}
+
+	function HashLink(props) {
+	  return _react2.default.createElement(_hashLink3.default, _extends({}, props, { animateScroll: _animateScroll }));
+	}
+
+/***/ },
+/* 509 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function reCreateTo(to) {
+	  if (typeof to === 'string') return { hash: to, pathname: '' };
+
+	  var pathname = to.pathname;
+
+	  return _extends({}, to, { pathname: pathname || '' });
+	}
+
+	var _React$PropTypes = _react2.default.PropTypes;
+	var object = _React$PropTypes.object;
+	var string = _React$PropTypes.string;
+	var oneOfType = _React$PropTypes.oneOfType;
+	var func = _React$PropTypes.func;
+
+	var _hashLink = function (_React$Component) {
+	  _inherits(_hashLink, _React$Component);
+
+	  function _hashLink() {
+	    var _Object$getPrototypeO;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, _hashLink);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(_hashLink)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleClick = function (event) {
+	      var _this$props = _this.props;
+	      var onClick = _this$props.onClick;
+	      var animateScroll = _this$props.animateScroll;
+	      var animate = _this$props.animate;
+
+
+	      if (onClick) onClick(event);
+
+	      animateScroll(event, animate);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(_hashLink, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var to = _props.to;
+	      var onClick = _props.onClick;
+
+	      var props = _objectWithoutProperties(_props, ['to', 'onClick']);
+
+	      return _react2.default.createElement(_reactRouter.Link, _extends({ to: reCreateTo(to) }, props, { onClick: this.handleClick }));
+	    }
+	  }]);
+
+	  return _hashLink;
+	}(_react2.default.Component);
+
+	_hashLink.propTypes = {
+	  to: oneOfType([string, object]).isRequired,
+	  onClick: func,
+	  animateScroll: func,
+	  animate: object
+	};
+	exports.default = _hashLink;
+
+/***/ },
+/* 510 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = animateScroll;
+
+	var _utils = __webpack_require__(511);
+
+	function animateScroll(hash, animate) {
+	  var element = document.querySelector(hash);
+
+	  var _ref = animate || {};
+
+	  var offset = _ref.offset;
+	  var duration = _ref.duration;
+	  var easing = _ref.easing;
+
+
+	  scrollTo(element, offset, duration, easing);
+	}
+
+	function scrollTo(element) {
+	  var offset = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	  var duration = arguments.length <= 2 || arguments[2] === undefined ? 400 : arguments[2];
+	  var easing = arguments.length <= 3 || arguments[3] === undefined ? easeOutQuad : arguments[3];
+
+	  var start = (0, _utils.getPageScrollTop)();
+	  var to = (0, _utils.elementOffsetTop)(element) + offset;
+	  var change = to - start;
+	  var increment = 20;
+
+	  function animate(elapsedTime) {
+	    var elapsed = elapsedTime + increment;
+	    var position = easing(undefined, elapsed, start, change, duration);
+
+	    (0, _utils.setPageScrollTop)(position);
+
+	    if (elapsed < duration) setTimeout(function () {
+	      animate(elapsed);
+	    }, increment);
+	  }
+
+	  animate(0);
+	}
+
+	// jQuery easing 'swing'
+	function easeOutQuad(x, t, b, c, d) {
+	  return -c * (t /= d) * (t - 2) + b;
+	}
+
+/***/ },
+/* 511 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getPageScrollTop = getPageScrollTop;
+	exports.setPageScrollTop = setPageScrollTop;
+	exports.elementOffsetTop = elementOffsetTop;
+	function getPageScrollTop() {
+	  // $('html, body').scrollTop
+	  return document.documentElement.scrollTop || document.body.scrollTop;
+	}
+
+	function setPageScrollTop(position) {
+	  document.documentElement.scrollTop = document.body.scrollTop = position;
+	}
+
+	function elementOffsetTop(element) {
+	  var rect = element.getBoundingClientRect();
+	  return rect.top + getPageScrollTop();
+	}
+
+/***/ },
+/* 512 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = HashLinkHistory;
+
+	var _hashLink2 = __webpack_require__(509);
+
+	var _hashLink3 = _interopRequireDefault(_hashLink2);
+
+	var _scroll = __webpack_require__(510);
+
+	var _scroll2 = _interopRequireDefault(_scroll);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _animateScroll(event, animate) {
+	  setTimeout(function () {
+	    var hash = window.location.hash;
+	    if (hash) (0, _scroll2.default)(hash, animate);
+	  });
+	}
+
+	function HashLinkHistory(props) {
+	  return _react2.default.createElement(_hashLink3.default, _extends({}, props, { animateScroll: _animateScroll }));
+	}
+
+/***/ },
+/* 513 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -46799,7 +47124,7 @@
 	module.exports = ApartmentData;
 
 /***/ },
-/* 508 */
+/* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46808,22 +47133,14 @@
 	  displayName: "TabuView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Tabu View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = TabuView;
 
 /***/ },
-/* 509 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46832,22 +47149,14 @@
 	  displayName: "SketchView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Sketch View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = SketchView;
 
 /***/ },
-/* 510 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46856,22 +47165,14 @@
 	  displayName: "BuildingDocView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Building Doc View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = BuildingDocView;
 
 /***/ },
-/* 511 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46880,22 +47181,14 @@
 	  displayName: "ReviewsView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Reviews View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = ReviewsView;
 
 /***/ },
-/* 512 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46904,22 +47197,30 @@
 	  displayName: "OwnerNotesView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Owner Notes View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 513 */
+/* 519 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var MapView = React.createClass({
+	  displayName: "MapView",
+
+	  render: function () {
+	    return React.createElement("div", { className: "text-center" });
+	  }
+	});
+
+	module.exports = MapView;
+
+/***/ },
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46928,22 +47229,14 @@
 	  displayName: "PicturesView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Pictures View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = PicturesView;
 
 /***/ },
-/* 514 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46952,22 +47245,14 @@
 	  displayName: "TourView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Tour View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = TourView;
 
 /***/ },
-/* 515 */
+/* 522 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46976,22 +47261,14 @@
 	  displayName: "VirtualizationView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Virtualization View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 516 */
+/* 523 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -47000,15 +47277,7 @@
 	  displayName: "VideoView",
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "text-center" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Video View"
-	      )
-	    );
+	    return React.createElement("div", { className: "text-center" });
 	  }
 	});
 

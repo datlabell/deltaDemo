@@ -4,7 +4,6 @@ var ReviewsView = React.createClass( {
   render: function() {
     return (
       <div className="text-center">
-        <h1>Reviews View</h1>
       </div>
     )
   }

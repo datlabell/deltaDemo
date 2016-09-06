@@ -4,7 +4,6 @@ var VirtualizationView = React.createClass( {
   render: function() {
     return (
       <div className="text-center">
-        <h1>Virtualization View</h1>
       </div>
     )
   }

@@ -1,7 +1,6 @@
 //React requirements
 var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+var HashLink = require('react-router-hash-scroll').HashLink;
 
 //Bootstrap requirements
 var ReactBootstrap = require('react-bootstrap');
@@ -11,7 +10,7 @@ var BSNav = ReactBootstrap.Nav;
 var SidebarSection = React.createClass({
     
     renderLinkSafe: function(link) {
-        return link.href === undefined ? <a>{link.name}</a> :  <Link to={link.href}>{link.name}</Link>;
+        return link.href === undefined ? <a>{link.name}</a> :  <HashLink to={link.href}>{link.name}</HashLink>;
     },
 
     renderSectionLink: function(link) {
