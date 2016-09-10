@@ -8,7 +8,7 @@ var BSNavItem = ReactBootstrap.NavItem;
 var Navbar = React.createClass( {
   render: function() {
     return (
-      <BSNavbar>
+      <BSNavbar fixedTop>
         <BSNavbar.Header>
             <BSNavbar.Brand>
                 <a href="/home" id="delta-brand-color">Delta Project</a>

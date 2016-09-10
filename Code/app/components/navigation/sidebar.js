@@ -10,12 +10,12 @@ var BSNav = ReactBootstrap.Nav;
 var SidebarSection = React.createClass({
     
     renderLinkSafe: function(link) {
-        return link.href === undefined ? <a>{link.name}</a> :  <HashLink to={link.href}>{link.name}</HashLink>;
+        return link.href === undefined ? <a>{link.title}</a> :  <HashLink to={link.href}>{link.title}</HashLink>;
     },
 
     renderSectionLink: function(link) {
         return (
-            <li className="sidebar-section-link" key={link.name}>
+            <li className="sidebar-section-link" key={link.title}>
                 {this.renderLinkSafe(link)}
             </li>
         )
@@ -25,10 +25,10 @@ var SidebarSection = React.createClass({
         return (
             <li className="sidebar-section" disabled>
                 <div className="sidebar-section-title">
-                    {this.props.section.title}
+                    {this.props.title}
                 </div>
                 <ul className="sidebar-section-links">
-                   {this.props.section.links.map(this.renderSectionLink)}
+                   {this.props.links.map(this.renderSectionLink)}
                 </ul>
             </li>
         )
@@ -38,15 +38,15 @@ var SidebarSection = React.createClass({
 //Sidebar element
 var Sidebar = React.createClass({
     
-    renderSidebarSection: function(section) {
-        return <SidebarSection section={section} key={section.title}/>
+    renderSidebarSection: function(sectionKey) {
+        return <SidebarSection links={this.props.sections[sectionKey]} key={sectionKey} title={sectionKey}/>
     },
 
     render: function() {
         return (
             <div className="sidebar">
                 <BSNav stacked>
-                    {this.props.sections.map(this.renderSidebarSection)}
+                    {Object.keys(this.props.sections).map(this.renderSidebarSection)}
                 </BSNav>
             </div>
         )

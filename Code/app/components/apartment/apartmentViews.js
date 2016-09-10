@@ -1,0 +1,96 @@
+var React = require('react');
+
+//Get apartment views
+var TabuView = require('./tabuView');
+var SketchView = require('./sketchView');
+var BuildingDocView = require('./buildingDocView');
+var ReviewsView = require('./reviewsView');
+var OwnerNotesView = require('./ownerNotesView');
+var MapView = require('./mapView');
+var TourView = require('./tourView');
+var VirtualizationView = require('./VirtualizationView');
+var VideoView = require('./videoView');
+
+var ApartmentViews = [
+    {
+        section: "מידע ממשלתי",
+        title: "טאבו",
+        id: "tabu",
+        component: TabuView,
+        glyphiconStyle: "glyphicon glyphicon-file"
+    },
+    {
+        section: "מידע ממשלתי",
+        title: "שרטוט",
+        id: "sketch",
+        component: SketchView,
+        glyphiconStyle: "glyphicon glyphicon-duplicate"
+    },
+    {
+        section: "מידע ממשלתי",
+        title: "מידע מרשות המסים"
+    },
+    {
+        section: "מידע משפטי",
+        title: "רשימת תביעות על הנכס"
+    },
+    {
+        section: "מידע עירוני",
+        title: "תיק בניין",
+        id: "buildingDoc",
+        component: BuildingDocView,
+        glyphiconStyle: "glyphicon glyphicon-folder-open"
+    },
+    {
+        section: "מידע עירוני",
+        title: "היטל השבחה",
+    },
+    {
+        section: "מידע עירוני",
+        title: "תכניות על הנכס",
+    },
+    {
+        section: "מידע חברתי",
+        title: "חוות דעת גולשים",
+        id: "reviews",
+        component: ReviewsView,
+        glyphiconStyle: "glyphicon glyphicon-comment"
+    },
+    {
+        section: "מידע חברתי",
+        title: "מידע מבעל הנכס",
+        id: "ownerNotes",
+        component: OwnerNotesView,
+        glyphiconStyle: "glyphicon glyphicon-info-sign"
+    },
+    {
+        section: "מידע ויזואלי",
+        title: "מפה",
+        id: "map",
+        component: MapView,
+        glyphiconStyle: "glyphicon glyphicon-map-marker"
+    },
+    {
+        section: "מידע ויזואלי",
+        title: "סיור תלת מימדי",
+        id: "tour",
+        component: TourView,
+        glyphiconStyle: "glyphicon glyphicon-road"
+    },
+    {
+        section: "מידע ויזואלי",
+        title: "הדמיית תלת מימד",
+        id: "virtualization",
+        component: VirtualizationView,
+        glyphiconStyle: "glyphicon glyphicon-object-align-bottom"
+    },
+    {
+        section: "מידע ויזואלי",
+        title: "וידאו",
+        id: "video",
+        component: VideoView,
+        glyphiconStyle: "glyphicon glyphicon-facetime-video"
+    }
+]
+
+module.exports = ApartmentViews;

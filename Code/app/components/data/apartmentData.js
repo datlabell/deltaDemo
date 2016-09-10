@@ -63,7 +63,39 @@ var ApartmentData = {
   rightSection : RightSection,
   centerRightSection : CenterRightSection,
   centerLeftSection: CenterLeftSection,
-  leftSection : LeftSection
+  leftSection : LeftSection,
+  images: [
+    {
+      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1a.jpg"
+    },
+    {
+      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1b.jpg"
+    },
+    {
+      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1c.jpg"
+    },
+    {
+      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1d.jpg"
+    },
+    {
+      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1e.jpg"
+    }
+  ],
+
+  "tabu": {
+    src: "/tabu/example.pdf",
+    updateAt: new Date(2016, 5, 3, 16, 0, 0)
+  },
+
+  "sketch": {
+    src: "path to sketch",
+    updateAt: new Date(2016, 1, 1, 10, 15, 30)
+  },
+
+  "buildingDoc": {
+    src: "/tabu/example.pdf",
+    updateAt: new Date(2016, 8, 8, 12, 32, 33)
+  }
 }
 
 module.exports = ApartmentData;

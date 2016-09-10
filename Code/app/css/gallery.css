@@ -1,0 +1,19 @@
+.gallery-container > div {
+    padding-top: 5px; 
+    height: 380px;
+}
+
+.gallery-img-bg {
+    height: 100%;
+}
+
+.gallery-img-sm {
+    height: 50%;
+}
+
+.gallery-img-sm  > img, .gallery-img-bg > img {
+    height: 100%;
+    width: 100%;
+    padding: 1px;
+    cursor: pointer
+}

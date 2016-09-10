@@ -1,0 +1,30 @@
+.document-date-val {
+    direction: ltr !important;
+}
+
+.document-date-seperator {
+    padding-right: 2px;
+}
+
+.document-date-title {
+    font-weight: bold;
+}
+
+
+.document-btn-info {
+    color: #fff;
+    background-color: #1565C0;
+}
+.document-btn-info:hover {
+    background-color: #1565C0;
+}
+
+.document-btn-order {
+    border-color: #ef6c00;
+    background-color: #e8e8e8;
+}
+
+.document-btn-order:hover {
+    border-color: #ef6c00;
+    background-color: #BDBDBD;
+}

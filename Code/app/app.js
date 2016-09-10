@@ -9,7 +9,6 @@ var IndexRoute = ReactRouter.IndexRoute;
 var IndexRedirect = ReactRouter.IndexRedirect;
 
 //Add app styling to all routing
-var BootstrapCss = require('./css/bootstrap.min.css');
 var AppCss = require('./css/app.css');
 
 //Get main layout

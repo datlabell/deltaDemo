@@ -1,72 +1,44 @@
 //Get react.
 var React = require('react');
 
-//Get Sidebar & Sidebar data.
-var Sections = require('./data/sidebarData');
+//Get main apartment style
+var ApartmentStyle = require('../css/apartment.css');
+
+//Get Galery
+var GalleryStyle = require('../css/gallery.css');
+var GalleryView = require('./images/galleryView');
+
+//Get apartment headline
+var ApartmentHeadline = require('./apartment/apartmentHeadline');
+
+//Get Sidebar
+var SidebarStyle = require('../css/sidebar.css');
 var Sidebar = require('./navigation/sidebar');
+
+//Get inner views
+var Views = require('./apartment/apartmentViews');
+
 
 //Get apt data.
 var ApartmentData = require('./data/apartmentData');
 
-//Get apartment inner views
-var TabuView = require('./apartment/tabuView');
-var SketchView = require('./apartment/sketchView');
-var BuildingDocView = require('./apartment/buildingDocView');
-var ReviewsView = require('./apartment/reviewsView');
-var OwnerNotesView = require('./apartment/ownerNotesView');
-var MapView = require('./apartment/mapView');
-var PicturesView = require('./apartment/picturesView');
-var TourView = require('./apartment/tourView');
-var VirtualizationView = require('./apartment/VirtualizationView');
-var VideoView = require('./apartment/videoView');
-
-var ApartmentSection = React.createClass({
-    renderValue: function (detail) {
-      return detail.shouldEmphasize ? <span className="apt-detail-emphasize">{detail.value}</span> : detail.value;
-    },  
-    renderDetail: function(detail) {
-        return (
-          <div className="row" key={detail.key}>
-              <p>
-                <span className="apt-detail-key">{detail.key}</span> : {this.renderValue(detail)}
-              </p>
-          </div>
-        )
-    },
-    render: function() {
-        return(
-          <div className="col-xs-3 pull-right apt-section">
-            {this.props.section.map(this.renderDetail)}
-          </div>
-        )  
-    }
-});
-
-var ApartmentHeadline = React.createClass({ 
-  render: function() {
-      return(
-        <div className="row apt-headline">
-              <ApartmentSection section={this.props.rightSection}/>
-              <ApartmentSection section={this.props.centerRightSection}/>
-              <ApartmentSection section={this.props.centerLeftSection}/>
-              <ApartmentSection section={this.props.leftSection}/>
-        </div>
-      )
-  }
-});
-
-var ApartmentContentItem = React.createClass({
+var ApartmentViewContainer = React.createClass({
 
     render: function() {
       return (
       <div className="row">
-            <a className="anchorjs-link " id={this.props.id}></a>
-           <div className="col-xs-10 col-xs-offset-1">
+           <div className="col-xs-11 col-xs-offset-1">
+              <div className="row"><a className="anchor" id={this.props.id}></a></div>
               <div className="row apt-content-item-title">
-                  <h1 className="page-header">{this.props.title}</h1>
+                  <h1 className="page-header">
+                     <span className={this.props.glyphiconStyle} aria-hidden="true"></span>
+                    {this.props.title}
+                  </h1>
               </div>
               <div className="row apt-content-item-body">
-                  { React.createElement(this.props.component)}
+                <div className="col-xs-12">
+                    { React.createElement(this.props.component, {data: this.props.data})}
+                </div>
               </div>
           </div>
       </div>
@@ -76,31 +48,62 @@ var ApartmentContentItem = React.createClass({
 });
 
 var ApartmentLayout = React.createClass({
+  
   getInitialState: function() {
-    return ApartmentData;
+    return {
+      sections: this.generateSections(Views),
+      data : ApartmentData 
+    };
+  },
+
+  generateSections: function(views) {
+    var sections = {};
+    views.forEach(function(view) {
+      
+      if (sections[view.section] === undefined) {
+        sections[view.section] = [];
+      }
+
+      var link = {
+        title: view.title
+      }
+
+      if (view.id !== undefined) {
+        link.href = "#" + view.id;
+      }
+
+      sections[view.section].push(link);
+
+    });
+
+    return sections;
+  },
+
+  renderContentView: function(view) {
+      if (view.component !== undefined) {
+        return <ApartmentViewContainer 
+         component={view.component}
+         id={view.id} 
+         title={view.title}
+         key={view.id}
+         data={this.state.data[view.id]}
+         glyphiconStyle = {view.glyphiconStyle}/>
+      }
   },
 
   render: function() {
-    console.log("apartment id : " + this.props.params.id);
     return (
         <div className="container-fluid container-rtl">
-          <ApartmentHeadline rightSection={this.state.rightSection} centerRightSection={this.state.centerRightSection}
-          centerLeftSection={this.state.centerLeftSection} leftSection={this.state.leftSection}/>
+          <GalleryView images={this.state.data.images} />
+          <ApartmentHeadline rightSection={this.state.data.rightSection} centerRightSection={this.state.data.centerRightSection}
+          centerLeftSection={this.state.data.centerLeftSection} leftSection={this.state.data.leftSection}/>
+
           <div className="row apt-content">
-            <div className="col-xs-2 pull-right" data-spy="affix" data-offset-top="210">
-                <Sidebar sections={Sections}/>
+            <div className="col-xs-2 pull-right sidebar-container" data-spy="affix" data-offset-top="550">
+                <Sidebar sections={this.state.sections}/>
             </div>
             <div className="col-xs-10 apt-items-container">
-                <ApartmentContentItem component={TabuView} title="טאבו" id="tabu" />
-                <ApartmentContentItem component={SketchView} title="שרטוט" id="sketch" />
-                <ApartmentContentItem component={BuildingDocView} title="תיק בניין" id="buildingDoc" />
-                <ApartmentContentItem component={ReviewsView} title="חוות דעת גולשים" id="reviews" />
-                <ApartmentContentItem component={OwnerNotesView} title="מידע מבעל הנכס" id="ownerNotes" />
-                <ApartmentContentItem component={MapView} title="מפה" id="map" />
-                <ApartmentContentItem component={PicturesView} title="תמונות" id="pictures" />
-                <ApartmentContentItem component={TourView} title="סיור תלת מימדי"id="tour" />
-                <ApartmentContentItem component={VirtualizationView} title="הדמיית תלת מימד" id="virtualization" />
-                <ApartmentContentItem component={VideoView} title="וידאו" id="video" />
+                {Views.map(this.renderContentView)}
             </div>
           </div>
         </div>

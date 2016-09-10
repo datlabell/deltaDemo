@@ -6,7 +6,9 @@ var MainLayout = React.createClass( {
     return (
       <div>
         <Navbar />
-        {this.props.children}
+        <div className="main-content">
+            {this.props.children}
+        </div>
       </div>
     )
   }
