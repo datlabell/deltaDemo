@@ -1,9 +1,8 @@
 var React = require('react');
 
 //Get apartment views
-var TabuView = require('./tabuView');
-var SketchView = require('./sketchView');
-var BuildingDocView = require('./buildingDocView');
+var DocumentStyle = require('../../css/document.css');
+var DocumentView = require('../common/documentView');
 var ReviewsView = require('./reviewsView');
 var OwnerNotesView = require('./ownerNotesView');
 var MapView = require('./mapView');
@@ -16,14 +15,14 @@ var ApartmentViews = [
         section: "מידע ממשלתי",
         title: "טאבו",
         id: "tabu",
-        component: TabuView,
+        component: DocumentView,
         glyphiconStyle: "glyphicon glyphicon-file"
     },
     {
         section: "מידע ממשלתי",
         title: "שרטוט",
         id: "sketch",
-        component: SketchView,
+        component: DocumentView,
         glyphiconStyle: "glyphicon glyphicon-duplicate"
     },
     {
@@ -38,7 +37,7 @@ var ApartmentViews = [
         section: "מידע עירוני",
         title: "תיק בניין",
         id: "buildingDoc",
-        component: BuildingDocView,
+        component: DocumentView,
         glyphiconStyle: "glyphicon glyphicon-folder-open"
     },
     {

@@ -4,6 +4,8 @@
     height: 70px;
     box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
     margin-bottom: 0;
+    background-color: #90A4AE !important;
+    border-bottom: 0px;
 }
 
 .navbar-brand, .navbar-nav {
@@ -20,7 +22,7 @@
 }
 
 .navbar-nav > li > a > span {
-    color: #ef6c00;
+    color: #fff;
 }
 
 .container-rtl {

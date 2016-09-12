@@ -17,16 +17,17 @@ var GalleryView = React.createClass({
         var boundClick = this.clickImage.bind(this, key);
         return (
                 <div className="row gallery-img-bg">
-                    <BSImage src={this.props.images[key].src} onClick={boundClick}/>
+                    <BSImage src={this.props.images[key].src} onClick={boundClick} className="gallery-disbled-padding-left"/>
                 </div>
            );  
     },
 
-    renderSmallImage: function(key) {
+    renderSmallImage: function(key, isMostRight) {
         var boundClick = this.clickImage.bind(this, key);
         return (
                 <div className="row gallery-img-sm">
-                    <BSImage src={this.props.images[key].src} onClick={boundClick}/>
+                    <BSImage src={this.props.images[key].src} 
+                    onClick={boundClick} className={isMostRight ? "gallery-disbled-padding-right" : ""}/>
                 </div>
            );  
     },
@@ -85,8 +86,8 @@ var GalleryView = React.createClass({
                      {this.renderSmallImage(2)}
                 </div>
                 <div className="col-xs-3">
-                     {this.renderSmallImage(3)}
-                     {this.renderSmallImage(4)}
+                     {this.renderSmallImage(3, true)}
+                     {this.renderSmallImage(4, true)}
                 </div>
           </div>
         )

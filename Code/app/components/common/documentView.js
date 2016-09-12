@@ -4,6 +4,9 @@ var ModalStyle = require('./documentModalStyle');
 var ReactBootstrap = require('react-bootstrap');
 var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 var BSButton = ReactBootstrap.Button;
+var BSImage = ReactBootstrap.Image;
+
+
 
 var DocumentView = React.createClass({
     
@@ -22,11 +25,28 @@ var DocumentView = React.createClass({
         this.setState({isDocumentModalOpen: false});
     },
 
+    createIframe: function(src) {
+        return (
+            <iframe src={this.props.data.src} className="document-content-container"></iframe>
+        )
+    },
+
+    createJpg: function(src) {
+        return (
+           <div className="document-content-container">
+                <BSImage src={src} />
+           </div>
+        )
+    },
+
     renderModal: function() {
         return (
             <div>
                 <Modal isOpen={this.state.isDocumentModalOpen} onRequestClose={this.closeDocumentModal} style={ModalStyle}>
-                    {this.props.children}
+                    {
+                        this.props.data.documentType === "pdf" ?  
+                        this.createIframe(this.props.data.src) : this.createJpg(this.props.data.src)
+                    }
                 </Modal>
             </div>
         )
@@ -46,7 +66,7 @@ var DocumentView = React.createClass({
                 <div className="row">
                     <div className="col-xs-4 col-xs-offset-5">
                         <p className="document-date-val">
-                        {this.props.updateAt.toLocaleString("en-GB").replace(",", "")}
+                        {this.props.data.updateAt.toLocaleString("en-GB").replace(",", "")}
                         </p>
                     </div>
                     <div className="col-xs-3">

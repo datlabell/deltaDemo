@@ -15,5 +15,15 @@
     height: 100%;
     width: 100%;
     padding: 1px;
-    cursor: pointer
+    cursor: pointer;
+    background-color: #ccc;
 }
+
+.gallery-disbled-padding-left {
+    padding-left: 0px !important;;
+}
+
+.gallery-disbled-padding-right {
+    padding-right: 0px !important;
+}
+

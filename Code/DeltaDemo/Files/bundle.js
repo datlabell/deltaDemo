@@ -27144,7 +27144,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n#delta-brand-color {\n    color: #555;\n}\n\n.navbar-nav > li > a > span {\n    color: #ef6c00;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
+	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n#delta-brand-color {\n    color: #555;\n}\n\n.navbar-nav > li > a > span {\n    color: #fff;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
 
 	// exports
 
@@ -46459,7 +46459,7 @@
 	var Views = __webpack_require__(563);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(597);
+	var ApartmentData = __webpack_require__(594);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -46608,7 +46608,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    background-color: #eee;\n    box-shadow: 0 0 4px rgba(66,139,202,.14),0 4px 8px rgba(66,139,202,.28);\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n.tabu-document-container, .buildingDoc-document-container {\n    width: 100%;\n    height: 100%;\n}", ""]);
+	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5;\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n.apt-video {\n    padding: 20px;\n}\n\n.apt-video > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
 
 	// exports
 
@@ -46648,7 +46648,7 @@
 
 
 	// module
-	exports.push([module.id, ".gallery-container > div {\n    padding-top: 5px; \n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer\n}", ""]);
+	exports.push([module.id, ".gallery-container > div {\n    padding-top: 5px; \n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer;\n    background-color: #ccc;\n}\n\n.gallery-disbled-padding-left {\n    padding-left: 0px !important;;\n}\n\n.gallery-disbled-padding-right {\n    padding-right: 0px !important;\n}\n\n", ""]);
 
 	// exports
 
@@ -46678,16 +46678,17 @@
 	        return React.createElement(
 	            'div',
 	            { className: 'row gallery-img-bg' },
-	            React.createElement(BSImage, { src: this.props.images[key].src, onClick: boundClick })
+	            React.createElement(BSImage, { src: this.props.images[key].src, onClick: boundClick, className: 'gallery-disbled-padding-left' })
 	        );
 	    },
 
-	    renderSmallImage: function (key) {
+	    renderSmallImage: function (key, isMostRight) {
 	        var boundClick = this.clickImage.bind(this, key);
 	        return React.createElement(
 	            'div',
 	            { className: 'row gallery-img-sm' },
-	            React.createElement(BSImage, { src: this.props.images[key].src, onClick: boundClick })
+	            React.createElement(BSImage, { src: this.props.images[key].src,
+	                onClick: boundClick, className: isMostRight ? "gallery-disbled-padding-right" : "" })
 	        );
 	    },
 
@@ -46749,8 +46750,8 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-xs-3' },
-	                this.renderSmallImage(3),
-	                this.renderSmallImage(4)
+	                this.renderSmallImage(3, true),
+	                this.renderSmallImage(4, true)
 	            )
 	        );
 	    }
@@ -51252,27 +51253,26 @@
 	var React = __webpack_require__(1);
 
 	//Get apartment views
-	var TabuView = __webpack_require__(564);
-	var SketchView = __webpack_require__(589);
-	var BuildingDocView = __webpack_require__(590);
-	var ReviewsView = __webpack_require__(591);
-	var OwnerNotesView = __webpack_require__(592);
-	var MapView = __webpack_require__(593);
-	var TourView = __webpack_require__(594);
-	var VirtualizationView = __webpack_require__(595);
-	var VideoView = __webpack_require__(596);
+	var DocumentStyle = __webpack_require__(564);
+	var DocumentView = __webpack_require__(566);
+	var ReviewsView = __webpack_require__(588);
+	var OwnerNotesView = __webpack_require__(589);
+	var MapView = __webpack_require__(590);
+	var TourView = __webpack_require__(591);
+	var VirtualizationView = __webpack_require__(592);
+	var VideoView = __webpack_require__(593);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
 	    title: "טאבו",
 	    id: "tabu",
-	    component: TabuView,
+	    component: DocumentView,
 	    glyphiconStyle: "glyphicon glyphicon-file"
 	}, {
 	    section: "מידע ממשלתי",
 	    title: "שרטוט",
 	    id: "sketch",
-	    component: SketchView,
+	    component: DocumentView,
 	    glyphiconStyle: "glyphicon glyphicon-duplicate"
 	}, {
 	    section: "מידע ממשלתי",
@@ -51284,7 +51284,7 @@
 	    section: "מידע עירוני",
 	    title: "תיק בניין",
 	    id: "buildingDoc",
-	    component: BuildingDocView,
+	    component: DocumentView,
 	    glyphiconStyle: "glyphicon glyphicon-folder-open"
 	}, {
 	    section: "מידע עירוני",
@@ -51336,37 +51336,53 @@
 /* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 
-	//Get document view and style 
-	var DocumentView = __webpack_require__(565);
-	var DocumentStyle = __webpack_require__(587);
-
-	var TabuView = React.createClass({
-	  displayName: 'TabuView',
-
-
-	  render: function () {
-	    return React.createElement(
-	      DocumentView,
-	      { updateAt: this.props.data.updateAt },
-	      React.createElement('iframe', { src: this.props.data.src, className: 'tabu-document-container' })
-	    );
-	  }
-	});
-
-	module.exports = TabuView;
+	// load the styles
+	var content = __webpack_require__(565);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./document.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./document.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ },
 /* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".document-date-val {\n    direction: ltr !important;\n}\n\n.document-date-seperator {\n    padding-right: 2px;\n}\n\n.document-date-title {\n    font-weight: bold;\n}\n\n\n.document-btn-info {\n    color: #fff;\n    background-color: #1565C0;\n}\n.document-btn-info:hover {\n    background-color: #1565C0;\n}\n\n.document-btn-order {\n    border-color: #ff5a5f;\n    background-color: #e8e8e8;\n}\n\n.document-btn-order:hover {\n    border-color: #ff5a5f;\n    background-color: #BDBDBD;\n}\n\n\n.document-content-container, .document-content-container > img {\n    width: 100%;\n    height: 100%;\n}\n\n\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 566 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
-	var Modal = __webpack_require__(566);
-	var ModalStyle = __webpack_require__(586);
+	var Modal = __webpack_require__(567);
+	var ModalStyle = __webpack_require__(587);
 	var ReactBootstrap = __webpack_require__(241);
 	var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 	var BSButton = ReactBootstrap.Button;
+	var BSImage = ReactBootstrap.Image;
 
 	var DocumentView = React.createClass({
 	    displayName: 'DocumentView',
@@ -51387,6 +51403,18 @@
 	        this.setState({ isDocumentModalOpen: false });
 	    },
 
+	    createIframe: function (src) {
+	        return React.createElement('iframe', { src: this.props.data.src, className: 'document-content-container' });
+	    },
+
+	    createJpg: function (src) {
+	        return React.createElement(
+	            'div',
+	            { className: 'document-content-container' },
+	            React.createElement(BSImage, { src: src })
+	        );
+	    },
+
 	    renderModal: function () {
 	        return React.createElement(
 	            'div',
@@ -51394,7 +51422,7 @@
 	            React.createElement(
 	                Modal,
 	                { isOpen: this.state.isDocumentModalOpen, onRequestClose: this.closeDocumentModal, style: ModalStyle },
-	                this.props.children
+	                this.props.data.documentType === "pdf" ? this.createIframe(this.props.data.src) : this.createJpg(this.props.data.src)
 	            )
 	        );
 	    },
@@ -51434,7 +51462,7 @@
 	                        React.createElement(
 	                            'p',
 	                            { className: 'document-date-val' },
-	                            this.props.updateAt.toLocaleString("en-GB").replace(",", "")
+	                            this.props.data.updateAt.toLocaleString("en-GB").replace(",", "")
 	                        )
 	                    ),
 	                    React.createElement(
@@ -51460,25 +51488,25 @@
 	module.exports = DocumentView;
 
 /***/ },
-/* 566 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(567);
+	module.exports = __webpack_require__(568);
 
 
 
 /***/ },
-/* 567 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var ExecutionEnvironment = __webpack_require__(568);
-	var ModalPortal = React.createFactory(__webpack_require__(569));
-	var ariaAppHider = __webpack_require__(584);
-	var elementClass = __webpack_require__(585);
+	var ExecutionEnvironment = __webpack_require__(569);
+	var ModalPortal = React.createFactory(__webpack_require__(570));
+	var ariaAppHider = __webpack_require__(585);
+	var elementClass = __webpack_require__(586);
 	var renderSubtreeIntoContainer = __webpack_require__(34).unstable_renderSubtreeIntoContainer;
-	var Assign = __webpack_require__(573);
+	var Assign = __webpack_require__(574);
 
 	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
 	var AppElement = ExecutionEnvironment.canUseDOM ? document.body : {appendChild: function() {}};
@@ -51586,7 +51614,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 568 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51631,14 +51659,14 @@
 
 
 /***/ },
-/* 569 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var div = React.DOM.div;
-	var focusManager = __webpack_require__(570);
-	var scopeTab = __webpack_require__(572);
-	var Assign = __webpack_require__(573);
+	var focusManager = __webpack_require__(571);
+	var scopeTab = __webpack_require__(573);
+	var Assign = __webpack_require__(574);
 
 	// so that our CSS is statically analyzable
 	var CLASS_NAMES = {
@@ -51829,10 +51857,10 @@
 
 
 /***/ },
-/* 570 */
+/* 571 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(571);
+	var findTabbable = __webpack_require__(572);
 	var modalElement = null;
 	var focusLaterElement = null;
 	var needToFocus = false;
@@ -51903,7 +51931,7 @@
 
 
 /***/ },
-/* 571 */
+/* 572 */
 /***/ function(module, exports) {
 
 	/*!
@@ -51959,10 +51987,10 @@
 
 
 /***/ },
-/* 572 */
+/* 573 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(571);
+	var findTabbable = __webpack_require__(572);
 
 	module.exports = function(node, event) {
 	  var tabbable = findTabbable(node);
@@ -51984,7 +52012,7 @@
 
 
 /***/ },
-/* 573 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -51995,9 +52023,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseAssign = __webpack_require__(574),
-	    createAssigner = __webpack_require__(580),
-	    keys = __webpack_require__(576);
+	var baseAssign = __webpack_require__(575),
+	    createAssigner = __webpack_require__(581),
+	    keys = __webpack_require__(577);
 
 	/**
 	 * A specialized version of `_.assign` for customizing assigned values without
@@ -52070,7 +52098,7 @@
 
 
 /***/ },
-/* 574 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52081,8 +52109,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseCopy = __webpack_require__(575),
-	    keys = __webpack_require__(576);
+	var baseCopy = __webpack_require__(576),
+	    keys = __webpack_require__(577);
 
 	/**
 	 * The base implementation of `_.assign` without support for argument juggling,
@@ -52103,7 +52131,7 @@
 
 
 /***/ },
-/* 575 */
+/* 576 */
 /***/ function(module, exports) {
 
 	/**
@@ -52141,7 +52169,7 @@
 
 
 /***/ },
-/* 576 */
+/* 577 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52152,9 +52180,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var getNative = __webpack_require__(577),
-	    isArguments = __webpack_require__(578),
-	    isArray = __webpack_require__(579);
+	var getNative = __webpack_require__(578),
+	    isArguments = __webpack_require__(579),
+	    isArray = __webpack_require__(580);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -52383,7 +52411,7 @@
 
 
 /***/ },
-/* 577 */
+/* 578 */
 /***/ function(module, exports) {
 
 	/**
@@ -52526,7 +52554,7 @@
 
 
 /***/ },
-/* 578 */
+/* 579 */
 /***/ function(module, exports) {
 
 	/**
@@ -52761,7 +52789,7 @@
 
 
 /***/ },
-/* 579 */
+/* 580 */
 /***/ function(module, exports) {
 
 	/**
@@ -52947,7 +52975,7 @@
 
 
 /***/ },
-/* 580 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52958,9 +52986,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var bindCallback = __webpack_require__(581),
-	    isIterateeCall = __webpack_require__(582),
-	    restParam = __webpack_require__(583);
+	var bindCallback = __webpack_require__(582),
+	    isIterateeCall = __webpack_require__(583),
+	    restParam = __webpack_require__(584);
 
 	/**
 	 * Creates a function that assigns properties of source object(s) to a given
@@ -53005,7 +53033,7 @@
 
 
 /***/ },
-/* 581 */
+/* 582 */
 /***/ function(module, exports) {
 
 	/**
@@ -53076,7 +53104,7 @@
 
 
 /***/ },
-/* 582 */
+/* 583 */
 /***/ function(module, exports) {
 
 	/**
@@ -53214,7 +53242,7 @@
 
 
 /***/ },
-/* 583 */
+/* 584 */
 /***/ function(module, exports) {
 
 	/**
@@ -53287,7 +53315,7 @@
 
 
 /***/ },
-/* 584 */
+/* 585 */
 /***/ function(module, exports) {
 
 	var _element = typeof document !== 'undefined' ? document.body : null;
@@ -53335,7 +53363,7 @@
 
 
 /***/ },
-/* 585 */
+/* 586 */
 /***/ function(module, exports) {
 
 	module.exports = function(opts) {
@@ -53400,7 +53428,7 @@
 
 
 /***/ },
-/* 586 */
+/* 587 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -53410,7 +53438,7 @@
 	    left: 0,
 	    right: 0,
 	    bottom: 0,
-	    backgroundColor: "rgba(0,0,0,0.54098)",
+	    backgroundColor: "rgba(0, 0, 0, 0.8)",
 	    zIndex: "1031"
 	  },
 	  content: {
@@ -53423,98 +53451,14 @@
 	    outline: 'none',
 	    padding: '0px',
 	    border: "0px",
-	    backgroundColor: "rgba(0,0,0,0.54098)",
+	    backgroundColor: "rgba(0, 0, 0, 0.8)",
 	    width: "80%",
 	    height: "730px"
 	  }
 	};
 
 /***/ },
-/* 587 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(588);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(238)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./document.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./document.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 588 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(237)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".document-date-val {\n    direction: ltr !important;\n}\n\n.document-date-seperator {\n    padding-right: 2px;\n}\n\n.document-date-title {\n    font-weight: bold;\n}\n\n\n.document-btn-info {\n    color: #fff;\n    background-color: #1565C0;\n}\n.document-btn-info:hover {\n    background-color: #1565C0;\n}\n\n.document-btn-order {\n    border-color: #ef6c00;\n    background-color: #e8e8e8;\n}\n\n.document-btn-order:hover {\n    border-color: #ef6c00;\n    background-color: #BDBDBD;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 589 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	//Get document view and style 
-	var DocumentView = __webpack_require__(565);
-	var DocumentStyle = __webpack_require__(587);
-
-	var SketchView = React.createClass({
-	  displayName: 'SketchView',
-
-	  render: function () {
-	    return React.createElement(DocumentView, { updateAt: this.props.data.updateAt, file: this.props.data.src });
-	  }
-	});
-
-	module.exports = SketchView;
-
-/***/ },
-/* 590 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	//Get document view and style 
-	var DocumentView = __webpack_require__(565);
-	var DocumentStyle = __webpack_require__(587);
-
-	var BuildingDocView = React.createClass({
-	  displayName: 'BuildingDocView',
-
-	  render: function () {
-	    return React.createElement(
-	      DocumentView,
-	      { updateAt: this.props.data.updateAt, file: this.props.data.src },
-	      React.createElement('iframe', { src: this.props.data.src, className: 'buildingDoc-document-container' })
-	    );
-	  }
-	});
-
-	module.exports = BuildingDocView;
-
-/***/ },
-/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53530,7 +53474,7 @@
 	module.exports = ReviewsView;
 
 /***/ },
-/* 592 */
+/* 589 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53546,7 +53490,7 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 593 */
+/* 590 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53562,7 +53506,7 @@
 	module.exports = MapView;
 
 /***/ },
-/* 594 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53578,7 +53522,7 @@
 	module.exports = TourView;
 
 /***/ },
-/* 595 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53594,7 +53538,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 596 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53603,14 +53547,18 @@
 	  displayName: "VideoView",
 
 	  render: function () {
-	    return React.createElement("div", { className: "text-center" });
+	    return React.createElement(
+	      "div",
+	      { className: "apt-video" },
+	      React.createElement("iframe", { src: this.props.data.src, allowFullScreen: true })
+	    );
 	  }
 	});
 
 	module.exports = VideoView;
 
 /***/ },
-/* 597 */
+/* 594 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -53677,17 +53625,24 @@
 
 	  "tabu": {
 	    src: "/tabu/example.pdf",
-	    updateAt: new Date(2016, 5, 3, 16, 0, 0)
+	    updateAt: new Date(2016, 5, 3, 16, 0, 0),
+	    documentType: "pdf"
 	  },
 
 	  "sketch": {
-	    src: "path to sketch",
-	    updateAt: new Date(2016, 1, 1, 10, 15, 30)
+	    src: "/sketch/example.jpg",
+	    updateAt: new Date(2016, 1, 1, 10, 15, 30),
+	    documentType: "jpg"
 	  },
 
 	  "buildingDoc": {
 	    src: "/tabu/example.pdf",
-	    updateAt: new Date(2016, 8, 8, 12, 32, 33)
+	    updateAt: new Date(2016, 8, 8, 12, 32, 33),
+	    documentType: "pdf"
+	  },
+
+	  "video": {
+	    src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
 	  }
 	};
 

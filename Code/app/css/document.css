@@ -20,11 +20,19 @@
 }
 
 .document-btn-order {
-    border-color: #ef6c00;
+    border-color: #ff5a5f;
     background-color: #e8e8e8;
 }
 
 .document-btn-order:hover {
-    border-color: #ef6c00;
+    border-color: #ff5a5f;
     background-color: #BDBDBD;
 }
+
+
+.document-content-container, .document-content-container > img {
+    width: 100%;
+    height: 100%;
+}
+
+

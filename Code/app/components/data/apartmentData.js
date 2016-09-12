@@ -84,17 +84,24 @@ var ApartmentData = {
 
   "tabu": {
     src: "/tabu/example.pdf",
-    updateAt: new Date(2016, 5, 3, 16, 0, 0)
+    updateAt: new Date(2016, 5, 3, 16, 0, 0),
+    documentType: "pdf"
   },
 
   "sketch": {
-    src: "path to sketch",
-    updateAt: new Date(2016, 1, 1, 10, 15, 30)
+    src: "/sketch/example.jpg",
+    updateAt: new Date(2016, 1, 1, 10, 15, 30),
+    documentType: "jpg"
   },
 
   "buildingDoc": {
     src: "/tabu/example.pdf",
-    updateAt: new Date(2016, 8, 8, 12, 32, 33)
+    updateAt: new Date(2016, 8, 8, 12, 32, 33),
+    documentType: "pdf"
+  },
+
+  "video" : {
+    src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
   }
 }
 
