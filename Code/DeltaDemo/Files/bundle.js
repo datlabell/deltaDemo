@@ -46459,7 +46459,7 @@
 	var Views = __webpack_require__(563);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(595);
+	var ApartmentData = __webpack_require__(597);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -51257,9 +51257,9 @@
 	var DocumentView = __webpack_require__(566);
 	var ReviewsView = __webpack_require__(588);
 	var OwnerNotesView = __webpack_require__(591);
-	var MapView = __webpack_require__(592);
-	var VirtualizationView = __webpack_require__(593);
-	var VideoView = __webpack_require__(594);
+	var MapView = __webpack_require__(594);
+	var VirtualizationView = __webpack_require__(595);
+	var VideoView = __webpack_require__(596);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
@@ -51311,22 +51311,16 @@
 	    glyphiconStyle: "glyphicon glyphicon-map-marker"
 	}, {
 	    section: "מידע ויזואלי",
-	    title: "סיור תלת מימדי",
+	    title: "סיור",
 	    id: "tour",
 	    component: VideoView,
-	    glyphiconStyle: "glyphicon glyphicon-road"
+	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
 	}, {
 	    section: "מידע ויזואלי",
 	    title: "הדמיית תלת מימד",
 	    id: "virtualization",
 	    component: VirtualizationView,
 	    glyphiconStyle: "glyphicon glyphicon-object-align-bottom"
-	}, {
-	    section: "מידע ויזואלי",
-	    title: "וידאו",
-	    id: "video",
-	    component: VideoView,
-	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
 	}];
 
 	module.exports = ApartmentViews;
@@ -51461,7 +51455,7 @@
 	                        React.createElement(
 	                            'p',
 	                            { className: 'document-date-val' },
-	                            this.props.data.updateAt.toLocaleString("en-GB").replace(",", "")
+	                            this.props.data.updateAt.toLocaleDateString("en-GB")
 	                        )
 	                    ),
 	                    React.createElement(
@@ -53474,16 +53468,24 @@
 	    render: function () {
 	        return React.createElement(
 	            'div',
-	            { className: 'row review-user' },
-	            React.createElement(BSImage, {
-	                src: this.props.userImageSrc,
-	                circle: true,
-	                responsive: true,
-	                title: this.props.name }),
+	            { className: 'row' },
 	            React.createElement(
-	                'p',
-	                { className: 'text-justify' },
-	                this.props.name
+	                'div',
+	                { className: 'col-xs-12 text-center review-user' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'border-box' },
+	                    React.createElement(BSImage, {
+	                        src: this.props.userImageSrc,
+	                        circle: true,
+	                        responsive: true,
+	                        title: this.props.name })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'review-user-name' },
+	                    this.props.name
+	                )
 	            )
 	        );
 	    }
@@ -53554,7 +53556,7 @@
 	            { className: 'row' },
 	            React.createElement(
 	                'div',
-	                { className: 'col-xs-10 col-xs-offset-1' },
+	                { className: 'col-xs-11 col-xs-offset-1' },
 	                Object.keys(this.props.data).map(this.renderReview)
 	            )
 	        );
@@ -53598,7 +53600,7 @@
 
 
 	// module
-	exports.push([module.id, ".review {\n    padding-top: 30px;\n    margin-bottom: 25px;\n}\n\n.review-data {\n    padding-bottom: 55px;\n    border-bottom: 1px solid #ccc;\n}\n\n.review-data-content {\n    color: #555;\n    margin-bottom: 10px;\n}\n\n.review-data-date {\n    color: #757575;\n    font-size: 14px;\n    padding-right: 0;\n}\n\n.review-data-role {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}\n\n.review-data-role > span {\n    color: #ff5a5f;\n    padding-left: 5px;\n}\n\n.review-user > img {\n    height: 67px;\n    width: 67px; \n}\n\n.review-user > p {\n    padding-right: 16px;\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}", ""]);
+	exports.push([module.id, ".review {\n    padding-top: 30px;\n    margin-bottom: 25px;\n}\n\n.review-data {\n    padding-bottom: 55px;\n    border-bottom: 1px solid #ccc;\n}\n\n.review-data-content {\n    color: #555;\n    margin-bottom: 10px;\n}\n\n.review-data-date {\n    color: #757575;\n    font-size: 14px;\n    padding-right: 0;\n}\n\n.review-data-role {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}\n\n.review-data-role > span {\n    color: #ff5a5f;\n    padding-left: 5px;\n}\n\n.review-user > .border-box {\n    box-sizing: border-box;\n}\n\n.review-user > .border-box > img {\n    height: 67px;\n    width: 67px;\n    vertical-align: middle;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.review-user-name {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}", ""]);
 
 	// exports
 
@@ -53609,18 +53611,152 @@
 
 	var React = __webpack_require__(1);
 
-	var OwnerNotesView = React.createClass({
-	  displayName: "OwnerNotesView",
+	//Add style
+	var ReviewStyle = __webpack_require__(592);
 
-	  render: function () {
-	    return React.createElement("div", { className: "text-center" });
-	  }
+	var FeaturesView = React.createClass({
+	    displayName: "FeaturesView",
+
+
+	    renderSpanCheck: function (isChecked) {
+	        return isChecked ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove";
+	    },
+
+	    renderFeature: function (feature) {
+	        return React.createElement(
+	            "div",
+	            { className: "col-xs-4 owner-notes-feature", key: feature.title },
+	            React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    { className: "col-xs-2 col-xs-offset-5 feature-check" },
+	                    React.createElement("span", { className: this.renderSpanCheck(feature.enabled), "aria-hidden": "true" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "col-xs-5 feature-title" },
+	                    React.createElement("span", { className: feature.glyphiconStyle, "aria-hidden": "true" }),
+	                    feature.title
+	                )
+	            )
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row owner-notes-features" },
+	            this.props.features.map(this.renderFeature)
+	        );
+	    }
+	});
+
+	var DescriptionsView = React.createClass({
+	    displayName: "DescriptionsView",
+
+
+	    renderDescription: function (description) {
+	        return React.createElement(
+	            "div",
+	            { className: "col-xs-6 owner-notes-description", key: description.title },
+	            React.createElement(
+	                "div",
+	                { className: "row description-title" },
+	                React.createElement(
+	                    "h3",
+	                    null,
+	                    description.title
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "row description-text" },
+	                description.text
+	            )
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row owner-notes-descriptions" },
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-11 col-xs-offset-1" },
+	                React.createElement(
+	                    "div",
+	                    { className: "row" },
+	                    this.props.descriptions.map(this.renderDescription)
+	                )
+	            )
+	        );
+	    }
+
+	});
+
+	var OwnerNotesView = React.createClass({
+	    displayName: "OwnerNotesView",
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row" },
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-12" },
+	                React.createElement(FeaturesView, { features: this.props.data.features }),
+	                React.createElement(DescriptionsView, { descriptions: this.props.data.descriptions })
+	            )
+	        );
+	    }
 	});
 
 	module.exports = OwnerNotesView;
 
 /***/ },
 /* 592 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(593);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ownerNotes.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./ownerNotes.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 593 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".owner-notes-features, .owner-notes-descriptions {\n    padding-right: 15px;\n}\n\n.feature-title {\n    color: #757575;\n    font-weight: bold;\n}\n\n.feature-check > .glyphicon-ok {\n    color: #4CAF50;\n}\n\n.feature-check > .glyphicon-remove {\n    color: #F44336;\n}\n\n.owner-notes-description {\n    padding-left: 15px;\n    padding-top: 40px;\n}\n\n.description-title, .description-text {\n    padding-right: 15px;\n}\n\n.description-title > h3 {\n    color: #555;\n    font-weight: bold;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53636,7 +53772,7 @@
 	module.exports = MapView;
 
 /***/ },
-/* 593 */
+/* 595 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53652,7 +53788,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 594 */
+/* 596 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53672,7 +53808,7 @@
 	module.exports = VideoView;
 
 /***/ },
-/* 595 */
+/* 597 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -53800,7 +53936,56 @@
 	      role: "דייר קודם",
 	      date: new Date(2016, 11, 25)
 	    }
-	  }]
+	  }],
+
+	  "ownerNotes": {
+
+	    features: [{
+	      title: "מיזוג",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }, {
+	      title: "מעלית",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }, {
+	      title: "מרפסת",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }, {
+	      title: "סורגים",
+	      glyphiconStyle: "",
+	      enabled: false
+	    }, {
+	      title: "מרפסת שמש",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }, {
+	      title: "חניה",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }, {
+	      title: "ממ״ד",
+	      glyphiconStyle: "",
+	      enabled: false
+	    }, {
+	      title: "מחסן",
+	      glyphiconStyle: "",
+	      enabled: false
+	    }, {
+	      title: "משופצת",
+	      glyphiconStyle: "",
+	      enabled: true
+	    }],
+
+	    descriptions: [{
+	      title: "תיאור",
+	      text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
+	    }, {
+	      title: "ריהוט",
+	      text: "מקרר, מכונת כביסה, מייבש מדיח, תנור וגז."
+	    }]
+	  }
 	};
 
 	module.exports = ApartmentData;

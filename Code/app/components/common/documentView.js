@@ -66,7 +66,7 @@ var DocumentView = React.createClass({
                 <div className="row">
                     <div className="col-xs-4 col-xs-offset-5">
                         <p className="document-date-val">
-                        {this.props.data.updateAt.toLocaleString("en-GB").replace(",", "")}
+                        {this.props.data.updateAt.toLocaleDateString("en-GB")}
                         </p>
                     </div>
                     <div className="col-xs-3">

@@ -1,0 +1,30 @@
+.owner-notes-features, .owner-notes-descriptions {
+    padding-right: 15px;
+}
+
+.feature-title {
+    color: #757575;
+    font-weight: bold;
+}
+
+.feature-check > .glyphicon-ok {
+    color: #4CAF50;
+}
+
+.feature-check > .glyphicon-remove {
+    color: #F44336;
+}
+
+.owner-notes-description {
+    padding-left: 15px;
+    padding-top: 40px;
+}
+
+.description-title, .description-text {
+    padding-right: 15px;
+}
+
+.description-title > h3 {
+    color: #555;
+    font-weight: bold;
+}

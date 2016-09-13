@@ -151,7 +151,69 @@ var ApartmentData = {
           date: new Date(2016, 11, 25)
        }
     }
-  ]
+  ],
+
+  "ownerNotes": {
+      
+      features: [
+          {
+              title: "מיזוג",
+              glyphiconStyle: "",
+              enabled: true
+          },
+          {
+              title: "מעלית",
+              glyphiconStyle: "",
+              enabled: true
+          },
+          {
+              title: "מרפסת",
+              glyphiconStyle: "",
+              enabled: true
+          },
+          {
+              title: "סורגים",
+              glyphiconStyle: "",
+              enabled: false
+          },
+          {
+              title: "מרפסת שמש",
+              glyphiconStyle: "",
+              enabled: true
+          },
+                    {
+              title: "חניה",
+              glyphiconStyle: "",
+              enabled: true
+          },
+          {
+              title: "ממ״ד",
+              glyphiconStyle: "",
+              enabled: false
+          },
+          {
+              title: "מחסן",
+              glyphiconStyle: "",
+              enabled: false
+          },
+          {
+              title: "משופצת",
+              glyphiconStyle: "",
+              enabled: true
+          }
+      ],
+
+      descriptions: [
+          {
+              title: "תיאור",
+              text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
+          },
+          {
+              title: "ריהוט",
+              text: "מקרר, מכונת כביסה, מייבש מדיח, תנור וגז."
+          }
+      ]
+  }
 }
 
 module.exports = ApartmentData;

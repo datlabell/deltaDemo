@@ -9,13 +9,17 @@ var ReviewUserContainer = React.createClass({
 
     render: function () {
         return (
-            <div className="row review-user">
-                <BSImage 
-                        src={this.props.userImageSrc}
-                        circle
-                        responsive
-                        title={this.props.name} />
-                <p className="text-justify">{this.props.name}</p>
+            <div className="row">
+                <div className="col-xs-12 text-center review-user">
+                    <div className="border-box">
+                        <BSImage 
+                            src={this.props.userImageSrc}
+                            circle
+                            responsive
+                            title={this.props.name}/>
+                    </div>
+                    <div className="review-user-name">{this.props.name}</div>
+                </div>
             </div>
         )
     }
@@ -71,7 +75,7 @@ var ReviewsView = React.createClass( {
   render: function() {
     return (
       <div className="row">
-          <div className="col-xs-10 col-xs-offset-1">
+          <div className="col-xs-11 col-xs-offset-1">
               {Object.keys(this.props.data).map(this.renderReview)}
           </div>
       </div>

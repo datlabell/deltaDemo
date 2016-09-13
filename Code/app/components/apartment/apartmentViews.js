@@ -70,10 +70,10 @@ var ApartmentViews = [
     },
     {
         section: "מידע ויזואלי",
-        title: "סיור תלת מימדי",
+        title: "סיור",
         id: "tour",
         component: VideoView,
-        glyphiconStyle: "glyphicon glyphicon-road"
+        glyphiconStyle: "glyphicon glyphicon-facetime-video"
     },
     {
         section: "מידע ויזואלי",
@@ -81,13 +81,6 @@ var ApartmentViews = [
         id: "virtualization",
         component: VirtualizationView,
         glyphiconStyle: "glyphicon glyphicon-object-align-bottom"
-    },
-    {
-        section: "מידע ויזואלי",
-        title: "וידאו",
-        id: "video",
-        component: VideoView,
-        glyphiconStyle: "glyphicon glyphicon-facetime-video"
     }
 ]
 
