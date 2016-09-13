@@ -17,8 +17,18 @@
     margin-top: 60px;
 }
 
-#delta-brand-color, .navbar-nav > li > a > span {
+.navbar-nav > li > a > span {
     color: #fff;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+#delta-brand {
+    color: #EF5350;
+    line-height: 30px;
+    font-family: serif;
+    font-weight: bold;
 }
 
 .container-rtl {

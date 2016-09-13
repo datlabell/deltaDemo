@@ -11,7 +11,7 @@ var Navbar = React.createClass( {
       <BSNavbar fixedTop>
         <BSNavbar.Header>
             <BSNavbar.Brand>
-                <a href="/home" id="delta-brand-color">Delta Project</a>
+                <a href="/home" id="delta-brand">Delta Project</a>
             </BSNavbar.Brand>
         </BSNavbar.Header>
         <BSNav pullRight>
