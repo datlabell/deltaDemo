@@ -1,0 +1,43 @@
+.review {
+    padding-top: 30px;
+    margin-bottom: 25px;
+}
+
+.review-data {
+    padding-bottom: 55px;
+    border-bottom: 1px solid #ccc;
+}
+
+.review-data-content {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.review-data-date {
+    color: #757575;
+    font-size: 14px;
+    padding-right: 0;
+}
+
+.review-data-role {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.review-data-role > span {
+    color: #ff5a5f;
+    padding-left: 5px;
+}
+
+.review-user > img {
+    height: 67px;
+    width: 67px; 
+}
+
+.review-user > p {
+    padding-right: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}

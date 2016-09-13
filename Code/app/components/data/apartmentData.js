@@ -102,7 +102,56 @@ var ApartmentData = {
 
   "video" : {
     src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
-  }
+  },
+
+  "tour": {
+    src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+  },
+
+  "reviews" : [
+
+    {
+      user: {
+
+         name: "אוריאל",
+         image: "https://a2.muscache.com/im/pictures/22d765a1-1d26-48b8-9ad0-693b017f7ddf.jpg?aki_policy=profile_x_medium"
+
+      },
+
+      data: {
+          content: "שכונה יפה, דירה מאוד נוחה הילדים אהבו",
+          role: "דייר קודם",
+          date: new Date(2016, 8, 8)
+      },
+    },
+    {
+      user: {
+
+         name: "עומרי",
+         image: "https://a2.muscache.com/im/pictures/4d8de509-e990-445a-ae58-b51feba8c5f8.jpg?aki_policy=profile_x_medium"
+
+      },
+
+      data: {
+          content: "דירה מעולה, אחלה בעלים",
+          role: "דייר קודם",
+          date: new Date(2016, 3, 2)
+      }
+    },
+
+    {
+       user:  {
+         name: "אסף",
+         image: "https://a2.muscache.com/im/pictures/29afd4a8-fbc4-4651-a297-e1f8184d9421.jpg?aki_policy=profile_x_medium"
+       },
+
+       data: {
+          content: "דירה על הכיפאק. גרתי שם שנתיים והיה פיצוץ",
+          role: "דייר קודם",
+          date: new Date(2016, 11, 25)
+       }
+    }
+  ]
 }
 
 module.exports = ApartmentData;

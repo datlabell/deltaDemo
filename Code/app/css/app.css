@@ -17,11 +17,7 @@
     margin-top: 60px;
 }
 
-#delta-brand-color {
-    color: #555;
-}
-
-.navbar-nav > li > a > span {
+#delta-brand-color, .navbar-nav > li > a > span {
     color: #fff;
 }
 

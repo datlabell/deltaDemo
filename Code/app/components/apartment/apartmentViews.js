@@ -6,7 +6,6 @@ var DocumentView = require('../common/documentView');
 var ReviewsView = require('./reviewsView');
 var OwnerNotesView = require('./ownerNotesView');
 var MapView = require('./mapView');
-var TourView = require('./tourView');
 var VirtualizationView = require('./VirtualizationView');
 var VideoView = require('./videoView');
 
@@ -73,7 +72,7 @@ var ApartmentViews = [
         section: "מידע ויזואלי",
         title: "סיור תלת מימדי",
         id: "tour",
-        component: TourView,
+        component: VideoView,
         glyphiconStyle: "glyphicon glyphicon-road"
     },
     {

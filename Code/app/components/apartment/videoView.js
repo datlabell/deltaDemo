@@ -4,7 +4,7 @@ var VideoView = React.createClass( {
   render: function() {
     return (
       <div className="apt-video">
-          <iframe src={this.props.data.src}  allowFullScreen/>
+          <iframe src={this.props.data.src}  allowFullScreen />
       </div>
     )
   }

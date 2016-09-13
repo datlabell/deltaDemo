@@ -27144,7 +27144,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n#delta-brand-color {\n    color: #555;\n}\n\n.navbar-nav > li > a > span {\n    color: #fff;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
+	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n#delta-brand-color, .navbar-nav > li > a > span {\n    color: #fff;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
 
 	// exports
 
@@ -46459,7 +46459,7 @@
 	var Views = __webpack_require__(563);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(594);
+	var ApartmentData = __webpack_require__(595);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -46648,7 +46648,7 @@
 
 
 	// module
-	exports.push([module.id, ".gallery-container > div {\n    padding-top: 5px; \n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer;\n    background-color: #ccc;\n}\n\n.gallery-disbled-padding-left {\n    padding-left: 0px !important;;\n}\n\n.gallery-disbled-padding-right {\n    padding-right: 0px !important;\n}\n\n", ""]);
+	exports.push([module.id, ".gallery-container > div {\n    padding-top: 5px; \n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer;\n    background-color: #f5f5f5;\n}\n\n.gallery-disbled-padding-left {\n    padding-left: 0px !important;;\n}\n\n.gallery-disbled-padding-right {\n    padding-right: 0px !important;\n}\n\n", ""]);
 
 	// exports
 
@@ -51256,11 +51256,10 @@
 	var DocumentStyle = __webpack_require__(564);
 	var DocumentView = __webpack_require__(566);
 	var ReviewsView = __webpack_require__(588);
-	var OwnerNotesView = __webpack_require__(589);
-	var MapView = __webpack_require__(590);
-	var TourView = __webpack_require__(591);
-	var VirtualizationView = __webpack_require__(592);
-	var VideoView = __webpack_require__(593);
+	var OwnerNotesView = __webpack_require__(591);
+	var MapView = __webpack_require__(592);
+	var VirtualizationView = __webpack_require__(593);
+	var VideoView = __webpack_require__(594);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
@@ -51314,7 +51313,7 @@
 	    section: "מידע ויזואלי",
 	    title: "סיור תלת מימדי",
 	    id: "tour",
-	    component: TourView,
+	    component: VideoView,
 	    glyphiconStyle: "glyphicon glyphicon-road"
 	}, {
 	    section: "מידע ויזואלי",
@@ -53462,19 +53461,150 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSImage = ReactBootstrap.Image;
+
+	//Get style
+	var ReviewStyle = __webpack_require__(589);
+
+	var ReviewUserContainer = React.createClass({
+	    displayName: 'ReviewUserContainer',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row review-user' },
+	            React.createElement(BSImage, {
+	                src: this.props.userImageSrc,
+	                circle: true,
+	                responsive: true,
+	                title: this.props.name }),
+	            React.createElement(
+	                'p',
+	                { className: 'text-justify' },
+	                this.props.name
+	            )
+	        );
+	    }
+	});
+
+	var ReviewContentContainer = React.createClass({
+	    displayName: 'ReviewContentContainer',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row review-data' },
+	            React.createElement(
+	                'div',
+	                { className: 'review-data-content' },
+	                this.props.content
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'review-data-role col-xs-2' },
+	                React.createElement('span', { className: 'glyphicon glyphicon-user', 'aria-hidden': 'true' }),
+	                this.props.role
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'review-data-date col-xs-10' },
+	                this.props.date.toLocaleDateString("en-GB")
+	            )
+	        );
+	    }
+	});
+
+	var ReviewContainer = React.createClass({
+	    displayName: 'ReviewContainer',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row review' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-10' },
+	                React.createElement(ReviewContentContainer, { content: this.props.data.content, role: this.props.data.role, date: this.props.data.date })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-2' },
+	                React.createElement(ReviewUserContainer, { name: this.props.user.name, userImageSrc: this.props.user.image })
+	            )
+	        );
+	    }
+	});
 
 	var ReviewsView = React.createClass({
-	  displayName: "ReviewsView",
+	    displayName: 'ReviewsView',
 
-	  render: function () {
-	    return React.createElement("div", { className: "text-center" });
-	  }
+
+	    renderReview: function (key) {
+	        var review = this.props.data[key];
+	        return React.createElement(ReviewContainer, { key: key, data: review.data, user: review.user });
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-10 col-xs-offset-1' },
+	                Object.keys(this.props.data).map(this.renderReview)
+	            )
+	        );
+	    }
 	});
 
 	module.exports = ReviewsView;
 
 /***/ },
 /* 589 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(590);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./reviews.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./reviews.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 590 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".review {\n    padding-top: 30px;\n    margin-bottom: 25px;\n}\n\n.review-data {\n    padding-bottom: 55px;\n    border-bottom: 1px solid #ccc;\n}\n\n.review-data-content {\n    color: #555;\n    margin-bottom: 10px;\n}\n\n.review-data-date {\n    color: #757575;\n    font-size: 14px;\n    padding-right: 0;\n}\n\n.review-data-role {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}\n\n.review-data-role > span {\n    color: #ff5a5f;\n    padding-left: 5px;\n}\n\n.review-user > img {\n    height: 67px;\n    width: 67px; \n}\n\n.review-user > p {\n    padding-right: 16px;\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53490,7 +53620,7 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 590 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53506,23 +53636,7 @@
 	module.exports = MapView;
 
 /***/ },
-/* 591 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	var TourView = React.createClass({
-	  displayName: "TourView",
-
-	  render: function () {
-	    return React.createElement("div", { className: "text-center" });
-	  }
-	});
-
-	module.exports = TourView;
-
-/***/ },
-/* 592 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53538,7 +53652,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 593 */
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53558,7 +53672,7 @@
 	module.exports = VideoView;
 
 /***/ },
-/* 594 */
+/* 595 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -53643,7 +53757,50 @@
 
 	  "video": {
 	    src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
-	  }
+	  },
+
+	  "tour": {
+	    src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+	  },
+
+	  "reviews": [{
+	    user: {
+
+	      name: "אוריאל",
+	      image: "https://a2.muscache.com/im/pictures/22d765a1-1d26-48b8-9ad0-693b017f7ddf.jpg?aki_policy=profile_x_medium"
+
+	    },
+
+	    data: {
+	      content: "שכונה יפה, דירה מאוד נוחה הילדים אהבו",
+	      role: "דייר קודם",
+	      date: new Date(2016, 8, 8)
+	    }
+	  }, {
+	    user: {
+
+	      name: "עומרי",
+	      image: "https://a2.muscache.com/im/pictures/4d8de509-e990-445a-ae58-b51feba8c5f8.jpg?aki_policy=profile_x_medium"
+
+	    },
+
+	    data: {
+	      content: "דירה מעולה, אחלה בעלים",
+	      role: "דייר קודם",
+	      date: new Date(2016, 3, 2)
+	    }
+	  }, {
+	    user: {
+	      name: "אסף",
+	      image: "https://a2.muscache.com/im/pictures/29afd4a8-fbc4-4651-a297-e1f8184d9421.jpg?aki_policy=profile_x_medium"
+	    },
+
+	    data: {
+	      content: "דירה על הכיפאק. גרתי שם שנתיים והיה פיצוץ",
+	      role: "דייר קודם",
+	      date: new Date(2016, 11, 25)
+	    }
+	  }]
 	};
 
 	module.exports = ApartmentData;
