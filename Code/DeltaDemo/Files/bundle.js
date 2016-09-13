@@ -27144,7 +27144,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 20px;\n}\n\n#delta-brand {\n    color: #EF5350;\n    line-height: 30px;\n    font-family: serif;\n    font-weight: bold;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
+	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 20px;\n}\n\n#delta-brand {\n    color: #f5f5f5;\n    line-height: 30px;\n    font-family: serif;\n    font-weight: bold;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
 
 	// exports
 
@@ -53726,15 +53726,15 @@
 	  centerLeftSection: CenterLeftSection,
 	  leftSection: LeftSection,
 	  images: [{
-	    src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1a.jpg"
+	    src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21212.jpg"
 	  }, {
-	    src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1b.jpg"
+	    src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21214.jpg"
 	  }, {
-	    src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1c.jpg"
+	    src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21215.jpg"
 	  }, {
-	    src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1d.jpg"
+	    src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21216.jpg"
 	  }, {
-	    src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1e.jpg"
+	    src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21213.jpg"
 	  }],
 
 	  "tabu": {

@@ -66,19 +66,19 @@ var ApartmentData = {
   leftSection : LeftSection,
   images: [
     {
-      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1a.jpg"
+      src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21212.jpg"
     },
     {
-      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1b.jpg"
+      src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21214.jpg"
     },
     {
-      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1c.jpg"
+      src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21215.jpg"
     },
     {
-      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1d.jpg"
+      src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21216.jpg"
     },
     {
-      src: "https://d1qehdk2pndqdq.cloudfront.net/ma_mlspin/72060346/full/57c81255e4b0b8392e0fdd1e.jpg"
+      src: "https://d1qehdk2pndqdq.cloudfront.net/fl_miamire/A10144306/full/57d7f49ee4b066768aa21213.jpg"
     }
   ],
 
