@@ -1,4 +1,6 @@
-
+body {
+    font-family: delta;
+}
 
 .navbar {
     height: 70px;
@@ -27,8 +29,7 @@
 #delta-brand {
     color: #f5f5f5;
     line-height: 30px;
-    font-family: serif;
-    font-weight: bold;
+    font-family: deltaBrand;
     font-size: 26px;
 }
 
@@ -42,3 +43,18 @@
 .title-primary {
     color: #555;
 }
+
+
+/*Fonts*/
+@font-face {
+    font-family: delta;
+    src: url('/fonts/Assistant-Regular.ttf')
+}
+
+@font-face {
+    font-family: deltaBrand;
+    src: url('/fonts/KaushanScript-Regular.ttf');
+    font-weight: bold;
+}
+
+
