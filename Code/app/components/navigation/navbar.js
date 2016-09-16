@@ -8,13 +8,13 @@ var BSNavItem = ReactBootstrap.NavItem;
 var Navbar = React.createClass( {
   render: function() {
     return (
-      <BSNavbar fixedTop>
+      <BSNavbar fixedTop className="delta-navbar">
         <BSNavbar.Header>
             <BSNavbar.Brand>
                 <a href="/home" id="delta-brand">Delta Project</a>
             </BSNavbar.Brand>
         </BSNavbar.Header>
-        <BSNav pullRight>
+        <BSNav pullRight className="delta-navbar-nav">
             <BSNavItem eventKey={1} href="/home">
                 <span>דירות למכירה</span>
             </BSNavItem>

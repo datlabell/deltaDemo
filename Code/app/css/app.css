@@ -1,6 +1,6 @@
 
 
-.navbar {
+.delta-navbar {
     height: 70px;
     box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
     margin-bottom: 0;
@@ -8,7 +8,7 @@
     border-bottom: 0px;
 }
 
-.navbar-brand, .navbar-nav {
+.navbar-brand, .delta-navbar-nav {
     margin-top: 5px;
     font-size: 22px;
 }
@@ -17,7 +17,7 @@
     margin-top: 60px;
 }
 
-.navbar-nav > li > a > span {
+.delta-navbar-nav > li > a > span {
     color: #fff;
     font-weight: 100;
     font-size: 20px;
@@ -41,4 +41,17 @@
 /*Colors Helpers*/
 .title-primary {
     color: #555;
+}
+
+
+/*Fonts*/
+@font-face {
+    font-family: delta;
+    src: url('/fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+    font-family: delta;
+    src: url('/fonts/Nunito-Bold.ttf');
+    font-weight: bold;
 }

@@ -100,12 +100,10 @@ var ApartmentData = {
     documentType: "pdf"
   },
 
-  "video" : {
-    src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
-  },
-
-  "tour": {
-    src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+  "tours": {
+    sources: [
+      "https://my.matterport.com/show/?m=aSx1MpRRqif"
+    ]
   },
 
   "reviews" : [
@@ -205,12 +203,12 @@ var ApartmentData = {
 
       descriptions: [
           {
-              title: "תיאור",
-              text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
-          },
-          {
               title: "ריהוט",
               text: "מקרר, מכונת כביסה, מייבש מדיח, תנור וגז."
+          },
+          {
+              title: "תיאור",
+              text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
           }
       ]
   }

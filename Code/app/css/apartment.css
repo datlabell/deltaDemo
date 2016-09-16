@@ -58,13 +58,3 @@ a.anchor {
     top: 90px;
 }
 
-.apt-video {
-    padding: 20px;
-}
-
-.apt-video > iframe {
-    width: 100%;
-    min-height: 520px;
-    border: 1px solid #ccc;
-}
-

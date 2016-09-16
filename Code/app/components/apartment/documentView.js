@@ -1,6 +1,6 @@
 var React = require('react');
 var Modal = require('react-modal');
-var ModalStyle = require('./documentModalStyle');
+var ModalStyle = require('./styles/documentModalStyle');
 var ReactBootstrap = require('react-bootstrap');
 var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 var BSButton = ReactBootstrap.Button;

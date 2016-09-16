@@ -27144,7 +27144,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 20px;\n}\n\n#delta-brand {\n    color: #f5f5f5;\n    line-height: 30px;\n    font-family: serif;\n    font-weight: bold;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n", ""]);
+	exports.push([module.id, "\n\n.delta-navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 20px;\n}\n\n#delta-brand {\n    color: #f5f5f5;\n    line-height: 30px;\n    font-family: serif;\n    font-weight: bold;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Nunito-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Nunito-Bold.ttf');\n    font-weight: bold;\n}", ""]);
 
 	// exports
 
@@ -27500,7 +27500,7 @@
 	  render: function () {
 	    return React.createElement(
 	      BSNavbar,
-	      { fixedTop: true },
+	      { fixedTop: true, className: 'delta-navbar' },
 	      React.createElement(
 	        BSNavbar.Header,
 	        null,
@@ -27516,7 +27516,7 @@
 	      ),
 	      React.createElement(
 	        BSNav,
-	        { pullRight: true },
+	        { pullRight: true, className: 'delta-navbar-nav' },
 	        React.createElement(
 	          BSNavItem,
 	          { eventKey: 1, href: '/home' },
@@ -46459,7 +46459,7 @@
 	var Views = __webpack_require__(563);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(597);
+	var ApartmentData = __webpack_require__(599);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -46608,7 +46608,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5;\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n.apt-video {\n    padding: 20px;\n}\n\n.apt-video > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
+	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5;\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n", ""]);
 
 	// exports
 
@@ -51255,11 +51255,19 @@
 	//Get apartment views
 	var DocumentStyle = __webpack_require__(564);
 	var DocumentView = __webpack_require__(566);
-	var ReviewsView = __webpack_require__(588);
-	var OwnerNotesView = __webpack_require__(591);
+
+	var ReviewsStyle = __webpack_require__(588);
+	var ReviewsView = __webpack_require__(590);
+
+	var OwnerNotesStyle = __webpack_require__(591);
+	var OwnerNotesView = __webpack_require__(593);
+
 	var MapView = __webpack_require__(594);
-	var VirtualizationView = __webpack_require__(595);
-	var VideoView = __webpack_require__(596);
+
+	var ToursStyle = __webpack_require__(595);
+	var ToursView = __webpack_require__(597);
+
+	var VirtualizationView = __webpack_require__(598);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
@@ -51312,8 +51320,8 @@
 	}, {
 	    section: "מידע ויזואלי",
 	    title: "סיור",
-	    id: "tour",
-	    component: VideoView,
+	    id: "tours",
+	    component: ToursView,
 	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
 	}, {
 	    section: "מידע ויזואלי",
@@ -53454,12 +53462,52 @@
 /* 588 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(589);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./reviews.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./reviews.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 589 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".review {\n    padding-top: 30px;\n    margin-bottom: 25px;\n}\n\n.review-data {\n    padding-bottom: 55px;\n    border-bottom: 1px solid #ccc;\n}\n\n.review-data-content {\n    color: #555;\n    margin-bottom: 10px;\n}\n\n.review-data-date {\n    color: #757575;\n    font-size: 14px;\n    padding-right: 0;\n}\n\n.review-data-role {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}\n\n.review-data-role > span {\n    color: #ff5a5f;\n    padding-left: 5px;\n}\n\n.review-user > .border-box {\n    box-sizing: border-box;\n}\n\n.review-user > .border-box > img {\n    height: 67px;\n    width: 67px;\n    vertical-align: middle;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.review-user-name {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 590 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
 	var ReactBootstrap = __webpack_require__(241);
 	var BSImage = ReactBootstrap.Image;
 
 	//Get style
-	var ReviewStyle = __webpack_require__(589);
+	var ReviewStyle = __webpack_require__(588);
 
 	var ReviewUserContainer = React.createClass({
 	    displayName: 'ReviewUserContainer',
@@ -53566,13 +53614,13 @@
 	module.exports = ReviewsView;
 
 /***/ },
-/* 589 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(590);
+	var content = __webpack_require__(592);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53581,8 +53629,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./reviews.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./reviews.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ownerNotes.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./ownerNotes.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -53592,7 +53640,7 @@
 	}
 
 /***/ },
-/* 590 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53600,19 +53648,19 @@
 
 
 	// module
-	exports.push([module.id, ".review {\n    padding-top: 30px;\n    margin-bottom: 25px;\n}\n\n.review-data {\n    padding-bottom: 55px;\n    border-bottom: 1px solid #ccc;\n}\n\n.review-data-content {\n    color: #555;\n    margin-bottom: 10px;\n}\n\n.review-data-date {\n    color: #757575;\n    font-size: 14px;\n    padding-right: 0;\n}\n\n.review-data-role {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}\n\n.review-data-role > span {\n    color: #ff5a5f;\n    padding-left: 5px;\n}\n\n.review-user > .border-box {\n    box-sizing: border-box;\n}\n\n.review-user > .border-box > img {\n    height: 67px;\n    width: 67px;\n    vertical-align: middle;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.review-user-name {\n    font-size: 16px;\n    font-weight: bold;\n    color: #555;\n}", ""]);
+	exports.push([module.id, ".owner-notes-features, .owner-notes-descriptions {\n    padding-right: 15px;\n}\n\n.feature-title {\n    color: #757575;\n    font-weight: bold;\n}\n\n.feature-check > .glyphicon-ok {\n    color: #4CAF50;\n}\n\n.feature-check > .glyphicon-remove {\n    color: #F44336;\n}\n\n.owner-notes-description {\n    padding-left: 40px;\n    padding-top: 40px;\n}\n\n.description-title, .description-text {\n    padding-right: 15px;\n}\n\n.description-title > h3 {\n    color: #555;\n    font-weight: bold;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 591 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Add style
-	var ReviewStyle = __webpack_require__(592);
+	var ReviewStyle = __webpack_require__(591);
 
 	var FeaturesView = React.createClass({
 	    displayName: "FeaturesView",
@@ -53716,46 +53764,6 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 592 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(593);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(238)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ownerNotes.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./ownerNotes.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 593 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(237)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".owner-notes-features, .owner-notes-descriptions {\n    padding-right: 15px;\n}\n\n.feature-title {\n    color: #757575;\n    font-weight: bold;\n}\n\n.feature-check > .glyphicon-ok {\n    color: #4CAF50;\n}\n\n.feature-check > .glyphicon-remove {\n    color: #F44336;\n}\n\n.owner-notes-description {\n    padding-left: 15px;\n    padding-top: 40px;\n}\n\n.description-title, .description-text {\n    padding-right: 15px;\n}\n\n.description-title > h3 {\n    color: #555;\n    font-weight: bold;\n}", ""]);
-
-	// exports
-
-
-/***/ },
 /* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -53775,6 +53783,126 @@
 /* 595 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(596);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./tours.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./tours.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 596 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".tours-frame {\n    padding-right: 20px;\n    padding-left: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.tours-navigation {\n    padding: 20px;\n}\n\n.tours-navigation > .navbar-nav {\n    margin-right: 0;\n    padding-right: 0;\n}\n\n.tours-navigation > .navbar-nav > li {\n    border-right: 1px solid #ccc;\n}\n\n.tours-navigation > .navbar-nav > li:last-child {\n    border: 0;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    padding-top: 0;\n    padding-bottom: 0;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    color: #757575;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    background-color: #fff !important;\n}\n\n.tours-navigation > .navbar-nav > li > a:hover {\n    color: #1565C0;\n}\n\n.tours-navigation > .navbar-nav > li.active > a  {\n    font-weight: bold;\n    color: #757575;\n}\n\n.tours-frame > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 597 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSNav = ReactBootstrap.Nav;
+	var BSNavItem = ReactBootstrap.NavItem;
+
+	var TourFrame = React.createClass({
+	    displayName: 'TourFrame',
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row tours-frame' },
+	            React.createElement('iframe', { src: this.props.src, allowFullScreen: true })
+	        );
+	    }
+	});
+
+	var ToursNavigation = React.createClass({
+	    displayName: 'ToursNavigation',
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row tours-navigation' },
+	            React.createElement(
+	                BSNav,
+	                { navbar: true, pullRight: true, activeKey: 1 },
+	                React.createElement(
+	                    BSNavItem,
+	                    { eventKey: 2 },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'tours-navigation-item' },
+	                        'וידאו'
+	                    )
+	                ),
+	                React.createElement(
+	                    BSNavItem,
+	                    { eventKey: 1 },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'tours-navigation-item' },
+	                        'סיור תלת מימדי'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	var ToursView = React.createClass({
+	    displayName: 'ToursView',
+
+
+	    getInitialState: function () {
+	        return {
+	            currentFrame: React.createElement(TourFrame, { src: this.props.data.sources[0], c: true })
+	        };
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                React.createElement(ToursNavigation, null),
+	                this.state.currentFrame
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ToursView;
+
+/***/ },
+/* 598 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
 
 	var VirtualizationView = React.createClass({
@@ -53788,27 +53916,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 596 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	var VideoView = React.createClass({
-	  displayName: "VideoView",
-
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "apt-video" },
-	      React.createElement("iframe", { src: this.props.data.src, allowFullScreen: true })
-	    );
-	  }
-	});
-
-	module.exports = VideoView;
-
-/***/ },
-/* 597 */
+/* 599 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -53891,12 +53999,8 @@
 	    documentType: "pdf"
 	  },
 
-	  "video": {
-	    src: "https://www.youtube.com/embed/F2cDdyfWSAQ"
-	  },
-
-	  "tour": {
-	    src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+	  "tours": {
+	    sources: ["https://my.matterport.com/show/?m=aSx1MpRRqif"]
 	  },
 
 	  "reviews": [{
@@ -53979,11 +54083,11 @@
 	    }],
 
 	    descriptions: [{
-	      title: "תיאור",
-	      text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
-	    }, {
 	      title: "ריהוט",
 	      text: "מקרר, מכונת כביסה, מייבש מדיח, תנור וגז."
+	    }, {
+	      title: "תיאור",
+	      text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
 	    }]
 	  }
 	};

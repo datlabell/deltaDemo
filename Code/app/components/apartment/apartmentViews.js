@@ -2,12 +2,20 @@ var React = require('react');
 
 //Get apartment views
 var DocumentStyle = require('../../css/document.css');
-var DocumentView = require('../common/documentView');
+var DocumentView = require('./documentView');
+
+var ReviewsStyle = require('../../css/reviews.css')
 var ReviewsView = require('./reviewsView');
+
+var OwnerNotesStyle = require('../../css/ownerNotes.css')
 var OwnerNotesView = require('./ownerNotesView');
+
 var MapView = require('./mapView');
+
+var ToursStyle = require('../../css/tours.css')
+var ToursView = require('./toursView');
+
 var VirtualizationView = require('./VirtualizationView');
-var VideoView = require('./videoView');
 
 var ApartmentViews = [
     {
@@ -71,8 +79,8 @@ var ApartmentViews = [
     {
         section: "מידע ויזואלי",
         title: "סיור",
-        id: "tour",
-        component: VideoView,
+        id: "tours",
+        component: ToursView,
         glyphiconStyle: "glyphicon glyphicon-facetime-video"
     },
     {
