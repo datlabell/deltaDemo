@@ -46608,7 +46608,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5;\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n", ""]);
+	exports.push([module.id, "\n.apt-headline {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 180px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5;\n}\n\n.apt-section > .row {\n    font-size: 18px;\n}\n\n.apt-detail-key {\n    font-weight: bold;\n}\n\n.apt-detail-emphasize {\n    color: #4285f4;\n    font-size: 20px;\n}\n\n.apt-content {\n    padding-top: 20px;\n}\n\n.apt-items-container {\n    padding-right: 40px;\n    padding-bottom: 300px;\n}\n\n.apt-content-item-title > .page-header {\n    border-bottom-color: #ccc !important;\n    font-size: 22px !important\n}\n\n.apt-content-item-title > .page-header > .glyphicon {\n    padding-left: 15px;\n    font-size: 16px;\n    color: #1565C0;\n}\n\n\n.apt-content-item-body {\n    min-height: 50px;\n    font-size: 18px;\n}\n\na.anchor {\n    display: block; \n    position: relative; \n    top: -250px; \n    visibility: hidden;\n}\n\n.affix {\n    top: 90px;\n}\n\n.delta-map-container {\n    padding-right: 20px;\n    padding-left: 20px;\n}\n\n.delta-map {\n   width: 100%;\n   height: 520px;\n   border: 1px solid #ccc;\n}\n\n", ""]);
 
 	// exports
 
@@ -53772,8 +53772,19 @@
 	var MapView = React.createClass({
 	  displayName: "MapView",
 
+
+	  componentDidMount: function () {
+	    this.map = new google.maps.Map(this.refs.map, {
+	      center: { lat: 31.778604, lng: 35.232116 },
+	      zoom: 14
+	    });
+	  },
 	  render: function () {
-	    return React.createElement("div", { className: "text-center" });
+	    return React.createElement(
+	      "div",
+	      { className: "row delta-map-container" },
+	      React.createElement("div", { ref: "map", className: "delta-map" })
+	    );
 	  }
 	});
 
