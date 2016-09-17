@@ -102,7 +102,14 @@ var ApartmentData = {
 
   "tours": {
     sources: [
-      "https://my.matterport.com/show/?m=aSx1MpRRqif"
+      {
+        title: "וידאו",
+        src: "https://www.youtube.com/embed/FNAnRp7X33I"
+      },
+      {
+        title: "סיור תלת מימדי",
+        src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+      }
     ]
   },
 

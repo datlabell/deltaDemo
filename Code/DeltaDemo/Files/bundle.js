@@ -27144,7 +27144,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.delta-navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 20px;\n}\n\n#delta-brand {\n    color: #f5f5f5;\n    line-height: 30px;\n    font-family: serif;\n    font-weight: bold;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Nunito-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Nunito-Bold.ttf');\n    font-weight: bold;\n}", ""]);
+	exports.push([module.id, "body {\n    font-family: delta;\n}\n\n.delta-navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 34px;\n}\n\n#delta-brand {\n    color: #fff;\n    line-height: 30px;\n    font-family: deltaBrand;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Bold.ttf');\n    font-weight: bold;\n}\n\n\n@font-face {\n    font-family: deltaBrand;\n    src: url('/fonts/Courgette-Regular.ttf');\n    font-weight: bold;\n}\n\n", ""]);
 
 	// exports
 
@@ -53843,31 +53843,41 @@
 	var ToursNavigation = React.createClass({
 	    displayName: 'ToursNavigation',
 
+
+	    getInitialState: function () {
+	        return {
+	            activeKey: (this.props.sources.length - 1).toString()
+	        };
+	    },
+
+	    onSelect: function (key) {
+	        this.setState({
+	            activeKey: key
+	        });
+
+	        this.props.onSelect(key);
+	    },
+
+	    renderNavigationItem: function (key) {
+	        return React.createElement(
+	            BSNavItem,
+	            { eventKey: key, key: key },
+	            React.createElement(
+	                'span',
+	                { className: 'tours-navigation-item' },
+	                this.props.sources[key].title
+	            )
+	        );
+	    },
+
 	    render: function () {
 	        return React.createElement(
 	            'div',
 	            { className: 'row tours-navigation' },
 	            React.createElement(
 	                BSNav,
-	                { navbar: true, pullRight: true, activeKey: 1 },
-	                React.createElement(
-	                    BSNavItem,
-	                    { eventKey: 2 },
-	                    React.createElement(
-	                        'span',
-	                        { className: 'tours-navigation-item' },
-	                        'וידאו'
-	                    )
-	                ),
-	                React.createElement(
-	                    BSNavItem,
-	                    { eventKey: 1 },
-	                    React.createElement(
-	                        'span',
-	                        { className: 'tours-navigation-item' },
-	                        'סיור תלת מימדי'
-	                    )
-	                )
+	                { navbar: true, pullRight: true, activeKey: this.state.activeKey, onSelect: this.onSelect },
+	                Object.keys(this.props.sources).map(this.renderNavigationItem)
 	            )
 	        );
 	    }
@@ -53878,9 +53888,16 @@
 
 
 	    getInitialState: function () {
+	        var lastFrame = this.props.data.sources.length - 1;
 	        return {
-	            currentFrame: React.createElement(TourFrame, { src: this.props.data.sources[0], c: true })
+	            currentFrame: React.createElement(TourFrame, { src: this.props.data.sources[lastFrame].src })
 	        };
+	    },
+
+	    setCurrentFrame: function (key) {
+	        this.setState({
+	            currentFrame: React.createElement(TourFrame, { src: this.props.data.sources[key].src })
+	        });
 	    },
 
 	    render: function () {
@@ -53890,7 +53907,7 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-xs-12' },
-	                React.createElement(ToursNavigation, null),
+	                React.createElement(ToursNavigation, { sources: this.props.data.sources, onSelect: this.setCurrentFrame }),
 	                this.state.currentFrame
 	            )
 	        );
@@ -54000,7 +54017,13 @@
 	  },
 
 	  "tours": {
-	    sources: ["https://my.matterport.com/show/?m=aSx1MpRRqif"]
+	    sources: [{
+	      title: "וידאו",
+	      src: "https://www.youtube.com/embed/FNAnRp7X33I"
+	    }, {
+	      title: "סיור תלת מימדי",
+	      src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+	    }]
 	  },
 
 	  "reviews": [{
