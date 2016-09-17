@@ -1,7 +1,7 @@
 var React = require('react');
-var ReactBootstrap = require('react-bootstrap');
-var BSNav = ReactBootstrap.Nav;
-var BSNavItem = ReactBootstrap.NavItem;
+
+var NavStyle = require('../../css/nav.css');
+var DeltaNav = require('../navigation/nav');
 
 
 var TourFrame = React.createClass( {
@@ -12,43 +12,6 @@ var TourFrame = React.createClass( {
       </div>
     )
   }
-});
-
-
-var ToursNavigation = React.createClass({
-    
-    getInitialState: function() {
-        return {
-            activeKey: (this.props.sources.length - 1).toString()
-        }
-    },
-
-    onSelect: function(key) {
-        this.setState({
-            activeKey: key
-        });
-
-        this.props.onSelect(key);
-    },
-
-    renderNavigationItem: function(key) {
-        return (
-            <BSNavItem eventKey={key} key={key}>
-                <span className="tours-navigation-item">{this.props.sources[key].title}</span>
-            </BSNavItem>
-        )
-    },
-    
-    
-    render: function() {
-        return (
-            <div className="row tours-navigation">
-                <BSNav navbar pullRight activeKey={this.state.activeKey} onSelect={this.onSelect}>
-                    {Object.keys(this.props.sources).map(this.renderNavigationItem)}
-                </BSNav>
-            </div>
-        )
-    }
 });
 
 
@@ -71,7 +34,7 @@ var ToursView = React.createClass({
         return (
             <div className="row" >
                 <div className="col-xs-12">
-                    <ToursNavigation  sources={this.props.data.sources} onSelect={this.setCurrentFrame}/>
+                    <DeltaNav  items={this.props.data.sources} onSelect={this.setCurrentFrame}/>
                     {this.state.currentFrame}
                 </div>
             </div>            

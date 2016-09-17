@@ -1,0 +1,38 @@
+.delta-nav {
+    padding: 20px;
+}
+
+.delta-nav > .navbar-nav {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.delta-nav > .navbar-nav > li {
+    border-right: 1px solid #ccc;
+}
+
+.delta-nav > .navbar-nav > li:last-child {
+    border: 0;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    color: #757575;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    background-color: #fff !important;
+}
+
+.delta-nav > .navbar-nav > li > a:hover {
+    color: #1565C0;
+}
+
+.delta-nav > .navbar-nav > li.active > a  {
+    font-weight: bold;
+    color: #757575;
+}

@@ -5,26 +5,26 @@ var RightSection = [
   },
     {
     key : "ישוב",
-    value : "ירושלים"
+    value : "תל אביב"
   },
   {
     key : "רחוב",
-    value : "הכרמל"
+    value : "דיזנגוף"
   }
 ];
 
 var CenterRightSection = [
   {
     key : "מספר בית",
-    value : "27"
+    value : "236"
   },
   {
     key : "מספר דירה",
-    value : "1"
+    value : "7"
   },
   {
     key : "קומה",
-    value : "1"
+    value : "3"
   },
   {
     key : "חדרים",
@@ -98,19 +98,6 @@ var ApartmentData = {
     src: "/tabu/example.pdf",
     updateAt: new Date(2016, 8, 8, 12, 32, 33),
     documentType: "pdf"
-  },
-
-  "tours": {
-    sources: [
-      {
-        title: "וידאו",
-        src: "https://www.youtube.com/embed/FNAnRp7X33I"
-      },
-      {
-        title: "סיור תלת מימדי",
-        src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
-      }
-    ]
   },
 
   "reviews" : [
@@ -218,7 +205,28 @@ var ApartmentData = {
               text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
           }
       ]
+  },
+
+  "map" : {
+    location: {
+        lat: 32.089800, 
+        lng: 34.775580
+    }
+  },
+
+  "tours": {
+    sources: [
+      {
+        title: "וידאו",
+        src: "https://www.youtube.com/embed/FNAnRp7X33I"
+      },
+      {
+        title: "סיור תלת מימדי",
+        src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+      }
+    ]
   }
+
 }
 
 module.exports = ApartmentData;

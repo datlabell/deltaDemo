@@ -46459,7 +46459,7 @@
 	var Views = __webpack_require__(563);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(599);
+	var ApartmentData = __webpack_require__(602);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -51264,10 +51264,10 @@
 
 	var MapView = __webpack_require__(594);
 
-	var ToursStyle = __webpack_require__(595);
-	var ToursView = __webpack_require__(597);
+	var ToursStyle = __webpack_require__(598);
+	var ToursView = __webpack_require__(600);
 
-	var VirtualizationView = __webpack_require__(598);
+	var VirtualizationView = __webpack_require__(601);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
@@ -53769,21 +53769,48 @@
 
 	var React = __webpack_require__(1);
 
+	var NavStyle = __webpack_require__(595);
+	var DeltaNav = __webpack_require__(597);
+
+	var Maps = [{
+	  title: "Google Maps"
+	}, {
+	  title: "מפה תלת מימדית"
+	}];
+
 	var MapView = React.createClass({
-	  displayName: "MapView",
+	  displayName: 'MapView',
 
 
 	  componentDidMount: function () {
 	    this.map = new google.maps.Map(this.refs.map, {
-	      center: { lat: 31.778604, lng: 35.232116 },
-	      zoom: 14
+	      center: this.props.data.location,
+	      scrollwheel: false,
+	      mapTypeControl: false,
+	      zoom: 18
+	    });
+
+	    this.marker = new google.maps.Marker({
+	      position: this.props.data.location,
+	      map: this.map,
+	      title: 'דירה'
 	    });
 	  },
+
+	  onSelectMap: function (key) {
+	    console.log("Selected map with key: " + key);
+	  },
+
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "row delta-map-container" },
-	      React.createElement("div", { ref: "map", className: "delta-map" })
+	      'div',
+	      { className: 'row delta-map-container' },
+	      React.createElement(
+	        'div',
+	        { className: 'col-xs-12' },
+	        React.createElement(DeltaNav, { items: Maps, onSelect: this.onSelectMap }),
+	        React.createElement('div', { ref: 'map', className: 'delta-map' })
+	      )
 	    );
 	  }
 	});
@@ -53806,8 +53833,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./tours.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./tours.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./nav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./nav.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -53825,7 +53852,7 @@
 
 
 	// module
-	exports.push([module.id, ".tours-frame {\n    padding-right: 20px;\n    padding-left: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.tours-navigation {\n    padding: 20px;\n}\n\n.tours-navigation > .navbar-nav {\n    margin-right: 0;\n    padding-right: 0;\n}\n\n.tours-navigation > .navbar-nav > li {\n    border-right: 1px solid #ccc;\n}\n\n.tours-navigation > .navbar-nav > li:last-child {\n    border: 0;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    padding-top: 0;\n    padding-bottom: 0;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    color: #757575;\n}\n\n.tours-navigation > .navbar-nav > li > a {\n    background-color: #fff !important;\n}\n\n.tours-navigation > .navbar-nav > li > a:hover {\n    color: #1565C0;\n}\n\n.tours-navigation > .navbar-nav > li.active > a  {\n    font-weight: bold;\n    color: #757575;\n}\n\n.tours-frame > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
+	exports.push([module.id, ".delta-nav {\n    padding: 20px;\n}\n\n.delta-nav > .navbar-nav {\n    margin-right: 0;\n    padding-right: 0;\n}\n\n.delta-nav > .navbar-nav > li {\n    border-right: 1px solid #ccc;\n}\n\n.delta-nav > .navbar-nav > li:last-child {\n    border: 0;\n}\n\n.delta-nav > .navbar-nav > li > a {\n    padding-top: 0;\n    padding-bottom: 0;\n}\n\n.delta-nav > .navbar-nav > li > a {\n    color: #757575;\n}\n\n.delta-nav > .navbar-nav > li > a {\n    background-color: #fff !important;\n}\n\n.delta-nav > .navbar-nav > li > a:hover {\n    color: #1565C0;\n}\n\n.delta-nav > .navbar-nav > li.active > a  {\n    font-weight: bold;\n    color: #757575;\n}", ""]);
 
 	// exports
 
@@ -53839,25 +53866,13 @@
 	var BSNav = ReactBootstrap.Nav;
 	var BSNavItem = ReactBootstrap.NavItem;
 
-	var TourFrame = React.createClass({
-	    displayName: 'TourFrame',
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row tours-frame' },
-	            React.createElement('iframe', { src: this.props.src, allowFullScreen: true })
-	        );
-	    }
-	});
-
-	var ToursNavigation = React.createClass({
-	    displayName: 'ToursNavigation',
+	var Nav = React.createClass({
+	    displayName: 'Nav',
 
 
 	    getInitialState: function () {
 	        return {
-	            activeKey: (this.props.sources.length - 1).toString()
+	            activeKey: (this.props.items.length - 1).toString()
 	        };
 	    },
 
@@ -53875,8 +53890,8 @@
 	            { eventKey: key, key: key },
 	            React.createElement(
 	                'span',
-	                { className: 'tours-navigation-item' },
-	                this.props.sources[key].title
+	                { className: 'delta-nav-item' },
+	                this.props.items[key].title
 	            )
 	        );
 	    },
@@ -53884,12 +53899,75 @@
 	    render: function () {
 	        return React.createElement(
 	            'div',
-	            { className: 'row tours-navigation' },
+	            { className: 'row delta-nav' },
 	            React.createElement(
 	                BSNav,
 	                { navbar: true, pullRight: true, activeKey: this.state.activeKey, onSelect: this.onSelect },
-	                Object.keys(this.props.sources).map(this.renderNavigationItem)
+	                Object.keys(this.props.items).map(this.renderNavigationItem)
 	            )
+	        );
+	    }
+	});
+
+	module.exports = Nav;
+
+/***/ },
+/* 598 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(599);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./tours.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./tours.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 599 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".tours-frame {\n    padding-right: 20px;\n    padding-left: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.tours-frame > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 600 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var NavStyle = __webpack_require__(595);
+	var DeltaNav = __webpack_require__(597);
+
+	var TourFrame = React.createClass({
+	    displayName: 'TourFrame',
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row tours-frame' },
+	            React.createElement('iframe', { src: this.props.src, allowFullScreen: true })
 	        );
 	    }
 	});
@@ -53918,7 +53996,7 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-xs-12' },
-	                React.createElement(ToursNavigation, { sources: this.props.data.sources, onSelect: this.setCurrentFrame }),
+	                React.createElement(DeltaNav, { items: this.props.data.sources, onSelect: this.setCurrentFrame }),
 	                this.state.currentFrame
 	            )
 	        );
@@ -53928,7 +54006,7 @@
 	module.exports = ToursView;
 
 /***/ },
-/* 598 */
+/* 601 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53944,7 +54022,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 599 */
+/* 602 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -53952,21 +54030,21 @@
 	  value: "דירה"
 	}, {
 	  key: "ישוב",
-	  value: "ירושלים"
+	  value: "תל אביב"
 	}, {
 	  key: "רחוב",
-	  value: "הכרמל"
+	  value: "דיזנגוף"
 	}];
 
 	var CenterRightSection = [{
 	  key: "מספר בית",
-	  value: "27"
+	  value: "236"
 	}, {
 	  key: "מספר דירה",
-	  value: "1"
+	  value: "7"
 	}, {
 	  key: "קומה",
-	  value: "1"
+	  value: "3"
 	}, {
 	  key: "חדרים",
 	  value: "5"
@@ -54025,16 +54103,6 @@
 	    src: "/tabu/example.pdf",
 	    updateAt: new Date(2016, 8, 8, 12, 32, 33),
 	    documentType: "pdf"
-	  },
-
-	  "tours": {
-	    sources: [{
-	      title: "וידאו",
-	      src: "https://www.youtube.com/embed/FNAnRp7X33I"
-	    }, {
-	      title: "סיור תלת מימדי",
-	      src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
-	    }]
 	  },
 
 	  "reviews": [{
@@ -54123,7 +54191,25 @@
 	      title: "תיאור",
 	      text: "דירה שופצה לפני כשלוש שנים במצב מעולה. שכונה ממש טובה."
 	    }]
+	  },
+
+	  "map": {
+	    location: {
+	      lat: 32.089800,
+	      lng: 34.775580
+	    }
+	  },
+
+	  "tours": {
+	    sources: [{
+	      title: "וידאו",
+	      src: "https://www.youtube.com/embed/FNAnRp7X33I"
+	    }, {
+	      title: "סיור תלת מימדי",
+	      src: "https://my.matterport.com/show/?m=aSx1MpRRqif"
+	    }]
 	  }
+
 	};
 
 	module.exports = ApartmentData;
