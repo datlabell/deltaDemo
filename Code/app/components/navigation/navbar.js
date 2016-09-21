@@ -6,9 +6,14 @@ var BSNav = ReactBootstrap.Nav;
 var BSNavItem = ReactBootstrap.NavItem;
 
 var Navbar = React.createClass( {
+  
+  getNavClass: function() {
+    return this.props.transparentNav ? "delta-navbar delta-navbar-transparent" : "delta-navbar";
+  },
+  
   render: function() {
     return (
-      <BSNavbar fixedTop className="delta-navbar">
+      <BSNavbar fixedTop className={this.getNavClass()}>
         <BSNavbar.Header>
             <BSNavbar.Brand>
                 <a href="/home" id="delta-brand">Delta Project</a>

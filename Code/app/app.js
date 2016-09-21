@@ -25,11 +25,10 @@ var ApartmentLayout = require('./components/apartmentLayout');
 ReactDOM.render((
   <Router history={BrowserHistory}>
     <Route path="/" component={MainLayout}>
-        <IndexRoute component={HomeLayout} />
-        <Route path="home" component={HomeLayout}></Route>
+        <IndexRoute component={HomeLayout}  transparentNav/>
+        <Route path="home" component={HomeLayout} transparentNav></Route>
         <Route path="map" component={MapLayout}></Route>
         <Route path="search" component={SearchLayout}></Route>
-        <Route path="apartment/:id" component={ApartmentLayout}></Route>
         <Route path="apartment/:id" component={ApartmentLayout}></Route>
     </Route>
   </Router>

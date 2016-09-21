@@ -62,9 +62,9 @@
 
 	//Get layouts
 	var HomeLayout = __webpack_require__(494);
-	var MapLayout = __webpack_require__(495);
-	var SearchLayout = __webpack_require__(496);
-	var ApartmentLayout = __webpack_require__(497);
+	var MapLayout = __webpack_require__(499);
+	var SearchLayout = __webpack_require__(500);
+	var ApartmentLayout = __webpack_require__(501);
 
 	//Routing
 	ReactDOM.render(React.createElement(
@@ -73,11 +73,10 @@
 	  React.createElement(
 	    Route,
 	    { path: '/', component: MainLayout },
-	    React.createElement(IndexRoute, { component: HomeLayout }),
-	    React.createElement(Route, { path: 'home', component: HomeLayout }),
+	    React.createElement(IndexRoute, { component: HomeLayout, transparentNav: true }),
+	    React.createElement(Route, { path: 'home', component: HomeLayout, transparentNav: true }),
 	    React.createElement(Route, { path: 'map', component: MapLayout }),
 	    React.createElement(Route, { path: 'search', component: SearchLayout }),
-	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout }),
 	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout })
 	  )
 	), document.getElementById('main'));
@@ -27144,7 +27143,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n    font-family: delta;\n}\n\n.delta-navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 34px;\n}\n\n#delta-brand {\n    color: #fff;\n    line-height: 30px;\n    font-family: deltaBrand;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Bold.ttf');\n    font-weight: bold;\n}\n\n\n@font-face {\n    font-family: deltaBrand;\n    src: url('/fonts/Courgette-Regular.ttf');\n    font-weight: bold;\n}\n\n", ""]);
+	exports.push([module.id, "html, body {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    overflow-x: hidden;\n    font-family: delta;\n}\n\n.delta-navbar {\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #90A4AE !important;\n    border-bottom: 0px;\n}\n\n.delta-navbar-transparent {\n    position: absolute;\n    background-color: transparent !important;\n    border-bottom: 2px solid white;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.main-content {\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    color: #fff;\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 34px;\n}\n\n#delta-brand {\n    color: #fff;\n    line-height: 30px;\n    font-family: deltaBrand;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Bold.ttf');\n    font-weight: bold;\n}\n\n\n@font-face {\n    font-family: deltaBrand;\n    src: url('/fonts/Courgette-Regular.ttf');\n    font-weight: bold;\n}\n\n", ""]);
 
 	// exports
 
@@ -27471,7 +27470,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Navbar, null),
+	      React.createElement(Navbar, { transparentNav: this.props.children.props.route.transparentNav }),
 	      React.createElement(
 	        'div',
 	        { className: 'main-content' },
@@ -27497,10 +27496,15 @@
 	var Navbar = React.createClass({
 	  displayName: 'Navbar',
 
+
+	  getNavClass: function () {
+	    return this.props.transparentNav ? "delta-navbar delta-navbar-transparent" : "delta-navbar";
+	  },
+
 	  render: function () {
 	    return React.createElement(
 	      BSNavbar,
-	      { fixedTop: true, className: 'delta-navbar' },
+	      { fixedTop: true, className: this.getNavClass() },
 	      React.createElement(
 	        BSNavbar.Header,
 	        null,
@@ -46362,23 +46366,36 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactBootstrap = __webpack_require__(241);
+
+	//Get home style
+	var HomeStyle = __webpack_require__(495);
+
+	//Mock for displaying different options for home image 
+	var imageDictionary = {
+	  "3dcity": "/images/home/3dcity.jpg",
+	  "3dapt": "/images/home/3dapt.jpg",
+	  "jerusalem1": "/images/home/jerusalem1.jpg",
+	  "jerusalem2": "/images/home/jersualem2.jpg",
+	  "family": "/images/home/family.jpg",
+	  "tlv": "/images/home/tlv.jpg"
+	};
+
+	var HomeHeadline = __webpack_require__(497);
+	var HomeInformationPanel = __webpack_require__(498);
 
 	var HomeLayout = React.createClass({
 	  displayName: 'HomeLayout',
 
+
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'container-fluid' },
+	      { className: 'row' },
 	      React.createElement(
 	        'div',
-	        { className: 'row' },
-	        React.createElement(
-	          'h1',
-	          null,
-	          'Welcome to home page...'
-	        )
+	        { className: 'col-xs-12' },
+	        React.createElement(HomeHeadline, { src: '/images/home/3dcity.jpg' }),
+	        React.createElement(HomeInformationPanel, null)
 	      )
 	    );
 	  }
@@ -46388,6 +46405,202 @@
 
 /***/ },
 /* 495 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(496);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./home.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./home.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 496 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n#homeImage {\n    height: 700px !important;\n    width: 100% !important;\n    margin-top: -120px;\n    -webkit-filter: brightness(80%);\n    filter: brightness(80%);\n}\n\n.home-headline {\n    position: absolute;\n    top: 220px;\n    width: 100%;\n    padding-right: 15%;\n    padding-left: 15%;\n}\n\n.home-headline-header {\n    margin-bottom: 100px;\n    font-size: 55px;\n    color: white;\n    opacity: 0.9;\n}\n\n.home-region-form {\n    height: 50px;\n    font-size: 18px;\n    opacity: 0.9;\n}\n\n.home-information-panel {\n    padding-top: 30px;\n    padding-right: 148px;\n    padding-left: 100px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n}\n\n.home-information-panel h1 {\n    font-weight: bold !important;\n}\n\n.home-information-panel-sections {\n    padding-top: 30px;\n    font-size: 20px;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 497 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSFormGroup = ReactBootstrap.FormGroup;
+	var BSFormControl = ReactBootstrap.FormControl;
+	var BSImage = ReactBootstrap.Image;
+
+	var regions = ["המרכז", "הצפון", "הדרום", "השרון", "תל אביב", "ירושלים"];
+
+	var RegionSelect = React.createClass({
+	    displayName: 'RegionSelect',
+
+
+	    renderOption: function (region) {
+	        return React.createElement(
+	            'option',
+	            { value: 'select', key: region },
+	            region
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            BSFormGroup,
+	            { controlId: 'formControlsSelect' },
+	            React.createElement(
+	                BSFormControl,
+	                { componentClass: 'select', placeholder: 'איזור', bsClass: 'form-control home-region-form region-select container-rtl' },
+	                regions.map(this.renderOption)
+	            )
+	        );
+	    }
+	});
+
+	var RegionInput = React.createClass({
+	    displayName: 'RegionInput',
+
+
+	    render: function () {
+	        return React.createElement(
+	            BSFormGroup,
+	            { controlId: 'regionInput' },
+	            React.createElement(BSFormControl, { type: 'text', placeholder: 'חפש איזור, עיר, שכונה או כתובת', bsClass: 'form-control home-region-form container-rtl' })
+	        );
+	    }
+	});
+
+	var HomeHeader = React.createClass({
+	    displayName: 'HomeHeader',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'home-headline' },
+	            React.createElement(
+	                'h1',
+	                { className: 'home-headline-header text-center' },
+	                'עזור לנו למצוא לך נכס'
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-8' },
+	                    React.createElement(RegionInput, null)
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-4' },
+	                    React.createElement(RegionSelect, null)
+	                )
+	            )
+	        );
+	    }
+	});
+
+	var HomeHeadline = React.createClass({
+	    displayName: 'HomeHeadline',
+
+
+	    onRegionChange: function (val) {
+	        console.log(val);
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(BSImage, { src: this.props.src, id: 'homeImage', responsive: true }),
+	            React.createElement(HomeHeader, null)
+	        );
+	    }
+
+	});
+
+	module.exports = HomeHeadline;
+
+/***/ },
+/* 498 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var Sections = ["טנכלוגיות חדשניות", "מידע מעודכן כל הזמן", "מאגר מידע ממשלתי ומשפטי", "נכסי נדל״ן אקסלוסיביים"];
+
+	var InformationSections = React.createClass({
+	    displayName: "InformationSections",
+
+
+	    renderSection: function (section) {
+	        return React.createElement(
+	            "div",
+	            { className: "col-xs-3", key: section },
+	            section
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row home-information-panel-sections" },
+	            this.props.sections.map(this.renderSection)
+	        );
+	    }
+	});
+
+	var InformationPanel = React.createClass({
+	    displayName: "InformationPanel",
+
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row home-information-panel container-rtl text-center" },
+	            React.createElement(
+	                "h1",
+	                null,
+	                "שילוב של מידע, טכנולוגיה ונדל״ן"
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-8 col-xs-offset-2" },
+	                React.createElement(InformationSections, { sections: Sections })
+	            )
+	        );
+	    }
+
+	});
+
+	module.exports = InformationPanel;
+
+/***/ },
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46411,7 +46624,7 @@
 	module.exports = MapLayout;
 
 /***/ },
-/* 496 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46435,31 +46648,31 @@
 	module.exports = SearchLayout;
 
 /***/ },
-/* 497 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//Get react.
 	var React = __webpack_require__(1);
 
 	//Get main apartment style
-	var ApartmentStyle = __webpack_require__(498);
+	var ApartmentStyle = __webpack_require__(502);
 
 	//Get Galery
-	var GalleryStyle = __webpack_require__(500);
-	var GalleryView = __webpack_require__(502);
+	var GalleryStyle = __webpack_require__(504);
+	var GalleryView = __webpack_require__(506);
 
 	//Get apartment headline
-	var ApartmentHeadline = __webpack_require__(553);
+	var ApartmentHeadline = __webpack_require__(557);
 
 	//Get Sidebar
-	var SidebarStyle = __webpack_require__(554);
-	var Sidebar = __webpack_require__(556);
+	var SidebarStyle = __webpack_require__(558);
+	var Sidebar = __webpack_require__(560);
 
 	//Get inner views
-	var Views = __webpack_require__(563);
+	var Views = __webpack_require__(567);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(602);
+	var ApartmentData = __webpack_require__(606);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -46574,13 +46787,13 @@
 	module.exports = ApartmentLayout;
 
 /***/ },
-/* 498 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(499);
+	var content = __webpack_require__(503);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -46600,7 +46813,7 @@
 	}
 
 /***/ },
-/* 499 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -46614,13 +46827,13 @@
 
 
 /***/ },
-/* 500 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(501);
+	var content = __webpack_require__(505);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -46640,7 +46853,7 @@
 	}
 
 /***/ },
-/* 501 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -46654,12 +46867,12 @@
 
 
 /***/ },
-/* 502 */
+/* 506 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactBootstrap = __webpack_require__(241);
-	var LightBox = __webpack_require__(503);
+	var LightBox = __webpack_require__(507);
 	var BSImage = ReactBootstrap.Image;
 
 	var GalleryView = React.createClass({
@@ -46760,7 +46973,7 @@
 	module.exports = GalleryView;
 
 /***/ },
-/* 503 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46783,39 +46996,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
 	// import Swipeable from 'react-swipeable';
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _componentsArrow = __webpack_require__(528);
+	var _componentsArrow = __webpack_require__(532);
 
 	var _componentsArrow2 = _interopRequireDefault(_componentsArrow);
 
-	var _componentsContainer = __webpack_require__(539);
+	var _componentsContainer = __webpack_require__(543);
 
 	var _componentsContainer2 = _interopRequireDefault(_componentsContainer);
 
-	var _componentsFooter = __webpack_require__(540);
+	var _componentsFooter = __webpack_require__(544);
 
 	var _componentsFooter2 = _interopRequireDefault(_componentsFooter);
 
-	var _componentsHeader = __webpack_require__(541);
+	var _componentsHeader = __webpack_require__(545);
 
 	var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
 
-	var _componentsPaginatedThumbnails = __webpack_require__(542);
+	var _componentsPaginatedThumbnails = __webpack_require__(546);
 
 	var _componentsPaginatedThumbnails2 = _interopRequireDefault(_componentsPaginatedThumbnails);
 
-	var _componentsPortal = __webpack_require__(544);
+	var _componentsPortal = __webpack_require__(548);
 
 	var _componentsPortal2 = _interopRequireDefault(_componentsPortal);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
 	var Lightbox = (function (_Component) {
 		_inherits(Lightbox, _Component);
@@ -47157,14 +47370,14 @@
 	*/
 
 /***/ },
-/* 504 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(505);
+	module.exports = __webpack_require__(509);
 
 
 /***/ },
-/* 505 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Module with the same interface as the core aphrodite module,
@@ -47177,9 +47390,9 @@
 	    value: true
 	});
 
-	var _inject = __webpack_require__(506);
+	var _inject = __webpack_require__(510);
 
-	var _indexJs = __webpack_require__(526);
+	var _indexJs = __webpack_require__(530);
 
 	var css = function css() {
 	    for (var _len = arguments.length, styleDefinitions = Array(_len), _key = 0; _key < _len; _key++) {
@@ -47196,7 +47409,7 @@
 	exports.css = css;
 
 /***/ },
-/* 506 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47207,13 +47420,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _asap = __webpack_require__(507);
+	var _asap = __webpack_require__(511);
 
 	var _asap2 = _interopRequireDefault(_asap);
 
-	var _generate = __webpack_require__(509);
+	var _generate = __webpack_require__(513);
 
-	var _util = __webpack_require__(525);
+	var _util = __webpack_require__(529);
 
 	// The current <style> tag we are inserting into, or null if we haven't
 	// inserted anything yet. We could find this each time using
@@ -47432,13 +47645,13 @@
 	exports.injectAndGetClassName = injectAndGetClassName;
 
 /***/ },
-/* 507 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// rawAsap provides everything we need except exception management.
-	var rawAsap = __webpack_require__(508);
+	var rawAsap = __webpack_require__(512);
 	// RawTasks are recycled to reduce GC churn.
 	var freeTasks = [];
 	// We queue errors to ensure they are thrown in right order (FIFO).
@@ -47504,7 +47717,7 @@
 
 
 /***/ },
-/* 508 */
+/* 512 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -47731,7 +47944,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 509 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47744,11 +47957,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _inlineStylePrefixerStatic = __webpack_require__(510);
+	var _inlineStylePrefixerStatic = __webpack_require__(514);
 
 	var _inlineStylePrefixerStatic2 = _interopRequireDefault(_inlineStylePrefixerStatic);
 
-	var _util = __webpack_require__(525);
+	var _util = __webpack_require__(529);
 
 	/**
 	 * Generate CSS for a selector and some styles.
@@ -47935,14 +48148,14 @@
 	exports.generateCSSRuleset = generateCSSRuleset;
 
 /***/ },
-/* 510 */
+/* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(511)
+	module.exports = __webpack_require__(515)
 
 
 /***/ },
-/* 511 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47952,43 +48165,43 @@
 	});
 	exports.default = prefixAll;
 
-	var _prefixProps = __webpack_require__(512);
+	var _prefixProps = __webpack_require__(516);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _capitalizeString = __webpack_require__(513);
+	var _capitalizeString = __webpack_require__(517);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _calc = __webpack_require__(514);
+	var _calc = __webpack_require__(518);
 
 	var _calc2 = _interopRequireDefault(_calc);
 
-	var _cursor = __webpack_require__(517);
+	var _cursor = __webpack_require__(521);
 
 	var _cursor2 = _interopRequireDefault(_cursor);
 
-	var _flex = __webpack_require__(518);
+	var _flex = __webpack_require__(522);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
-	var _sizing = __webpack_require__(519);
+	var _sizing = __webpack_require__(523);
 
 	var _sizing2 = _interopRequireDefault(_sizing);
 
-	var _gradient = __webpack_require__(520);
+	var _gradient = __webpack_require__(524);
 
 	var _gradient2 = _interopRequireDefault(_gradient);
 
-	var _transition = __webpack_require__(521);
+	var _transition = __webpack_require__(525);
 
 	var _transition2 = _interopRequireDefault(_transition);
 
-	var _flexboxIE = __webpack_require__(523);
+	var _flexboxIE = __webpack_require__(527);
 
 	var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
 
-	var _flexboxOld = __webpack_require__(524);
+	var _flexboxOld = __webpack_require__(528);
 
 	var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
 
@@ -48054,7 +48267,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 512 */
+/* 516 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48066,7 +48279,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 513 */
+/* 517 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48083,7 +48296,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 514 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48093,11 +48306,11 @@
 	});
 	exports.default = calc;
 
-	var _joinPrefixedValue = __webpack_require__(515);
+	var _joinPrefixedValue = __webpack_require__(519);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(516);
+	var _isPrefixedValue = __webpack_require__(520);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -48113,7 +48326,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 515 */
+/* 519 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48138,7 +48351,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 516 */
+/* 520 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48156,7 +48369,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 517 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48166,7 +48379,7 @@
 	});
 	exports.default = cursor;
 
-	var _joinPrefixedValue = __webpack_require__(515);
+	var _joinPrefixedValue = __webpack_require__(519);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -48187,7 +48400,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 518 */
+/* 522 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48208,7 +48421,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 519 */
+/* 523 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48218,7 +48431,7 @@
 	});
 	exports.default = sizing;
 
-	var _joinPrefixedValue = __webpack_require__(515);
+	var _joinPrefixedValue = __webpack_require__(519);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -48249,7 +48462,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 520 */
+/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48259,11 +48472,11 @@
 	});
 	exports.default = gradient;
 
-	var _joinPrefixedValue = __webpack_require__(515);
+	var _joinPrefixedValue = __webpack_require__(519);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(516);
+	var _isPrefixedValue = __webpack_require__(520);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -48279,7 +48492,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 521 */
+/* 525 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48289,19 +48502,19 @@
 	});
 	exports.default = transition;
 
-	var _hyphenateStyleName = __webpack_require__(522);
+	var _hyphenateStyleName = __webpack_require__(526);
 
 	var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
 
-	var _capitalizeString = __webpack_require__(513);
+	var _capitalizeString = __webpack_require__(517);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _isPrefixedValue = __webpack_require__(516);
+	var _isPrefixedValue = __webpack_require__(520);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-	var _prefixProps = __webpack_require__(512);
+	var _prefixProps = __webpack_require__(516);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -48366,7 +48579,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 522 */
+/* 526 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48385,7 +48598,7 @@
 
 
 /***/ },
-/* 523 */
+/* 527 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48422,7 +48635,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 524 */
+/* 528 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48463,7 +48676,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 525 */
+/* 529 */
 /***/ function(module, exports) {
 
 	// {K1: V1, K2: V2, ...} -> [[K1, V1], [K2, V2]]
@@ -48701,7 +48914,7 @@
 	exports.importantify = importantify;
 
 /***/ },
-/* 526 */
+/* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48712,9 +48925,9 @@
 
 	var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
-	var _util = __webpack_require__(525);
+	var _util = __webpack_require__(529);
 
-	var _inject = __webpack_require__(506);
+	var _inject = __webpack_require__(510);
 
 	var StyleSheet = {
 	    create: function create(sheetDefinition) {
@@ -48808,7 +49021,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 527 */
+/* 531 */
 /***/ function(module, exports) {
 
 	// ==============================
@@ -48870,7 +49083,7 @@
 	module.exports = theme;
 
 /***/ },
-/* 528 */
+/* 532 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48885,15 +49098,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
-	var _Icon = __webpack_require__(534);
+	var _Icon = __webpack_require__(538);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -48982,26 +49195,26 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 529 */
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _bindFunctions = __webpack_require__(530);
+	var _bindFunctions = __webpack_require__(534);
 
 	var _bindFunctions2 = _interopRequireDefault(_bindFunctions);
 
-	var _bodyScroll = __webpack_require__(531);
+	var _bodyScroll = __webpack_require__(535);
 
 	var _bodyScroll2 = _interopRequireDefault(_bodyScroll);
 
-	var _canUseDom = __webpack_require__(532);
+	var _canUseDom = __webpack_require__(536);
 
 	var _canUseDom2 = _interopRequireDefault(_canUseDom);
 
-	var _deepMerge = __webpack_require__(533);
+	var _deepMerge = __webpack_require__(537);
 
 	var _deepMerge2 = _interopRequireDefault(_deepMerge);
 
@@ -49013,7 +49226,7 @@
 	};
 
 /***/ },
-/* 530 */
+/* 534 */
 /***/ function(module, exports) {
 
 	/**
@@ -49039,7 +49252,7 @@
 	};
 
 /***/ },
-/* 531 */
+/* 535 */
 /***/ function(module, exports) {
 
 	// Don't try and apply overflow/padding if the scroll is already blocked
@@ -49089,7 +49302,7 @@
 	};
 
 /***/ },
-/* 532 */
+/* 536 */
 /***/ function(module, exports) {
 
 	// Return true if window + document
@@ -49099,7 +49312,7 @@
 	module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 /***/ },
-/* 533 */
+/* 537 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49129,7 +49342,7 @@
 	module.exports = deepMerge;
 
 /***/ },
-/* 534 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49148,7 +49361,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _icons = __webpack_require__(535);
+	var _icons = __webpack_require__(539);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -49177,19 +49390,19 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 535 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = {
-		arrowLeft: __webpack_require__(536),
-		arrowRight: __webpack_require__(537),
-		close: __webpack_require__(538)
+		arrowLeft: __webpack_require__(540),
+		arrowRight: __webpack_require__(541),
+		close: __webpack_require__(542)
 	};
 
 /***/ },
-/* 536 */
+/* 540 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49205,7 +49418,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 537 */
+/* 541 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49221,7 +49434,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 538 */
+/* 542 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49237,7 +49450,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 539 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49252,13 +49465,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
 	function Container(_ref, _ref2) {
 		var props = _objectWithoutProperties(_ref, []);
@@ -49299,7 +49512,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 540 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49314,13 +49527,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
 	function Footer(_ref, _ref2) {
 		var caption = _ref.caption;
@@ -49395,7 +49608,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 541 */
+/* 545 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49410,15 +49623,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
-	var _Icon = __webpack_require__(534);
+	var _Icon = __webpack_require__(538);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -49484,7 +49697,7 @@
 	module.exports = Header;
 
 /***/ },
-/* 542 */
+/* 546 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49509,17 +49722,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _Thumbnail = __webpack_require__(543);
+	var _Thumbnail = __webpack_require__(547);
 
 	var _Thumbnail2 = _interopRequireDefault(_Thumbnail);
 
-	var _Arrow = __webpack_require__(528);
+	var _Arrow = __webpack_require__(532);
 
 	var _Arrow2 = _interopRequireDefault(_Arrow);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
@@ -49717,7 +49930,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 543 */
+/* 547 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49732,13 +49945,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(504);
+	var _aphroditeNoImportant = __webpack_require__(508);
 
-	var _theme = __webpack_require__(527);
+	var _theme = __webpack_require__(531);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(529);
+	var _utils = __webpack_require__(533);
 
 	function Thumbnail(_ref, _ref2) {
 		var index = _ref.index;
@@ -49794,7 +50007,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 544 */
+/* 548 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49819,13 +50032,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(545);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(549);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	var _reactDom = __webpack_require__(34);
 
-	var _PassContext = __webpack_require__(552);
+	var _PassContext = __webpack_require__(556);
 
 	var _PassContext2 = _interopRequireDefault(_PassContext);
 
@@ -49897,13 +50110,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 545 */
+/* 549 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(546);
+	module.exports = __webpack_require__(550);
 
 /***/ },
-/* 546 */
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -49923,8 +50136,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(547);
-	var ReactCSSTransitionGroupChild = __webpack_require__(549);
+	var ReactTransitionGroup = __webpack_require__(551);
+	var ReactCSSTransitionGroupChild = __webpack_require__(553);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -49995,7 +50208,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 547 */
+/* 551 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -50015,7 +50228,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(548);
+	var ReactTransitionChildMapping = __webpack_require__(552);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -50247,7 +50460,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 548 */
+/* 552 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -50356,7 +50569,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 549 */
+/* 553 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -50375,8 +50588,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(550);
-	var ReactTransitionEvents = __webpack_require__(551);
+	var CSSCore = __webpack_require__(554);
+	var ReactTransitionEvents = __webpack_require__(555);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -50528,7 +50741,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 550 */
+/* 554 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -50655,7 +50868,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 551 */
+/* 555 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -50733,7 +50946,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 552 */
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50792,7 +51005,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 553 */
+/* 557 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -50851,13 +51064,13 @@
 	module.exports = ApartmentHeadline;
 
 /***/ },
-/* 554 */
+/* 558 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(555);
+	var content = __webpack_require__(559);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -50877,7 +51090,7 @@
 	}
 
 /***/ },
-/* 555 */
+/* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -50891,12 +51104,12 @@
 
 
 /***/ },
-/* 556 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//React requirements
 	var React = __webpack_require__(1);
-	var HashLink = __webpack_require__(557).HashLink;
+	var HashLink = __webpack_require__(561).HashLink;
 
 	//Bootstrap requirements
 	var ReactBootstrap = __webpack_require__(241);
@@ -50970,7 +51183,7 @@
 	module.exports = Sidebar;
 
 /***/ },
-/* 557 */
+/* 561 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50980,11 +51193,11 @@
 	});
 	exports.HashLinkHistory = exports.HashLink = undefined;
 
-	var _HashLink2 = __webpack_require__(558);
+	var _HashLink2 = __webpack_require__(562);
 
 	var _HashLink3 = _interopRequireDefault(_HashLink2);
 
-	var _HashLinkHistory2 = __webpack_require__(562);
+	var _HashLinkHistory2 = __webpack_require__(566);
 
 	var _HashLinkHistory3 = _interopRequireDefault(_HashLinkHistory2);
 
@@ -50994,7 +51207,7 @@
 	exports.HashLinkHistory = _HashLinkHistory3.default;
 
 /***/ },
-/* 558 */
+/* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51007,11 +51220,11 @@
 
 	exports.default = HashLink;
 
-	var _hashLink2 = __webpack_require__(559);
+	var _hashLink2 = __webpack_require__(563);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(560);
+	var _scroll = __webpack_require__(564);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -51032,7 +51245,7 @@
 	}
 
 /***/ },
-/* 559 */
+/* 563 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51127,7 +51340,7 @@
 	exports.default = _hashLink;
 
 /***/ },
-/* 560 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51137,7 +51350,7 @@
 	});
 	exports.default = animateScroll;
 
-	var _utils = __webpack_require__(561);
+	var _utils = __webpack_require__(565);
 
 	function animateScroll(hash, animate) {
 	  var element = document.querySelector(hash);
@@ -51182,7 +51395,7 @@
 	}
 
 /***/ },
-/* 561 */
+/* 565 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -51208,7 +51421,7 @@
 	}
 
 /***/ },
-/* 562 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51221,11 +51434,11 @@
 
 	exports.default = HashLinkHistory;
 
-	var _hashLink2 = __webpack_require__(559);
+	var _hashLink2 = __webpack_require__(563);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(560);
+	var _scroll = __webpack_require__(564);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -51247,27 +51460,27 @@
 	}
 
 /***/ },
-/* 563 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Get apartment views
-	var DocumentStyle = __webpack_require__(564);
-	var DocumentView = __webpack_require__(566);
+	var DocumentStyle = __webpack_require__(568);
+	var DocumentView = __webpack_require__(570);
 
-	var ReviewsStyle = __webpack_require__(588);
-	var ReviewsView = __webpack_require__(590);
+	var ReviewsStyle = __webpack_require__(592);
+	var ReviewsView = __webpack_require__(594);
 
-	var OwnerNotesStyle = __webpack_require__(591);
-	var OwnerNotesView = __webpack_require__(593);
+	var OwnerNotesStyle = __webpack_require__(595);
+	var OwnerNotesView = __webpack_require__(597);
 
-	var MapView = __webpack_require__(594);
+	var MapView = __webpack_require__(598);
 
-	var ToursStyle = __webpack_require__(598);
-	var ToursView = __webpack_require__(600);
+	var ToursStyle = __webpack_require__(602);
+	var ToursView = __webpack_require__(604);
 
-	var VirtualizationView = __webpack_require__(601);
+	var VirtualizationView = __webpack_require__(605);
 
 	var ApartmentViews = [{
 	    section: "מידע ממשלתי",
@@ -51323,24 +51536,18 @@
 	    id: "tours",
 	    component: ToursView,
 	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
-	}, {
-	    section: "מידע ויזואלי",
-	    title: "הדמיית תלת מימד",
-	    id: "virtualization",
-	    component: VirtualizationView,
-	    glyphiconStyle: "glyphicon glyphicon-object-align-bottom"
 	}];
 
 	module.exports = ApartmentViews;
 
 /***/ },
-/* 564 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(565);
+	var content = __webpack_require__(569);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -51360,7 +51567,7 @@
 	}
 
 /***/ },
-/* 565 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -51374,12 +51581,12 @@
 
 
 /***/ },
-/* 566 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Modal = __webpack_require__(567);
-	var ModalStyle = __webpack_require__(587);
+	var Modal = __webpack_require__(571);
+	var ModalStyle = __webpack_require__(591);
 	var ReactBootstrap = __webpack_require__(241);
 	var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 	var BSButton = ReactBootstrap.Button;
@@ -51489,25 +51696,25 @@
 	module.exports = DocumentView;
 
 /***/ },
-/* 567 */
+/* 571 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(568);
+	module.exports = __webpack_require__(572);
 
 
 
 /***/ },
-/* 568 */
+/* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var ExecutionEnvironment = __webpack_require__(569);
-	var ModalPortal = React.createFactory(__webpack_require__(570));
-	var ariaAppHider = __webpack_require__(585);
-	var elementClass = __webpack_require__(586);
+	var ExecutionEnvironment = __webpack_require__(573);
+	var ModalPortal = React.createFactory(__webpack_require__(574));
+	var ariaAppHider = __webpack_require__(589);
+	var elementClass = __webpack_require__(590);
 	var renderSubtreeIntoContainer = __webpack_require__(34).unstable_renderSubtreeIntoContainer;
-	var Assign = __webpack_require__(574);
+	var Assign = __webpack_require__(578);
 
 	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
 	var AppElement = ExecutionEnvironment.canUseDOM ? document.body : {appendChild: function() {}};
@@ -51615,7 +51822,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 569 */
+/* 573 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51660,14 +51867,14 @@
 
 
 /***/ },
-/* 570 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var div = React.DOM.div;
-	var focusManager = __webpack_require__(571);
-	var scopeTab = __webpack_require__(573);
-	var Assign = __webpack_require__(574);
+	var focusManager = __webpack_require__(575);
+	var scopeTab = __webpack_require__(577);
+	var Assign = __webpack_require__(578);
 
 	// so that our CSS is statically analyzable
 	var CLASS_NAMES = {
@@ -51858,10 +52065,10 @@
 
 
 /***/ },
-/* 571 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(572);
+	var findTabbable = __webpack_require__(576);
 	var modalElement = null;
 	var focusLaterElement = null;
 	var needToFocus = false;
@@ -51932,7 +52139,7 @@
 
 
 /***/ },
-/* 572 */
+/* 576 */
 /***/ function(module, exports) {
 
 	/*!
@@ -51988,10 +52195,10 @@
 
 
 /***/ },
-/* 573 */
+/* 577 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(572);
+	var findTabbable = __webpack_require__(576);
 
 	module.exports = function(node, event) {
 	  var tabbable = findTabbable(node);
@@ -52013,7 +52220,7 @@
 
 
 /***/ },
-/* 574 */
+/* 578 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52024,9 +52231,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseAssign = __webpack_require__(575),
-	    createAssigner = __webpack_require__(581),
-	    keys = __webpack_require__(577);
+	var baseAssign = __webpack_require__(579),
+	    createAssigner = __webpack_require__(585),
+	    keys = __webpack_require__(581);
 
 	/**
 	 * A specialized version of `_.assign` for customizing assigned values without
@@ -52099,7 +52306,7 @@
 
 
 /***/ },
-/* 575 */
+/* 579 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52110,8 +52317,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseCopy = __webpack_require__(576),
-	    keys = __webpack_require__(577);
+	var baseCopy = __webpack_require__(580),
+	    keys = __webpack_require__(581);
 
 	/**
 	 * The base implementation of `_.assign` without support for argument juggling,
@@ -52132,7 +52339,7 @@
 
 
 /***/ },
-/* 576 */
+/* 580 */
 /***/ function(module, exports) {
 
 	/**
@@ -52170,7 +52377,7 @@
 
 
 /***/ },
-/* 577 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52181,9 +52388,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var getNative = __webpack_require__(578),
-	    isArguments = __webpack_require__(579),
-	    isArray = __webpack_require__(580);
+	var getNative = __webpack_require__(582),
+	    isArguments = __webpack_require__(583),
+	    isArray = __webpack_require__(584);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -52412,7 +52619,7 @@
 
 
 /***/ },
-/* 578 */
+/* 582 */
 /***/ function(module, exports) {
 
 	/**
@@ -52555,7 +52762,7 @@
 
 
 /***/ },
-/* 579 */
+/* 583 */
 /***/ function(module, exports) {
 
 	/**
@@ -52790,7 +52997,7 @@
 
 
 /***/ },
-/* 580 */
+/* 584 */
 /***/ function(module, exports) {
 
 	/**
@@ -52976,7 +53183,7 @@
 
 
 /***/ },
-/* 581 */
+/* 585 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52987,9 +53194,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var bindCallback = __webpack_require__(582),
-	    isIterateeCall = __webpack_require__(583),
-	    restParam = __webpack_require__(584);
+	var bindCallback = __webpack_require__(586),
+	    isIterateeCall = __webpack_require__(587),
+	    restParam = __webpack_require__(588);
 
 	/**
 	 * Creates a function that assigns properties of source object(s) to a given
@@ -53034,7 +53241,7 @@
 
 
 /***/ },
-/* 582 */
+/* 586 */
 /***/ function(module, exports) {
 
 	/**
@@ -53105,7 +53312,7 @@
 
 
 /***/ },
-/* 583 */
+/* 587 */
 /***/ function(module, exports) {
 
 	/**
@@ -53243,7 +53450,7 @@
 
 
 /***/ },
-/* 584 */
+/* 588 */
 /***/ function(module, exports) {
 
 	/**
@@ -53316,7 +53523,7 @@
 
 
 /***/ },
-/* 585 */
+/* 589 */
 /***/ function(module, exports) {
 
 	var _element = typeof document !== 'undefined' ? document.body : null;
@@ -53364,7 +53571,7 @@
 
 
 /***/ },
-/* 586 */
+/* 590 */
 /***/ function(module, exports) {
 
 	module.exports = function(opts) {
@@ -53429,7 +53636,7 @@
 
 
 /***/ },
-/* 587 */
+/* 591 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -53459,13 +53666,13 @@
 	};
 
 /***/ },
-/* 588 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(589);
+	var content = __webpack_require__(593);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53485,7 +53692,7 @@
 	}
 
 /***/ },
-/* 589 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53499,7 +53706,7 @@
 
 
 /***/ },
-/* 590 */
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53507,7 +53714,7 @@
 	var BSImage = ReactBootstrap.Image;
 
 	//Get style
-	var ReviewStyle = __webpack_require__(588);
+	var ReviewStyle = __webpack_require__(592);
 
 	var ReviewUserContainer = React.createClass({
 	    displayName: 'ReviewUserContainer',
@@ -53614,13 +53821,13 @@
 	module.exports = ReviewsView;
 
 /***/ },
-/* 591 */
+/* 595 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(592);
+	var content = __webpack_require__(596);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53640,7 +53847,7 @@
 	}
 
 /***/ },
-/* 592 */
+/* 596 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53654,13 +53861,13 @@
 
 
 /***/ },
-/* 593 */
+/* 597 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Add style
-	var ReviewStyle = __webpack_require__(591);
+	var ReviewStyle = __webpack_require__(595);
 
 	var FeaturesView = React.createClass({
 	    displayName: "FeaturesView",
@@ -53764,13 +53971,13 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 594 */
+/* 598 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(595);
-	var DeltaNav = __webpack_require__(597);
+	var NavStyle = __webpack_require__(599);
+	var DeltaNav = __webpack_require__(601);
 
 	var Maps = [{
 	  title: "Google Maps"
@@ -53818,13 +54025,13 @@
 	module.exports = MapView;
 
 /***/ },
-/* 595 */
+/* 599 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(596);
+	var content = __webpack_require__(600);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53844,7 +54051,7 @@
 	}
 
 /***/ },
-/* 596 */
+/* 600 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53858,7 +54065,7 @@
 
 
 /***/ },
-/* 597 */
+/* 601 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53912,13 +54119,13 @@
 	module.exports = Nav;
 
 /***/ },
-/* 598 */
+/* 602 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(599);
+	var content = __webpack_require__(603);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53938,7 +54145,7 @@
 	}
 
 /***/ },
-/* 599 */
+/* 603 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53952,13 +54159,13 @@
 
 
 /***/ },
-/* 600 */
+/* 604 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(595);
-	var DeltaNav = __webpack_require__(597);
+	var NavStyle = __webpack_require__(599);
+	var DeltaNav = __webpack_require__(601);
 
 	var TourFrame = React.createClass({
 	    displayName: 'TourFrame',
@@ -54006,7 +54213,7 @@
 	module.exports = ToursView;
 
 /***/ },
-/* 601 */
+/* 605 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -54022,7 +54229,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 602 */
+/* 606 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -54202,6 +54409,9 @@
 
 	  "tours": {
 	    sources: [{
+	      title: "הדמיית תלת מימד",
+	      src: ""
+	    }, {
 	      title: "וידאו",
 	      src: "https://www.youtube.com/embed/FNAnRp7X33I"
 	    }, {

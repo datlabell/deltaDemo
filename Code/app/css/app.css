@@ -1,4 +1,8 @@
-body {
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     font-family: delta;
 }
 
@@ -8,6 +12,12 @@ body {
     margin-bottom: 0;
     background-color: #90A4AE !important;
     border-bottom: 0px;
+}
+
+.delta-navbar-transparent {
+    position: absolute;
+    background-color: transparent !important;
+    border-bottom: 2px solid white;
 }
 
 .navbar-brand, .delta-navbar-nav {

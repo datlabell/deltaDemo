@@ -82,13 +82,6 @@ var ApartmentViews = [
         id: "tours",
         component: ToursView,
         glyphiconStyle: "glyphicon glyphicon-facetime-video"
-    },
-    {
-        section: "מידע ויזואלי",
-        title: "הדמיית תלת מימד",
-        id: "virtualization",
-        component: VirtualizationView,
-        glyphiconStyle: "glyphicon glyphicon-object-align-bottom"
     }
 ]
 

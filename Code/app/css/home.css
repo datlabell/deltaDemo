@@ -1,0 +1,46 @@
+
+#homeImage {
+    height: 700px !important;
+    width: 100% !important;
+    margin-top: -120px;
+    -webkit-filter: brightness(80%);
+    filter: brightness(80%);
+}
+
+.home-headline {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.home-headline-header {
+    margin-bottom: 100px;
+    font-size: 55px;
+    color: white;
+    opacity: 0.9;
+}
+
+.home-region-form {
+    height: 50px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.home-information-panel {
+    padding-top: 30px;
+    padding-right: 148px;
+    padding-left: 100px;
+    min-height: 250px;
+    border-bottom: 1px solid #ccc;
+}
+
+.home-information-panel h1 {
+    font-weight: bold !important;
+}
+
+.home-information-panel-sections {
+    padding-top: 30px;
+    font-size: 20px;
+}

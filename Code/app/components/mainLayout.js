@@ -5,7 +5,7 @@ var MainLayout = React.createClass( {
   render: function() {
     return (
       <div>
-        <Navbar />
+        <Navbar transparentNav={this.props.children.props.route.transparentNav}/>
         <div className="main-content">
             {this.props.children}
         </div>
