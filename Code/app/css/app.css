@@ -7,17 +7,18 @@ html, body {
 }
 
 .delta-navbar {
+    color: #424242;
     height: 70px;
     box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
     margin-bottom: 0;
-    background-color: #90A4AE !important;
-    border-bottom: 0px;
+    background-color: #f5f5f5 !important;
+    border-bottom: 1px solid #555;
 }
 
 .delta-navbar-transparent {
     position: absolute;
     background-color: transparent !important;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
 }
 
 .navbar-brand, .delta-navbar-nav {
@@ -25,19 +26,26 @@ html, body {
     font-size: 22px;
 }
 
+.delta-navbar-transparent .navbar-brand {
+    color: white !important
+}
+
 .main-content {
+    color: #424242;
     margin-top: 60px;
 }
 
 .delta-navbar-nav > li > a > span {
-    color: #fff;
     font-weight: 100;
     font-size: 20px;
     line-height: 34px;
 }
 
+.delta-navbar-transparent .delta-navbar-nav > li > a > span {
+    color: white !important
+}
+
 #delta-brand {
-    color: #fff;
     line-height: 30px;
     font-family: deltaBrand;
     font-size: 26px;

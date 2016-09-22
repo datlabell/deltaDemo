@@ -17,6 +17,7 @@ var imageDictionary = {
 
 var HomeHeadline = require('./home/homeHeadline');
 var HomeInformationPanel = require('./home/homeInformationPanel');
+var HomeRegionsPanel = require('./home/homeRegionsPanel');
 
 
 var HomeLayout = React.createClass( {
@@ -27,6 +28,7 @@ var HomeLayout = React.createClass( {
           <div className="col-xs-12">
               <HomeHeadline src="/images/home/3dcity.jpg" />
               <HomeInformationPanel />
+              <HomeRegionsPanel />
           </div>
         </div>
     )

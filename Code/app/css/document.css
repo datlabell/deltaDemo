@@ -13,20 +13,20 @@
 
 .document-btn-info {
     color: #fff;
-    background-color: #1565C0;
+    background-color: #424242;
 }
 .document-btn-info:hover {
-    background-color: #1565C0;
+    background-color: #424242;
 }
 
 .document-btn-order {
-    border-color: #ff5a5f;
-    background-color: #e8e8e8;
+    border-color: #F44336;
+    background-color: #f5f5f5;
 }
 
 .document-btn-order:hover {
-    border-color: #ff5a5f;
-    background-color: #BDBDBD;
+    border-color: #F44336;
+    background-color: #f5f5f5;
 }
 
 

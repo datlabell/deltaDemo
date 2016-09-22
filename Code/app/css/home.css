@@ -30,17 +30,49 @@
 
 .home-information-panel {
     padding-top: 30px;
-    padding-right: 148px;
+    padding-right: 100px;
     padding-left: 100px;
+    padding-bottom: 30px;
     min-height: 250px;
     border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5 !important;
 }
 
-.home-information-panel h1 {
+.home-information-panel h1, .home-regions-panel h1 {
     font-weight: bold !important;
 }
 
 .home-information-panel-sections {
     padding-top: 30px;
     font-size: 20px;
+}
+
+.panel-section-icon-container {
+    padding: 30px;
+}
+
+.home-btn-information {
+    background-color: #F44336;
+    border-color: #ccc;
+    margin: auto;
+    margin-top: 40px;
+    color: #ccc;
+}
+
+.home-btn-information:hover {
+    color: #777;
+    border-color: #F44336;
+}
+
+.home-regions-panel {
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-bottom: 30px;
+    min-height: 250px;
+    border-bottom: 1px solid #ccc;
+}
+
+.home-regions-panel > h1 {
+    margin-bottom: 45px;
 }
