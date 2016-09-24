@@ -23,8 +23,8 @@ var HomeRegionPanel = React.createClass({
     
     renderRegion: function(region) {
         return (
-            <div className="col-xs-4">
-                <BSThumbnail src={region.src} alt="242x200" key={region.title}>
+            <div className="col-xs-4" key={region.title}>
+                <BSThumbnail src={region.src} alt="" >
                     <h3>{region.title}</h3>
                 </BSThumbnail>
             </div>
@@ -34,7 +34,7 @@ var HomeRegionPanel = React.createClass({
     render: function() {
         return (
             <div className="row home-regions-panel container-rtl text-center">
-                <h1>איזורים מבוקשים</h1>
+                <h2>איזורים מבוקשים</h2>
                 <div className="row regions-container">
                     {Regions.map(this.renderRegion)}
                 </div>

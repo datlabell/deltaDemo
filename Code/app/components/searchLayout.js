@@ -1,10 +1,18 @@
 var React = require('react');
 
+var SearchFilter = require('./search/searchFilter');
+var SearchView = require('./search/searchView');
+
+//Get search style. 
+var SearchStyle = require('../css/search.css');
+
 var SearchLayout = React.createClass( {
+  
   render: function() {
     return (
-      <div>
-        <h1>Welcome To Search Page</h1>
+      <div className="row container-rtl">
+          <SearchFilter />
+          <SearchView />
       </div>
     )
   }

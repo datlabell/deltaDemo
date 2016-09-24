@@ -61,10 +61,9 @@
 	var MainLayout = __webpack_require__(239);
 
 	//Get layouts
-	var HomeLayout = __webpack_require__(494);
-	var MapLayout = __webpack_require__(500);
-	var SearchLayout = __webpack_require__(501);
-	var ApartmentLayout = __webpack_require__(502);
+	var HomeLayout = __webpack_require__(495);
+	var SearchLayout = __webpack_require__(502);
+	var ApartmentLayout = __webpack_require__(507);
 
 	//Routing
 	ReactDOM.render(React.createElement(
@@ -73,10 +72,9 @@
 	  React.createElement(
 	    Route,
 	    { path: '/', component: MainLayout },
-	    React.createElement(IndexRoute, { component: HomeLayout, transparentNav: true }),
-	    React.createElement(Route, { path: 'home', component: HomeLayout, transparentNav: true }),
-	    React.createElement(Route, { path: 'map', component: MapLayout }),
-	    React.createElement(Route, { path: 'search', component: SearchLayout }),
+	    React.createElement(IndexRoute, { component: HomeLayout, staticNav: true }),
+	    React.createElement(Route, { path: 'home', component: HomeLayout, staticNav: true }),
+	    React.createElement(Route, { path: 'search', component: SearchLayout, staticNav: true }),
 	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout })
 	  )
 	), document.getElementById('main'));
@@ -27143,7 +27141,7 @@
 
 
 	// module
-	exports.push([module.id, "html, body {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    overflow-x: hidden;\n    font-family: delta;\n}\n\n.delta-navbar {\n    color: #424242;\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #f5f5f5 !important;\n    border-bottom: 1px solid #555;\n}\n\n.delta-navbar-transparent {\n    position: absolute;\n    background-color: transparent !important;\n    border-bottom: 1px solid white;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n.delta-navbar-transparent .navbar-brand {\n    color: white !important\n}\n\n.main-content {\n    color: #424242;\n    margin-top: 60px;\n}\n\n.delta-navbar-nav > li > a > span {\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 34px;\n}\n\n.delta-navbar-transparent .delta-navbar-nav > li > a > span {\n    color: white !important\n}\n\n#delta-brand {\n    line-height: 30px;\n    font-family: deltaBrand;\n    font-size: 26px;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Bold.ttf');\n    font-weight: bold;\n}\n\n\n@font-face {\n    font-family: deltaBrand;\n    src: url('/fonts/Courgette-Regular.ttf');\n    font-weight: bold;\n}\n\n", ""]);
+	exports.push([module.id, "html, body {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    overflow-x: hidden;\n    font-family: delta;\n}\n\n.delta-navbar {\n    color: #424242;\n    height: 70px;\n    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n    margin-bottom: 0;\n    background-color: #f5f5f5 !important;\n    border-bottom: 1px solid #555;\n}\n\n.delta-navbar-static {\n    position: absolute;\n}\n\n.navbar-brand, .delta-navbar-nav {\n    margin-top: 5px;\n    font-size: 22px;\n}\n\n\n.main-content {\n    color: #424242;\n    margin-top: 70px;\n}\n\n.delta-navbar-nav > li > a > span {\n    font-weight: 100;\n    font-size: 20px;\n    line-height: 34px;\n}\n\n\n#delta-brand {\n    line-height: 30px;\n    font-family: deltaBrand;\n    font-size: 26px;\n}\n\n#delta-brand  > span {\n    display: inline;\n    margin-right: 8px;\n}\n\n#delta-brand-text {\n    vertical-align: bottom;\n}\n\n.container-rtl {\n    direction: rtl;\n}\n\n.delta-footer-container { \n    padding-right: 15%;\n    padding-left: 15%;\n    padding-bottom: 40px;\n    padding-top: 90px;\n    background-color:  #424242;\n}\n\n.footer-copyright-container {\n    padding-top: 20px;\n    color: #eee;\n}\n\n.footer-regions-container {\n    border-bottom: 2px solid #eee;\n    color: #A5A5A5 !important;\n    padding-bottom: 20px;\n}\n\n.footer-regions-list {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n}\n\n.footer-regions-list > li {\n    float: right;\n    padding-left: 15px;\n    padding-right: 15px;\n    border-left: 1px solid #A5A5A5 \n}\n\n.footer-regions-list > li:first-child {\n    padding-right: 0;\n}\n\n.footer-regions-list > li:last-child {\n    border-left: 0;\n}\n\n\n/*Colors Helpers*/\n.title-primary {\n    color: #555;\n}\n\n\n/*Fonts*/\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Regular.ttf');\n}\n\n@font-face {\n    font-family: delta;\n    src: url('/fonts/Assistant-Bold.ttf');\n    font-weight: bold;\n}\n\n\n@font-face {\n    font-family: deltaBrand;\n    src: url('/fonts/Courgette-Regular.ttf');\n    font-weight: bold;\n}\n\n", ""]);
 
 	// exports
 
@@ -27462,6 +27460,7 @@
 
 	var React = __webpack_require__(1);
 	var Navbar = __webpack_require__(240);
+	var Footer = __webpack_require__(494);
 
 	var MainLayout = React.createClass({
 	  displayName: 'MainLayout',
@@ -27470,12 +27469,13 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Navbar, { transparentNav: this.props.children.props.route.transparentNav }),
+	      React.createElement(Navbar, { staticNav: this.props.children.props.route.staticNav }),
 	      React.createElement(
 	        'div',
 	        { className: 'main-content' },
 	        this.props.children
-	      )
+	      ),
+	      React.createElement(Footer, null)
 	    );
 	  }
 	});
@@ -27492,13 +27492,18 @@
 	var BSNavbar = ReactBootstrap.Navbar;
 	var BSNav = ReactBootstrap.Nav;
 	var BSNavItem = ReactBootstrap.NavItem;
+	var BSImage = ReactBootstrap.Image;
 
 	var Navbar = React.createClass({
 	  displayName: 'Navbar',
 
 
 	  getNavClass: function () {
-	    return this.props.transparentNav ? "delta-navbar delta-navbar-transparent" : "delta-navbar";
+	    return this.props.staticNav ? "delta-navbar delta-navbar-static" : "delta-navbar";
+	  },
+
+	  getNavBrandImage: function () {
+	    return "/images/icons/delta-ico.png";
 	  },
 
 	  render: function () {
@@ -27514,7 +27519,16 @@
 	          React.createElement(
 	            'a',
 	            { href: '/home', id: 'delta-brand' },
-	            'Delta Project'
+	            React.createElement(
+	              'span',
+	              null,
+	              React.createElement(BSImage, { alt: 'Delta', src: this.getNavBrandImage() })
+	            ),
+	            React.createElement(
+	              'span',
+	              { id: 'delta-brand-text' },
+	              'Delta Project'
+	            )
 	          )
 	        )
 	      ),
@@ -46367,8 +46381,56 @@
 
 	var React = __webpack_require__(1);
 
+	var Regions = ["המרכז", "הצפון", "הדרום", "השרון", "תל אביב", "ירושלים"];
+
+	var Footer = React.createClass({
+	    displayName: "Footer",
+
+
+	    renderRegionItem: function (region) {
+	        return React.createElement(
+	            "li",
+	            { key: region },
+	            region
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "delta-footer-container container-rtl" },
+	            React.createElement(
+	                "footer",
+	                null,
+	                React.createElement(
+	                    "div",
+	                    { className: "row footer-regions-container" },
+	                    React.createElement(
+	                        "ul",
+	                        { className: "footer-regions-list" },
+	                        Regions.map(this.renderRegionItem)
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "row footer-copyright-container" },
+	                    "כל הזכויות שמורות לדלתא, 2016"
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Footer;
+
+/***/ },
+/* 495 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
 	//Get home style
-	var HomeStyle = __webpack_require__(495);
+	var HomeStyle = __webpack_require__(496);
 
 	//Mock for displaying different options for home image 
 	var imageDictionary = {
@@ -46380,9 +46442,10 @@
 	  "tlv": "/images/home/tlv.jpg"
 	};
 
-	var HomeHeadline = __webpack_require__(497);
-	var HomeInformationPanel = __webpack_require__(498);
-	var HomeRegionsPanel = __webpack_require__(499);
+	var HomeHeadline = __webpack_require__(498);
+	var HomeSalesPanel = __webpack_require__(499);
+	var HomeRegionsPanel = __webpack_require__(500);
+	var HomeInformationPanel = __webpack_require__(501);
 
 	var HomeLayout = React.createClass({
 	  displayName: 'HomeLayout',
@@ -46395,9 +46458,10 @@
 	      React.createElement(
 	        'div',
 	        { className: 'col-xs-12' },
-	        React.createElement(HomeHeadline, { src: '/images/home/3dcity.jpg' }),
-	        React.createElement(HomeInformationPanel, null),
-	        React.createElement(HomeRegionsPanel, null)
+	        React.createElement(HomeHeadline, { src: '/images/home/3dcity1.jpg' }),
+	        React.createElement(HomeSalesPanel, null),
+	        React.createElement(HomeRegionsPanel, null),
+	        React.createElement(HomeInformationPanel, null)
 	      )
 	    );
 	  }
@@ -46406,13 +46470,13 @@
 	module.exports = HomeLayout;
 
 /***/ },
-/* 495 */
+/* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(496);
+	var content = __webpack_require__(497);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -46432,7 +46496,7 @@
 	}
 
 /***/ },
-/* 496 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -46440,16 +46504,19 @@
 
 
 	// module
-	exports.push([module.id, "\n#homeImage {\n    height: 700px !important;\n    width: 100% !important;\n    margin-top: -120px;\n    -webkit-filter: brightness(80%);\n    filter: brightness(80%);\n}\n\n.home-headline {\n    position: absolute;\n    top: 220px;\n    width: 100%;\n    padding-right: 15%;\n    padding-left: 15%;\n}\n\n.home-headline-header {\n    margin-bottom: 100px;\n    font-size: 55px;\n    color: white;\n    opacity: 0.9;\n}\n\n.home-region-form {\n    height: 50px;\n    font-size: 18px;\n    opacity: 0.9;\n}\n\n.home-information-panel {\n    padding-top: 30px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5 !important;\n}\n\n.home-information-panel h1, .home-regions-panel h1 {\n    font-weight: bold !important;\n}\n\n.home-information-panel-sections {\n    padding-top: 30px;\n    font-size: 20px;\n}\n\n.panel-section-icon-container {\n    padding: 30px;\n}\n\n.home-btn-information {\n    background-color: #F44336;\n    border-color: #ccc;\n    margin: auto;\n    margin-top: 40px;\n    color: #ccc;\n}\n\n.home-btn-information:hover {\n    color: #777;\n    border-color: #F44336;\n}\n\n.home-regions-panel {\n    padding-top: 30px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n}\n\n.home-regions-panel > h1 {\n    margin-bottom: 45px;\n}", ""]);
+	exports.push([module.id, "\n#homeImage {\n    height: 600px !important;\n    width: 100% !important;\n    -webkit-filter: brightness(80%);\n    filter: brightness(80%);\n}\n\n.home-headline {\n    position: absolute;\n    top: 220px;\n    width: 100%;\n    padding-right: 15%;\n    padding-left: 15%;\n}\n\n.home-headline-header {\n    margin-bottom: 100px;\n    font-size: 55px;\n    color: white;\n    opacity: 0.9;\n}\n\n.home-region-form {\n    height: 50px;\n    font-size: 18px;\n    opacity: 0.9;\n}\n\n.home-information-panel , .home-sales-panel {\n    padding-top: 45px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5 !important;\n}\n\n.home-btn-sales {\n    margin-top: 20px;\n    color: #fff;\n    background-color: #424242;\n}\n\n.home-btn-sales:hover {\n    background-color: #424242;\n}\n\n.home-sales-panel h2 , .home-information-panel h2, .home-regions-panel h2 {\n    font-weight: bold !important;\n    margin-bottom: 15px;\n}\n\n.home-sales-panel p {\n    font-size: 18px;\n}\n\n.home-information-panel-sections {\n    padding-top: 30px;\n    font-size: 20px;\n}\n\n.panel-section-icon-container {\n    padding: 30px;\n}\n\n.home-btn-information {\n    background-color: #F44336;\n    border-color: #ccc;\n    margin: auto;\n    margin-top: 40px;\n    color: white;\n}\n\n.home-btn-information:hover {\n    color: #777;\n    border-color: #F44336;\n}\n\n.home-regions-panel {\n    padding-top: 30px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n}\n\n.home-regions-panel > h2 {\n    margin-bottom: 35px;\n}\n\n.home-region-suggestion {\n    font-size: 18px;\n    width: 100%;\n    height: 50px;\n    background-color: #fff;\n    opacity: 0.9; \n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    direction: rtl;\n}\n\n.home-region-suggestion:hover {\n    background-color: #ccc;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 497 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(172);
+	var browserHistory = ReactRouter.browserHistory;
+
 	var ReactBootstrap = __webpack_require__(241);
 	var BSFormGroup = ReactBootstrap.FormGroup;
 	var BSFormControl = ReactBootstrap.FormControl;
@@ -46461,10 +46528,14 @@
 	    displayName: 'RegionSelect',
 
 
+	    onChange: function (e) {
+	        this.props.onChange(e.target.value);
+	    },
+
 	    renderOption: function (region) {
 	        return React.createElement(
 	            'option',
-	            { value: 'select', key: region },
+	            { value: region, key: region },
 	            region
 	        );
 	    },
@@ -46475,7 +46546,12 @@
 	            { controlId: 'formControlsSelect' },
 	            React.createElement(
 	                BSFormControl,
-	                { componentClass: 'select', placeholder: 'איזור', bsClass: 'form-control home-region-form region-select container-rtl' },
+	                { componentClass: 'select',
+	                    placeholder: 'איזור',
+	                    bsClass: 'form-control home-region-form region-select container-rtl',
+	                    value: this.props.value,
+	                    onChange: this.onChange
+	                },
 	                regions.map(this.renderOption)
 	            )
 	        );
@@ -46486,11 +46562,33 @@
 	    displayName: 'RegionInput',
 
 
+	    onChange: function (e) {
+	        this.props.onChange(e.target.value);
+	    },
+
+	    onClick: function () {
+	        browserHistory.push('/search');
+	    },
+
+	    renderSuggestion: function (suggestion) {
+	        return React.createElement(
+	            'div',
+	            { className: 'home-region-suggestion', key: suggestion, onClick: this.onClick },
+	            suggestion
+	        );
+	    },
+
 	    render: function () {
 	        return React.createElement(
 	            BSFormGroup,
 	            { controlId: 'regionInput' },
-	            React.createElement(BSFormControl, { type: 'text', placeholder: 'חפש איזור, עיר, שכונה או כתובת', bsClass: 'form-control home-region-form container-rtl' })
+	            React.createElement(BSFormControl, { type: 'text',
+	                placeholder: 'חפש איזור, עיר, שכונה או כתובת',
+	                bsClass: 'form-control home-region-form container-rtl',
+	                value: this.props.value,
+	                onChange: this.onChange
+	            }),
+	            this.props.suggestions.map(this.renderSuggestion)
 	        );
 	    }
 	});
@@ -46514,12 +46612,12 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-8' },
-	                    React.createElement(RegionInput, null)
+	                    React.createElement(RegionInput, { onChange: this.props.onInputChange, value: this.props.input, suggestions: this.props.suggestions })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-4' },
-	                    React.createElement(RegionSelect, null)
+	                    React.createElement(RegionSelect, { onChange: this.props.onRegionChange, value: this.props.region })
 	                )
 	            )
 	        );
@@ -46530,8 +46628,30 @@
 	    displayName: 'HomeHeadline',
 
 
-	    onRegionChange: function (val) {
-	        console.log(val);
+	    getInitialState: function () {
+	        return {
+	            region: regions[0],
+	            input: "",
+	            suggestions: []
+	        };
+	    },
+
+	    onRegionChange: function (value) {
+
+	        this.setState({
+	            region: value
+	        });
+
+	        console.log(value);
+	    },
+
+	    onInputChange: function (value) {
+
+	        var suggestions = value.length > 0 ? ["אופציה 1", "אופציה 2", "אופציה 3"] : [];
+	        this.setState({
+	            input: value,
+	            suggestions: suggestions
+	        });
 	    },
 
 	    render: function () {
@@ -46539,7 +46659,13 @@
 	            'div',
 	            { className: 'row' },
 	            React.createElement(BSImage, { src: this.props.src, id: 'homeImage', responsive: true }),
-	            React.createElement(HomeHeader, null)
+	            React.createElement(HomeHeader, {
+	                onRegionChange: this.onRegionChange,
+	                onInputChange: this.onInputChange,
+	                region: this.state.region,
+	                input: this.state.input,
+	                suggestions: this.state.suggestions
+	            })
 	        );
 	    }
 
@@ -46548,7 +46674,116 @@
 	module.exports = HomeHeadline;
 
 /***/ },
-/* 498 */
+/* 499 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSButton = ReactBootstrap.Button;
+
+	var HomeSalesPanel = React.createClass({
+	    displayName: 'HomeSalesPanel',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row home-sales-panel container-rtl text-center' },
+	            React.createElement(
+	                'h2',
+	                null,
+	                'מכור נכסים איתנו'
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-4 col-xs-offset-4' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        'הצטרף למאגר הדירות האקסוליסיבי שלנו. שילוב של טכנלוגיות חדשניות, שירותי תיווך ומערכת שיווקית יציבה.'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    BSButton,
+	                    { className: 'home-btn-sales', bsSize: 'large' },
+	                    'מידע נוסף'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = HomeSalesPanel;
+
+/***/ },
+/* 500 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSThumbnail = ReactBootstrap.Thumbnail;
+
+	var Regions = [{
+	    title: "תל אביב",
+	    src: "/images/home/tlv.jpg"
+	}, {
+	    title: "ירושלים",
+	    src: "/images/home/jerusalem.jpg"
+	}, {
+	    title: "חיפה",
+	    src: "/images/home/haifa.jpg"
+	}];
+
+	var HomeRegionPanel = React.createClass({
+	    displayName: 'HomeRegionPanel',
+
+
+	    renderRegion: function (region) {
+	        return React.createElement(
+	            'div',
+	            { className: 'col-xs-4', key: region.title },
+	            React.createElement(
+	                BSThumbnail,
+	                { src: region.src, alt: '' },
+	                React.createElement(
+	                    'h3',
+	                    null,
+	                    region.title
+	                )
+	            )
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row home-regions-panel container-rtl text-center' },
+	            React.createElement(
+	                'h2',
+	                null,
+	                'איזורים מבוקשים'
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'row regions-container' },
+	                Regions.map(this.renderRegion)
+	            )
+	        );
+	    }
+
+	});
+
+	module.exports = HomeRegionPanel;
+
+/***/ },
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46558,16 +46793,16 @@
 
 	var Sections = [{
 	    title: "טנכלוגיות חדשניות",
-	    icon: "/images/icons/3d-symbol.png"
+	    icon: "/images/icons/3d-small.png"
 	}, {
 	    title: "מידע מעודכן כל הזמן",
-	    icon: "/images/icons/update-arrows.png"
+	    icon: "/images/icons/update-small.png"
 	}, {
 	    title: "מאגר מידע ממשלתי ומשפטי",
-	    icon: "/images/icons/copy.png"
+	    icon: "/images/icons/copy-small.png"
 	}, {
 	    title: "נכסי נדל״ן אקסלוסיביים",
-	    icon: "/images/icons/mansion.png"
+	    icon: "/images/icons/mansion-small.png"
 	}];
 
 	var InformationSections = React.createClass({
@@ -46609,7 +46844,7 @@
 	            'div',
 	            { className: 'row home-information-panel container-rtl text-center' },
 	            React.createElement(
-	                'h1',
+	                'h2',
 	                null,
 	                'שילוב של מידע, טכנולוגיה ונדל״ן'
 	            ),
@@ -46639,107 +46874,27 @@
 	module.exports = InformationPanel;
 
 /***/ },
-/* 499 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactBootstrap = __webpack_require__(241);
-	var BSThumbnail = ReactBootstrap.Thumbnail;
-
-	var Regions = [{
-	    title: "תל אביב",
-	    src: "/images/home/tlv.jpg"
-	}, {
-	    title: "ירושלים",
-	    src: "/images/home/jerusalem.jpg"
-	}, {
-	    title: "חיפה",
-	    src: "/images/home/haifa.jpg"
-	}];
-
-	var HomeRegionPanel = React.createClass({
-	    displayName: 'HomeRegionPanel',
-
-
-	    renderRegion: function (region) {
-	        return React.createElement(
-	            'div',
-	            { className: 'col-xs-4' },
-	            React.createElement(
-	                BSThumbnail,
-	                { src: region.src, alt: '242x200', key: region.title },
-	                React.createElement(
-	                    'h3',
-	                    null,
-	                    region.title
-	                )
-	            )
-	        );
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row home-regions-panel container-rtl text-center' },
-	            React.createElement(
-	                'h1',
-	                null,
-	                'איזורים מבוקשים'
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'row regions-container' },
-	                Regions.map(this.renderRegion)
-	            )
-	        );
-	    }
-
-	});
-
-	module.exports = HomeRegionPanel;
-
-/***/ },
-/* 500 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var MapLayout = React.createClass({
-	  displayName: 'MapLayout',
+	var SearchFilter = __webpack_require__(503);
+	var SearchView = __webpack_require__(504);
 
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Welcome To Map Page'
-	      )
-	    );
-	  }
-	});
-
-	module.exports = MapLayout;
-
-/***/ },
-/* 501 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
+	//Get search style. 
+	var SearchStyle = __webpack_require__(505);
 
 	var SearchLayout = React.createClass({
 	  displayName: 'SearchLayout',
 
+
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Welcome To Search Page'
-	      )
+	      { className: 'row container-rtl' },
+	      React.createElement(SearchFilter, null),
+	      React.createElement(SearchView, null)
 	    );
 	  }
 	});
@@ -46747,31 +46902,137 @@
 	module.exports = SearchLayout;
 
 /***/ },
-/* 502 */
+/* 503 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSImage = ReactBootstrap.Image;
+
+	var SearchInput = React.createClass({
+	    displayName: 'SearchInput',
+
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-input-container' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-8 col-xs-offset-3 search-input' },
+	                React.createElement('input', { type: 'text', placeholder: 'חפש איזור, עיר, שכונה או כתובת' })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-1 search-input-icon' },
+	                React.createElement(BSImage, { src: '/images/icons/search-small-white.png' })
+	            )
+	        );
+	    }
+	});
+
+	var SearchFilter = React.createClass({
+	    displayName: 'SearchFilter',
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-filter' },
+	            React.createElement('div', { className: 'col-xs-7' }),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-5' },
+	                React.createElement(SearchInput, { value: this.props.value })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchFilter;
+
+/***/ },
+/* 504 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchView = React.createClass({
+	    displayName: "SearchView",
+
+
+	    render: function () {
+	        return React.createElement("div", { className: "row search-view" });
+	    }
+	});
+
+	module.exports = SearchView;
+
+/***/ },
+/* 505 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(506);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./search.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./search.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 506 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".search-filter {\n    height: 70px;\n    border-bottom: 1px solid #eee;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view {\n    min-height: 650px;\n    background-color: #eee;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//Get react.
 	var React = __webpack_require__(1);
 
 	//Get main apartment style
-	var ApartmentStyle = __webpack_require__(503);
+	var ApartmentStyle = __webpack_require__(508);
 
 	//Get Galery
-	var GalleryStyle = __webpack_require__(505);
-	var GalleryView = __webpack_require__(507);
+	var GalleryStyle = __webpack_require__(510);
+	var GalleryView = __webpack_require__(512);
 
 	//Get apartment headline
-	var ApartmentHeadline = __webpack_require__(558);
+	var ApartmentHeadline = __webpack_require__(563);
 
 	//Get Sidebar
-	var SidebarStyle = __webpack_require__(559);
-	var Sidebar = __webpack_require__(561);
+	var SidebarStyle = __webpack_require__(564);
+	var Sidebar = __webpack_require__(566);
 
 	//Get inner views
-	var Views = __webpack_require__(568);
+	var Views = __webpack_require__(573);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(607);
+	var ApartmentData = __webpack_require__(612);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -46886,13 +47147,13 @@
 	module.exports = ApartmentLayout;
 
 /***/ },
-/* 503 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(504);
+	var content = __webpack_require__(509);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -46912,7 +47173,7 @@
 	}
 
 /***/ },
-/* 504 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -46926,13 +47187,13 @@
 
 
 /***/ },
-/* 505 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(506);
+	var content = __webpack_require__(511);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -46952,7 +47213,7 @@
 	}
 
 /***/ },
-/* 506 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -46960,18 +47221,18 @@
 
 
 	// module
-	exports.push([module.id, ".gallery-container > div {\n    padding-top: 5px; \n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer;\n    background-color: #f5f5f5;\n}\n\n.gallery-disbled-padding-left {\n    padding-left: 0px !important;;\n}\n\n.gallery-disbled-padding-right {\n    padding-right: 0px !important;\n}\n\n", ""]);
+	exports.push([module.id, ".gallery-container > div {\n    height: 380px;\n}\n\n.gallery-img-bg {\n    height: 100%;\n}\n\n.gallery-img-sm {\n    height: 50%;\n}\n\n.gallery-img-sm  > img, .gallery-img-bg > img {\n    height: 100%;\n    width: 100%;\n    padding: 1px;\n    cursor: pointer;\n    background-color: #f5f5f5;\n}\n\n.gallery-disbled-padding-left {\n    padding-left: 0px !important;;\n}\n\n.gallery-disbled-padding-right {\n    padding-right: 0px !important;\n}\n\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 507 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactBootstrap = __webpack_require__(241);
-	var LightBox = __webpack_require__(508);
+	var LightBox = __webpack_require__(513);
 	var BSImage = ReactBootstrap.Image;
 
 	var GalleryView = React.createClass({
@@ -47072,7 +47333,7 @@
 	module.exports = GalleryView;
 
 /***/ },
-/* 508 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47095,39 +47356,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
 	// import Swipeable from 'react-swipeable';
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _componentsArrow = __webpack_require__(533);
+	var _componentsArrow = __webpack_require__(538);
 
 	var _componentsArrow2 = _interopRequireDefault(_componentsArrow);
 
-	var _componentsContainer = __webpack_require__(544);
+	var _componentsContainer = __webpack_require__(549);
 
 	var _componentsContainer2 = _interopRequireDefault(_componentsContainer);
 
-	var _componentsFooter = __webpack_require__(545);
+	var _componentsFooter = __webpack_require__(550);
 
 	var _componentsFooter2 = _interopRequireDefault(_componentsFooter);
 
-	var _componentsHeader = __webpack_require__(546);
+	var _componentsHeader = __webpack_require__(551);
 
 	var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
 
-	var _componentsPaginatedThumbnails = __webpack_require__(547);
+	var _componentsPaginatedThumbnails = __webpack_require__(552);
 
 	var _componentsPaginatedThumbnails2 = _interopRequireDefault(_componentsPaginatedThumbnails);
 
-	var _componentsPortal = __webpack_require__(549);
+	var _componentsPortal = __webpack_require__(554);
 
 	var _componentsPortal2 = _interopRequireDefault(_componentsPortal);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
 	var Lightbox = (function (_Component) {
 		_inherits(Lightbox, _Component);
@@ -47469,14 +47730,14 @@
 	*/
 
 /***/ },
-/* 509 */
+/* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(510);
+	module.exports = __webpack_require__(515);
 
 
 /***/ },
-/* 510 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Module with the same interface as the core aphrodite module,
@@ -47489,9 +47750,9 @@
 	    value: true
 	});
 
-	var _inject = __webpack_require__(511);
+	var _inject = __webpack_require__(516);
 
-	var _indexJs = __webpack_require__(531);
+	var _indexJs = __webpack_require__(536);
 
 	var css = function css() {
 	    for (var _len = arguments.length, styleDefinitions = Array(_len), _key = 0; _key < _len; _key++) {
@@ -47508,7 +47769,7 @@
 	exports.css = css;
 
 /***/ },
-/* 511 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47519,13 +47780,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _asap = __webpack_require__(512);
+	var _asap = __webpack_require__(517);
 
 	var _asap2 = _interopRequireDefault(_asap);
 
-	var _generate = __webpack_require__(514);
+	var _generate = __webpack_require__(519);
 
-	var _util = __webpack_require__(530);
+	var _util = __webpack_require__(535);
 
 	// The current <style> tag we are inserting into, or null if we haven't
 	// inserted anything yet. We could find this each time using
@@ -47744,13 +48005,13 @@
 	exports.injectAndGetClassName = injectAndGetClassName;
 
 /***/ },
-/* 512 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// rawAsap provides everything we need except exception management.
-	var rawAsap = __webpack_require__(513);
+	var rawAsap = __webpack_require__(518);
 	// RawTasks are recycled to reduce GC churn.
 	var freeTasks = [];
 	// We queue errors to ensure they are thrown in right order (FIFO).
@@ -47816,7 +48077,7 @@
 
 
 /***/ },
-/* 513 */
+/* 518 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -48043,7 +48304,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 514 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48056,11 +48317,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _inlineStylePrefixerStatic = __webpack_require__(515);
+	var _inlineStylePrefixerStatic = __webpack_require__(520);
 
 	var _inlineStylePrefixerStatic2 = _interopRequireDefault(_inlineStylePrefixerStatic);
 
-	var _util = __webpack_require__(530);
+	var _util = __webpack_require__(535);
 
 	/**
 	 * Generate CSS for a selector and some styles.
@@ -48247,14 +48508,14 @@
 	exports.generateCSSRuleset = generateCSSRuleset;
 
 /***/ },
-/* 515 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(516)
+	module.exports = __webpack_require__(521)
 
 
 /***/ },
-/* 516 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48264,43 +48525,43 @@
 	});
 	exports.default = prefixAll;
 
-	var _prefixProps = __webpack_require__(517);
+	var _prefixProps = __webpack_require__(522);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _capitalizeString = __webpack_require__(518);
+	var _capitalizeString = __webpack_require__(523);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _calc = __webpack_require__(519);
+	var _calc = __webpack_require__(524);
 
 	var _calc2 = _interopRequireDefault(_calc);
 
-	var _cursor = __webpack_require__(522);
+	var _cursor = __webpack_require__(527);
 
 	var _cursor2 = _interopRequireDefault(_cursor);
 
-	var _flex = __webpack_require__(523);
+	var _flex = __webpack_require__(528);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
-	var _sizing = __webpack_require__(524);
+	var _sizing = __webpack_require__(529);
 
 	var _sizing2 = _interopRequireDefault(_sizing);
 
-	var _gradient = __webpack_require__(525);
+	var _gradient = __webpack_require__(530);
 
 	var _gradient2 = _interopRequireDefault(_gradient);
 
-	var _transition = __webpack_require__(526);
+	var _transition = __webpack_require__(531);
 
 	var _transition2 = _interopRequireDefault(_transition);
 
-	var _flexboxIE = __webpack_require__(528);
+	var _flexboxIE = __webpack_require__(533);
 
 	var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
 
-	var _flexboxOld = __webpack_require__(529);
+	var _flexboxOld = __webpack_require__(534);
 
 	var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
 
@@ -48366,7 +48627,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 517 */
+/* 522 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48378,7 +48639,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 518 */
+/* 523 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48395,7 +48656,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 519 */
+/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48405,11 +48666,11 @@
 	});
 	exports.default = calc;
 
-	var _joinPrefixedValue = __webpack_require__(520);
+	var _joinPrefixedValue = __webpack_require__(525);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(521);
+	var _isPrefixedValue = __webpack_require__(526);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -48425,7 +48686,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 520 */
+/* 525 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48450,7 +48711,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 521 */
+/* 526 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48468,7 +48729,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 522 */
+/* 527 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48478,7 +48739,7 @@
 	});
 	exports.default = cursor;
 
-	var _joinPrefixedValue = __webpack_require__(520);
+	var _joinPrefixedValue = __webpack_require__(525);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -48499,7 +48760,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 523 */
+/* 528 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48520,7 +48781,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 524 */
+/* 529 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48530,7 +48791,7 @@
 	});
 	exports.default = sizing;
 
-	var _joinPrefixedValue = __webpack_require__(520);
+	var _joinPrefixedValue = __webpack_require__(525);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -48561,7 +48822,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 525 */
+/* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48571,11 +48832,11 @@
 	});
 	exports.default = gradient;
 
-	var _joinPrefixedValue = __webpack_require__(520);
+	var _joinPrefixedValue = __webpack_require__(525);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(521);
+	var _isPrefixedValue = __webpack_require__(526);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -48591,7 +48852,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 526 */
+/* 531 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48601,19 +48862,19 @@
 	});
 	exports.default = transition;
 
-	var _hyphenateStyleName = __webpack_require__(527);
+	var _hyphenateStyleName = __webpack_require__(532);
 
 	var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
 
-	var _capitalizeString = __webpack_require__(518);
+	var _capitalizeString = __webpack_require__(523);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _isPrefixedValue = __webpack_require__(521);
+	var _isPrefixedValue = __webpack_require__(526);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-	var _prefixProps = __webpack_require__(517);
+	var _prefixProps = __webpack_require__(522);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -48678,7 +48939,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 527 */
+/* 532 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48697,7 +48958,7 @@
 
 
 /***/ },
-/* 528 */
+/* 533 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48734,7 +48995,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 529 */
+/* 534 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48775,7 +49036,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 530 */
+/* 535 */
 /***/ function(module, exports) {
 
 	// {K1: V1, K2: V2, ...} -> [[K1, V1], [K2, V2]]
@@ -49013,7 +49274,7 @@
 	exports.importantify = importantify;
 
 /***/ },
-/* 531 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49024,9 +49285,9 @@
 
 	var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
-	var _util = __webpack_require__(530);
+	var _util = __webpack_require__(535);
 
-	var _inject = __webpack_require__(511);
+	var _inject = __webpack_require__(516);
 
 	var StyleSheet = {
 	    create: function create(sheetDefinition) {
@@ -49120,7 +49381,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 532 */
+/* 537 */
 /***/ function(module, exports) {
 
 	// ==============================
@@ -49182,7 +49443,7 @@
 	module.exports = theme;
 
 /***/ },
-/* 533 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49197,15 +49458,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
-	var _Icon = __webpack_require__(539);
+	var _Icon = __webpack_require__(544);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -49294,26 +49555,26 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 534 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _bindFunctions = __webpack_require__(535);
+	var _bindFunctions = __webpack_require__(540);
 
 	var _bindFunctions2 = _interopRequireDefault(_bindFunctions);
 
-	var _bodyScroll = __webpack_require__(536);
+	var _bodyScroll = __webpack_require__(541);
 
 	var _bodyScroll2 = _interopRequireDefault(_bodyScroll);
 
-	var _canUseDom = __webpack_require__(537);
+	var _canUseDom = __webpack_require__(542);
 
 	var _canUseDom2 = _interopRequireDefault(_canUseDom);
 
-	var _deepMerge = __webpack_require__(538);
+	var _deepMerge = __webpack_require__(543);
 
 	var _deepMerge2 = _interopRequireDefault(_deepMerge);
 
@@ -49325,7 +49586,7 @@
 	};
 
 /***/ },
-/* 535 */
+/* 540 */
 /***/ function(module, exports) {
 
 	/**
@@ -49351,7 +49612,7 @@
 	};
 
 /***/ },
-/* 536 */
+/* 541 */
 /***/ function(module, exports) {
 
 	// Don't try and apply overflow/padding if the scroll is already blocked
@@ -49401,7 +49662,7 @@
 	};
 
 /***/ },
-/* 537 */
+/* 542 */
 /***/ function(module, exports) {
 
 	// Return true if window + document
@@ -49411,7 +49672,7 @@
 	module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 /***/ },
-/* 538 */
+/* 543 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49441,7 +49702,7 @@
 	module.exports = deepMerge;
 
 /***/ },
-/* 539 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49460,7 +49721,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _icons = __webpack_require__(540);
+	var _icons = __webpack_require__(545);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -49489,19 +49750,19 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 540 */
+/* 545 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = {
-		arrowLeft: __webpack_require__(541),
-		arrowRight: __webpack_require__(542),
-		close: __webpack_require__(543)
+		arrowLeft: __webpack_require__(546),
+		arrowRight: __webpack_require__(547),
+		close: __webpack_require__(548)
 	};
 
 /***/ },
-/* 541 */
+/* 546 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49517,7 +49778,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 542 */
+/* 547 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49533,7 +49794,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 543 */
+/* 548 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49549,7 +49810,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 544 */
+/* 549 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49564,13 +49825,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
 	function Container(_ref, _ref2) {
 		var props = _objectWithoutProperties(_ref, []);
@@ -49611,7 +49872,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 545 */
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49626,13 +49887,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
 	function Footer(_ref, _ref2) {
 		var caption = _ref.caption;
@@ -49707,7 +49968,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 546 */
+/* 551 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49722,15 +49983,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
-	var _Icon = __webpack_require__(539);
+	var _Icon = __webpack_require__(544);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -49796,7 +50057,7 @@
 	module.exports = Header;
 
 /***/ },
-/* 547 */
+/* 552 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49821,17 +50082,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _Thumbnail = __webpack_require__(548);
+	var _Thumbnail = __webpack_require__(553);
 
 	var _Thumbnail2 = _interopRequireDefault(_Thumbnail);
 
-	var _Arrow = __webpack_require__(533);
+	var _Arrow = __webpack_require__(538);
 
 	var _Arrow2 = _interopRequireDefault(_Arrow);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
@@ -50029,7 +50290,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 548 */
+/* 553 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50044,13 +50305,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(509);
+	var _aphroditeNoImportant = __webpack_require__(514);
 
-	var _theme = __webpack_require__(532);
+	var _theme = __webpack_require__(537);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(534);
+	var _utils = __webpack_require__(539);
 
 	function Thumbnail(_ref, _ref2) {
 		var index = _ref.index;
@@ -50106,7 +50367,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 549 */
+/* 554 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50131,13 +50392,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(550);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(555);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	var _reactDom = __webpack_require__(34);
 
-	var _PassContext = __webpack_require__(557);
+	var _PassContext = __webpack_require__(562);
 
 	var _PassContext2 = _interopRequireDefault(_PassContext);
 
@@ -50209,13 +50470,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 550 */
+/* 555 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(551);
+	module.exports = __webpack_require__(556);
 
 /***/ },
-/* 551 */
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -50235,8 +50496,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(552);
-	var ReactCSSTransitionGroupChild = __webpack_require__(554);
+	var ReactTransitionGroup = __webpack_require__(557);
+	var ReactCSSTransitionGroupChild = __webpack_require__(559);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -50307,7 +50568,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 552 */
+/* 557 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -50327,7 +50588,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(553);
+	var ReactTransitionChildMapping = __webpack_require__(558);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -50559,7 +50820,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 553 */
+/* 558 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -50668,7 +50929,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 554 */
+/* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -50687,8 +50948,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(555);
-	var ReactTransitionEvents = __webpack_require__(556);
+	var CSSCore = __webpack_require__(560);
+	var ReactTransitionEvents = __webpack_require__(561);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -50840,7 +51101,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 555 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -50967,7 +51228,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 556 */
+/* 561 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -51045,7 +51306,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 557 */
+/* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51104,7 +51365,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 558 */
+/* 563 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -51163,13 +51424,13 @@
 	module.exports = ApartmentHeadline;
 
 /***/ },
-/* 559 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(560);
+	var content = __webpack_require__(565);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -51189,7 +51450,7 @@
 	}
 
 /***/ },
-/* 560 */
+/* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -51197,18 +51458,18 @@
 
 
 	// module
-	exports.push([module.id, ".sidebar-container {\n    padding-left: 0;\n}\n\n.sidebar {\n    padding-top: 15px;\n    padding-bottom: 50px;\n    font-size: 18px;\n    border-width: 0;\n    border-left: 1px solid #ccc;\n}\n\n.sidebar > ul > li {\n    padding-bottom: 15px;\n}\n.sidebar-section-title {\n    font-weight: bold;\n    color: #555;\n    font-size: 20px;\n}\n\n.sidebar-section-links {\n    list-style: none;\n    font-size: 16px;\n    padding-top: 3px;\n    padding-right: 10px;\n}\n\n.sidebar-section-link > a {\n    color: #777;\n}\n\n.sidebar-section-link > a:hover,  .sidebar-section-link > a:active{\n    font-weight: bold;\n    color: #777;\n    text-decoration: none; \n}", ""]);
+	exports.push([module.id, ".sidebar-container {\n    padding-left: 0;\n}\n\n.sidebar {\n    padding-top: 15px;\n    padding-bottom: 50px;\n    font-size: 18px;\n    border-width: 0;\n    border-left: 1px solid #424242;\n}\n\n.sidebar > ul > li {\n    padding-bottom: 15px;\n}\n.sidebar-section-title {\n    font-weight: bold;\n    color: #555;\n    font-size: 20px;\n}\n\n.sidebar-section-links {\n    list-style: none;\n    font-size: 16px;\n    padding-top: 3px;\n    padding-right: 10px;\n}\n\n.sidebar-section-link > a {\n    color: #777;\n}\n\n.sidebar-section-link > a:hover,  .sidebar-section-link > a:active{\n    font-weight: bold;\n    color: #777;\n    text-decoration: none; \n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 561 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//React requirements
 	var React = __webpack_require__(1);
-	var HashLink = __webpack_require__(562).HashLink;
+	var HashLink = __webpack_require__(567).HashLink;
 
 	//Bootstrap requirements
 	var ReactBootstrap = __webpack_require__(241);
@@ -51282,7 +51543,7 @@
 	module.exports = Sidebar;
 
 /***/ },
-/* 562 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51292,11 +51553,11 @@
 	});
 	exports.HashLinkHistory = exports.HashLink = undefined;
 
-	var _HashLink2 = __webpack_require__(563);
+	var _HashLink2 = __webpack_require__(568);
 
 	var _HashLink3 = _interopRequireDefault(_HashLink2);
 
-	var _HashLinkHistory2 = __webpack_require__(567);
+	var _HashLinkHistory2 = __webpack_require__(572);
 
 	var _HashLinkHistory3 = _interopRequireDefault(_HashLinkHistory2);
 
@@ -51306,7 +51567,7 @@
 	exports.HashLinkHistory = _HashLinkHistory3.default;
 
 /***/ },
-/* 563 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51319,11 +51580,11 @@
 
 	exports.default = HashLink;
 
-	var _hashLink2 = __webpack_require__(564);
+	var _hashLink2 = __webpack_require__(569);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(565);
+	var _scroll = __webpack_require__(570);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -51344,7 +51605,7 @@
 	}
 
 /***/ },
-/* 564 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51439,7 +51700,7 @@
 	exports.default = _hashLink;
 
 /***/ },
-/* 565 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51449,7 +51710,7 @@
 	});
 	exports.default = animateScroll;
 
-	var _utils = __webpack_require__(566);
+	var _utils = __webpack_require__(571);
 
 	function animateScroll(hash, animate) {
 	  var element = document.querySelector(hash);
@@ -51494,7 +51755,7 @@
 	}
 
 /***/ },
-/* 566 */
+/* 571 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -51520,7 +51781,7 @@
 	}
 
 /***/ },
-/* 567 */
+/* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51533,11 +51794,11 @@
 
 	exports.default = HashLinkHistory;
 
-	var _hashLink2 = __webpack_require__(564);
+	var _hashLink2 = __webpack_require__(569);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(565);
+	var _scroll = __webpack_require__(570);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -51559,29 +51820,41 @@
 	}
 
 /***/ },
-/* 568 */
+/* 573 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Get apartment views
-	var DocumentStyle = __webpack_require__(569);
-	var DocumentView = __webpack_require__(571);
+	var DocumentStyle = __webpack_require__(574);
+	var DocumentView = __webpack_require__(576);
 
-	var ReviewsStyle = __webpack_require__(593);
-	var ReviewsView = __webpack_require__(595);
+	var ReviewsStyle = __webpack_require__(598);
+	var ReviewsView = __webpack_require__(600);
 
-	var OwnerNotesStyle = __webpack_require__(596);
-	var OwnerNotesView = __webpack_require__(598);
+	var OwnerNotesStyle = __webpack_require__(601);
+	var OwnerNotesView = __webpack_require__(603);
 
-	var MapView = __webpack_require__(599);
+	var MapView = __webpack_require__(604);
 
-	var ToursStyle = __webpack_require__(603);
-	var ToursView = __webpack_require__(605);
+	var ToursStyle = __webpack_require__(608);
+	var ToursView = __webpack_require__(610);
 
-	var VirtualizationView = __webpack_require__(606);
+	var VirtualizationView = __webpack_require__(611);
 
 	var ApartmentViews = [{
+	    section: "מידע ויזואלי",
+	    title: "סיור",
+	    id: "tours",
+	    component: ToursView,
+	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
+	}, {
+	    section: "מידע ויזואלי",
+	    title: "מפה",
+	    id: "map",
+	    component: MapView,
+	    glyphiconStyle: "glyphicon glyphicon-map-marker"
+	}, {
 	    section: "מידע ממשלתי",
 	    title: "טאבו",
 	    id: "tabu",
@@ -51613,40 +51886,28 @@
 	    title: "תכניות על הנכס"
 	}, {
 	    section: "מידע חברתי",
-	    title: "חוות דעת גולשים",
-	    id: "reviews",
-	    component: ReviewsView,
-	    glyphiconStyle: "glyphicon glyphicon-comment"
-	}, {
-	    section: "מידע חברתי",
 	    title: "מידע מבעל הנכס",
 	    id: "ownerNotes",
 	    component: OwnerNotesView,
 	    glyphiconStyle: "glyphicon glyphicon-info-sign"
 	}, {
-	    section: "מידע ויזואלי",
-	    title: "מפה",
-	    id: "map",
-	    component: MapView,
-	    glyphiconStyle: "glyphicon glyphicon-map-marker"
-	}, {
-	    section: "מידע ויזואלי",
-	    title: "סיור",
-	    id: "tours",
-	    component: ToursView,
-	    glyphiconStyle: "glyphicon glyphicon-facetime-video"
+	    section: "מידע חברתי",
+	    title: "חוות דעת גולשים",
+	    id: "reviews",
+	    component: ReviewsView,
+	    glyphiconStyle: "glyphicon glyphicon-comment"
 	}];
 
 	module.exports = ApartmentViews;
 
 /***/ },
-/* 569 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(570);
+	var content = __webpack_require__(575);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -51666,7 +51927,7 @@
 	}
 
 /***/ },
-/* 570 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -51680,12 +51941,12 @@
 
 
 /***/ },
-/* 571 */
+/* 576 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Modal = __webpack_require__(572);
-	var ModalStyle = __webpack_require__(592);
+	var Modal = __webpack_require__(577);
+	var ModalStyle = __webpack_require__(597);
 	var ReactBootstrap = __webpack_require__(241);
 	var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 	var BSButton = ReactBootstrap.Button;
@@ -51795,25 +52056,25 @@
 	module.exports = DocumentView;
 
 /***/ },
-/* 572 */
+/* 577 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(573);
+	module.exports = __webpack_require__(578);
 
 
 
 /***/ },
-/* 573 */
+/* 578 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var ExecutionEnvironment = __webpack_require__(574);
-	var ModalPortal = React.createFactory(__webpack_require__(575));
-	var ariaAppHider = __webpack_require__(590);
-	var elementClass = __webpack_require__(591);
+	var ExecutionEnvironment = __webpack_require__(579);
+	var ModalPortal = React.createFactory(__webpack_require__(580));
+	var ariaAppHider = __webpack_require__(595);
+	var elementClass = __webpack_require__(596);
 	var renderSubtreeIntoContainer = __webpack_require__(34).unstable_renderSubtreeIntoContainer;
-	var Assign = __webpack_require__(579);
+	var Assign = __webpack_require__(584);
 
 	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
 	var AppElement = ExecutionEnvironment.canUseDOM ? document.body : {appendChild: function() {}};
@@ -51921,7 +52182,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 574 */
+/* 579 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51966,14 +52227,14 @@
 
 
 /***/ },
-/* 575 */
+/* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var div = React.DOM.div;
-	var focusManager = __webpack_require__(576);
-	var scopeTab = __webpack_require__(578);
-	var Assign = __webpack_require__(579);
+	var focusManager = __webpack_require__(581);
+	var scopeTab = __webpack_require__(583);
+	var Assign = __webpack_require__(584);
 
 	// so that our CSS is statically analyzable
 	var CLASS_NAMES = {
@@ -52164,10 +52425,10 @@
 
 
 /***/ },
-/* 576 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(577);
+	var findTabbable = __webpack_require__(582);
 	var modalElement = null;
 	var focusLaterElement = null;
 	var needToFocus = false;
@@ -52238,7 +52499,7 @@
 
 
 /***/ },
-/* 577 */
+/* 582 */
 /***/ function(module, exports) {
 
 	/*!
@@ -52294,10 +52555,10 @@
 
 
 /***/ },
-/* 578 */
+/* 583 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(577);
+	var findTabbable = __webpack_require__(582);
 
 	module.exports = function(node, event) {
 	  var tabbable = findTabbable(node);
@@ -52319,7 +52580,7 @@
 
 
 /***/ },
-/* 579 */
+/* 584 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52330,9 +52591,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseAssign = __webpack_require__(580),
-	    createAssigner = __webpack_require__(586),
-	    keys = __webpack_require__(582);
+	var baseAssign = __webpack_require__(585),
+	    createAssigner = __webpack_require__(591),
+	    keys = __webpack_require__(587);
 
 	/**
 	 * A specialized version of `_.assign` for customizing assigned values without
@@ -52405,7 +52666,7 @@
 
 
 /***/ },
-/* 580 */
+/* 585 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52416,8 +52677,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseCopy = __webpack_require__(581),
-	    keys = __webpack_require__(582);
+	var baseCopy = __webpack_require__(586),
+	    keys = __webpack_require__(587);
 
 	/**
 	 * The base implementation of `_.assign` without support for argument juggling,
@@ -52438,7 +52699,7 @@
 
 
 /***/ },
-/* 581 */
+/* 586 */
 /***/ function(module, exports) {
 
 	/**
@@ -52476,7 +52737,7 @@
 
 
 /***/ },
-/* 582 */
+/* 587 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -52487,9 +52748,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var getNative = __webpack_require__(583),
-	    isArguments = __webpack_require__(584),
-	    isArray = __webpack_require__(585);
+	var getNative = __webpack_require__(588),
+	    isArguments = __webpack_require__(589),
+	    isArray = __webpack_require__(590);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -52718,7 +52979,7 @@
 
 
 /***/ },
-/* 583 */
+/* 588 */
 /***/ function(module, exports) {
 
 	/**
@@ -52861,7 +53122,7 @@
 
 
 /***/ },
-/* 584 */
+/* 589 */
 /***/ function(module, exports) {
 
 	/**
@@ -53096,7 +53357,7 @@
 
 
 /***/ },
-/* 585 */
+/* 590 */
 /***/ function(module, exports) {
 
 	/**
@@ -53282,7 +53543,7 @@
 
 
 /***/ },
-/* 586 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -53293,9 +53554,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var bindCallback = __webpack_require__(587),
-	    isIterateeCall = __webpack_require__(588),
-	    restParam = __webpack_require__(589);
+	var bindCallback = __webpack_require__(592),
+	    isIterateeCall = __webpack_require__(593),
+	    restParam = __webpack_require__(594);
 
 	/**
 	 * Creates a function that assigns properties of source object(s) to a given
@@ -53340,7 +53601,7 @@
 
 
 /***/ },
-/* 587 */
+/* 592 */
 /***/ function(module, exports) {
 
 	/**
@@ -53411,7 +53672,7 @@
 
 
 /***/ },
-/* 588 */
+/* 593 */
 /***/ function(module, exports) {
 
 	/**
@@ -53549,7 +53810,7 @@
 
 
 /***/ },
-/* 589 */
+/* 594 */
 /***/ function(module, exports) {
 
 	/**
@@ -53622,7 +53883,7 @@
 
 
 /***/ },
-/* 590 */
+/* 595 */
 /***/ function(module, exports) {
 
 	var _element = typeof document !== 'undefined' ? document.body : null;
@@ -53670,7 +53931,7 @@
 
 
 /***/ },
-/* 591 */
+/* 596 */
 /***/ function(module, exports) {
 
 	module.exports = function(opts) {
@@ -53735,7 +53996,7 @@
 
 
 /***/ },
-/* 592 */
+/* 597 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -53765,13 +54026,13 @@
 	};
 
 /***/ },
-/* 593 */
+/* 598 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(594);
+	var content = __webpack_require__(599);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53791,7 +54052,7 @@
 	}
 
 /***/ },
-/* 594 */
+/* 599 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53805,7 +54066,7 @@
 
 
 /***/ },
-/* 595 */
+/* 600 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -53813,7 +54074,7 @@
 	var BSImage = ReactBootstrap.Image;
 
 	//Get style
-	var ReviewStyle = __webpack_require__(593);
+	var ReviewStyle = __webpack_require__(598);
 
 	var ReviewUserContainer = React.createClass({
 	    displayName: 'ReviewUserContainer',
@@ -53920,13 +54181,13 @@
 	module.exports = ReviewsView;
 
 /***/ },
-/* 596 */
+/* 601 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(597);
+	var content = __webpack_require__(602);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -53946,7 +54207,7 @@
 	}
 
 /***/ },
-/* 597 */
+/* 602 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -53960,13 +54221,13 @@
 
 
 /***/ },
-/* 598 */
+/* 603 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Add style
-	var ReviewStyle = __webpack_require__(596);
+	var ReviewStyle = __webpack_require__(601);
 
 	var FeaturesView = React.createClass({
 	    displayName: "FeaturesView",
@@ -54070,13 +54331,13 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 599 */
+/* 604 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(600);
-	var DeltaNav = __webpack_require__(602);
+	var NavStyle = __webpack_require__(605);
+	var DeltaNav = __webpack_require__(607);
 
 	var Maps = [{
 	  title: "Google Maps"
@@ -54124,13 +54385,13 @@
 	module.exports = MapView;
 
 /***/ },
-/* 600 */
+/* 605 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(601);
+	var content = __webpack_require__(606);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -54150,7 +54411,7 @@
 	}
 
 /***/ },
-/* 601 */
+/* 606 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -54164,7 +54425,7 @@
 
 
 /***/ },
-/* 602 */
+/* 607 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -54218,13 +54479,13 @@
 	module.exports = Nav;
 
 /***/ },
-/* 603 */
+/* 608 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(604);
+	var content = __webpack_require__(609);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -54244,7 +54505,7 @@
 	}
 
 /***/ },
-/* 604 */
+/* 609 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -54258,13 +54519,13 @@
 
 
 /***/ },
-/* 605 */
+/* 610 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(600);
-	var DeltaNav = __webpack_require__(602);
+	var NavStyle = __webpack_require__(605);
+	var DeltaNav = __webpack_require__(607);
 
 	var TourFrame = React.createClass({
 	    displayName: 'TourFrame',
@@ -54312,7 +54573,7 @@
 	module.exports = ToursView;
 
 /***/ },
-/* 606 */
+/* 611 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -54328,7 +54589,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 607 */
+/* 612 */
 /***/ function(module, exports) {
 
 	var RightSection = [{

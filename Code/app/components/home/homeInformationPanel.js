@@ -6,19 +6,19 @@ var BSButton = ReactBootstrap.Button;
 var Sections = [
     {
         title: "טנכלוגיות חדשניות",
-        icon: "/images/icons/3d-symbol.png"
+        icon: "/images/icons/3d-small.png"
     },
     {
         title: "מידע מעודכן כל הזמן",
-        icon:  "/images/icons/update-arrows.png"
+        icon:  "/images/icons/update-small.png"
     },
     {
         title: "מאגר מידע ממשלתי ומשפטי",
-        icon: "/images/icons/copy.png"
+        icon: "/images/icons/copy-small.png"
     }, 
     {
         title: "נכסי נדל״ן אקסלוסיביים",
-        icon: "/images/icons/mansion.png"
+        icon: "/images/icons/mansion-small.png"
     }
 ]
 
@@ -49,7 +49,7 @@ var InformationPanel = React.createClass({
     render: function() {
         return (
             <div className="row home-information-panel container-rtl text-center">
-                <h1>שילוב של מידע, טכנולוגיה ונדל״ן</h1>
+                <h2>שילוב של מידע, טכנולוגיה ונדל״ן</h2>
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2">
                         <InformationSections sections={Sections} />

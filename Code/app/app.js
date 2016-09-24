@@ -16,7 +16,6 @@ var MainLayout = require('./components/mainLayout');
 
 //Get layouts
 var HomeLayout = require('./components/homeLayout');
-var MapLayout = require('./components/mapLayout');
 var SearchLayout = require('./components/searchLayout');
 var ApartmentLayout = require('./components/apartmentLayout');
 
@@ -25,10 +24,9 @@ var ApartmentLayout = require('./components/apartmentLayout');
 ReactDOM.render((
   <Router history={BrowserHistory}>
     <Route path="/" component={MainLayout}>
-        <IndexRoute component={HomeLayout}  transparentNav/>
-        <Route path="home" component={HomeLayout} transparentNav></Route>
-        <Route path="map" component={MapLayout}></Route>
-        <Route path="search" component={SearchLayout}></Route>
+        <IndexRoute component={HomeLayout}  staticNav/>
+        <Route path="home" component={HomeLayout} staticNav></Route>
+        <Route path="search" component={SearchLayout} staticNav></Route>
         <Route path="apartment/:id" component={ApartmentLayout}></Route>
     </Route>
   </Router>

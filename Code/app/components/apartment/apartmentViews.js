@@ -19,6 +19,20 @@ var VirtualizationView = require('./VirtualizationView');
 
 var ApartmentViews = [
     {
+        section: "מידע ויזואלי",
+        title: "סיור",
+        id: "tours",
+        component: ToursView,
+        glyphiconStyle: "glyphicon glyphicon-facetime-video"
+    },
+    {
+        section: "מידע ויזואלי",
+        title: "מפה",
+        id: "map",
+        component: MapView,
+        glyphiconStyle: "glyphicon glyphicon-map-marker"
+    },
+    {
         section: "מידע ממשלתי",
         title: "טאבו",
         id: "tabu",
@@ -57,31 +71,17 @@ var ApartmentViews = [
     },
     {
         section: "מידע חברתי",
-        title: "חוות דעת גולשים",
-        id: "reviews",
-        component: ReviewsView,
-        glyphiconStyle: "glyphicon glyphicon-comment"
-    },
-    {
-        section: "מידע חברתי",
         title: "מידע מבעל הנכס",
         id: "ownerNotes",
         component: OwnerNotesView,
         glyphiconStyle: "glyphicon glyphicon-info-sign"
     },
     {
-        section: "מידע ויזואלי",
-        title: "מפה",
-        id: "map",
-        component: MapView,
-        glyphiconStyle: "glyphicon glyphicon-map-marker"
-    },
-    {
-        section: "מידע ויזואלי",
-        title: "סיור",
-        id: "tours",
-        component: ToursView,
-        glyphiconStyle: "glyphicon glyphicon-facetime-video"
+        section: "מידע חברתי",
+        title: "חוות דעת גולשים",
+        id: "reviews",
+        component: ReviewsView,
+        glyphiconStyle: "glyphicon glyphicon-comment"
     }
 ]
 

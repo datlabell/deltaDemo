@@ -1,0 +1,36 @@
+.search-filter {
+    height: 70px;
+    border-bottom: 1px solid #eee;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: #424242 !important;
+}
+
+
+.search-input-container {
+    background-color: #616161;
+    margin-top: 15px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.search-input > input {
+    width: 100%;
+    background-color: #616161;
+    border: 0;
+    height: 40px;
+    font-size: 16px;
+}
+
+.search-input > input:focus {
+     outline: none;
+}
+
+.search-input-icon {
+    padding-top: 8px;
+}
+
+.search-view {
+    min-height: 650px;
+    background-color: #eee;
+}
