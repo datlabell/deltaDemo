@@ -46975,7 +46975,12 @@
 	        return React.createElement(
 	            'div',
 	            { className: 'col-xs-2', key: filter },
-	            React.createElement(BSNavDropdown, { eventKey: filter, title: filter, className: 'tab-filter', id: filter })
+	            React.createElement(
+	                'div',
+	                { className: 'tab-filter', id: filter },
+	                filter,
+	                React.createElement('span', { className: 'caret' })
+	            )
 	        );
 	    },
 
@@ -47092,7 +47097,7 @@
 
 
 	// module
-	exports.push([module.id, ".search-filter {\n    height: 70px;\n    border-bottom: 1px solid #eee;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view {\n    height: 680px;\n    background-color: #fff;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  a {\n    font-size: 16px;\n    color: #eee;\n}\n\n.tab-filter  a:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter  a > .caret {\n    margin-right: 2px;\n}\n\n.search-map-container {\n   height: 100%;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n", ""]);
+	exports.push([module.id, ".search-filter {\n    height: 70px;\n    border-bottom: 1px solid #eee;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n    padding-right: 10px;\n    padding-left: 10px;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter  > .caret {\n    margin-right: 2px;\n}\n\n.search-map-container {\n   height: 100%;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n", ""]);
 
 	// exports
 

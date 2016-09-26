@@ -17,8 +17,10 @@ var SearchTabFilters = React.createClass({
     renderFilter: function(filter) {
         return (
             <div className="col-xs-2" key={filter}>
-                <BSNavDropdown  eventKey={filter} title={filter} className="tab-filter" id={filter}>
-                </BSNavDropdown>
+                <div className="tab-filter" id={filter}>
+                    {filter}
+                    <span className="caret" />
+                </div>
             </div>
         )
     },
