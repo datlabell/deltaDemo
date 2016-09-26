@@ -6,15 +6,15 @@ var BSThumbnail = ReactBootstrap.Thumbnail;
 var Regions = [
     {
         title: "תל אביב",
-        src : "/images/home/tlv.jpg"
+        src : "http://d122o8puwjz892.cloudfront.net/home/tlv-min.jpg"
     },
     {
         title: "ירושלים",
-        src : "/images/home/jerusalem.jpg"
+        src : "http://d122o8puwjz892.cloudfront.net/home/jerusalem-min.jpg"
     },
     {
         title: "חיפה",
-        src : "/images/home/haifa.jpg"
+        src : "http://d122o8puwjz892.cloudfront.net/home/haifa-min.jpg"
     }
 ]
 

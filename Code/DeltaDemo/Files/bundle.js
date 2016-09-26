@@ -46432,16 +46432,6 @@
 	//Get home style
 	var HomeStyle = __webpack_require__(496);
 
-	//Mock for displaying different options for home image 
-	var imageDictionary = {
-	  "3dcity": "/images/home/3dcity.jpg",
-	  "3dapt": "/images/home/3dapt.jpg",
-	  "jerusalem1": "/images/home/jerusalem1.jpg",
-	  "jerusalem2": "/images/home/jersualem2.jpg",
-	  "family": "/images/home/family.jpg",
-	  "tlv": "/images/home/tlv.jpg"
-	};
-
 	var HomeHeadline = __webpack_require__(498);
 	var HomeSalesPanel = __webpack_require__(499);
 	var HomeRegionsPanel = __webpack_require__(500);
@@ -46458,7 +46448,7 @@
 	      React.createElement(
 	        'div',
 	        { className: 'col-xs-12' },
-	        React.createElement(HomeHeadline, { src: '/images/home/3dcity1.jpg' }),
+	        React.createElement(HomeHeadline, { src: 'http://d122o8puwjz892.cloudfront.net/home/3dcity1-min.jpg' }),
 	        React.createElement(HomeSalesPanel, null),
 	        React.createElement(HomeRegionsPanel, null),
 	        React.createElement(HomeInformationPanel, null)
@@ -46732,13 +46722,13 @@
 
 	var Regions = [{
 	    title: "תל אביב",
-	    src: "/images/home/tlv.jpg"
+	    src: "http://d122o8puwjz892.cloudfront.net/home/tlv-min.jpg"
 	}, {
 	    title: "ירושלים",
-	    src: "/images/home/jerusalem.jpg"
+	    src: "http://d122o8puwjz892.cloudfront.net/home/jerusalem-min.jpg"
 	}, {
 	    title: "חיפה",
-	    src: "/images/home/haifa.jpg"
+	    src: "http://d122o8puwjz892.cloudfront.net/home/haifa-min.jpg"
 	}];
 
 	var HomeRegionPanel = React.createClass({

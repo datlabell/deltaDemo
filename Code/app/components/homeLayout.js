@@ -4,17 +4,6 @@ var React = require('react');
 var HomeStyle = require('../css/home.css');
 
 
-//Mock for displaying different options for home image 
-var imageDictionary = {
-  "3dcity" : "/images/home/3dcity.jpg",
-  "3dapt" : "/images/home/3dapt.jpg",
-  "jerusalem1" : "/images/home/jerusalem1.jpg",
-  "jerusalem2" : "/images/home/jersualem2.jpg",
-  "family" : "/images/home/family.jpg",
-  "tlv" : "/images/home/tlv.jpg"
-}
-
-
 var HomeHeadline = require('./home/homeHeadline');
 var HomeSalesPanel = require('./home/homeSalesPanel');
 var HomeRegionsPanel = require('./home/homeRegionsPanel');
@@ -28,7 +17,7 @@ var HomeLayout = React.createClass( {
     return (
         <div className="row">
           <div className="col-xs-12">
-              <HomeHeadline src="/images/home/3dcity1.jpg" />
+              <HomeHeadline src="http://d122o8puwjz892.cloudfront.net/home/3dcity1-min.jpg" />
               <HomeSalesPanel />
               <HomeRegionsPanel />
               <HomeInformationPanel />
