@@ -26,7 +26,7 @@ ReactDOM.render((
     <Route path="/" component={MainLayout}>
         <IndexRoute component={HomeLayout}  staticNav/>
         <Route path="home" component={HomeLayout} staticNav></Route>
-        <Route path="search" component={SearchLayout} staticNav></Route>
+        <Route path="search/:region/:suggestion" component={SearchLayout} staticNav></Route>
         <Route path="apartment/:id" component={ApartmentLayout}></Route>
     </Route>
   </Router>

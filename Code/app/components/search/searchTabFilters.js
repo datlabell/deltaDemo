@@ -3,22 +3,20 @@ var ReactBootstrap = require('react-bootstrap');
 var BSNav = ReactBootstrap.Nav;
 var BSNavDropdown = ReactBootstrap.NavDropdown;
 
-var filters = [
-    "מתקדם",
-    "קומה",
-    "מחיר",
-    "חדרים",
-    "סוג נכס"
-]
 
 
 var SearchTabFilters = React.createClass({
     
-    renderFilter: function(filter) {
+    onClickFilter: function(filterKey) {
+        this.props.onClickFilter(filterKey);
+    },
+
+    renderFilter: function(filterKey) {
+        var filterTitle = this.props.filters[filterKey].title;
         return (
-            <div className="col-xs-2" key={filter}>
-                <div className="tab-filter" id={filter}>
-                    {filter}
+            <div className="col-xs-2" key={filterKey}>
+                <div className="tab-filter" id={filterTitle} onClick={this.onClickFilter.bind(this, filterKey)}>
+                    {filterTitle}
                     <span className="caret" />
                 </div>
             </div>
@@ -28,7 +26,7 @@ var SearchTabFilters = React.createClass({
     render: function() {
         return (
             <div className="row search-tab-filters">
-                {filters.map(this.renderFilter)}
+                {Object.keys(this.props.filters).map(this.renderFilter)}
             </div>
         )
     }

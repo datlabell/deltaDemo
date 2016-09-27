@@ -7,14 +7,8 @@ var BSFormGroup = ReactBootstrap.FormGroup;
 var BSFormControl = ReactBootstrap.FormControl;
 var BSImage = ReactBootstrap.Image;
 
-var regions = [
-    "המרכז",
-    "הצפון",
-    "הדרום",
-    "השרון",
-    "תל אביב",
-    "ירושלים"
-]
+var regions = require('../data/regions');
+var autoSuggest = require('../data/autosuggestionMock');
 
 
 var RegionSelect = React.createClass({
@@ -51,13 +45,17 @@ var RegionInput = React.createClass({
         this.props.onChange(e.target.value)
     },
 
-    onClick: function() {
-        browserHistory.push('/search');
+    onClickSuggestion: function(suggestion) {
+        this.props.onClickSuggestion(suggestion);
     },
 
     renderSuggestion: function(suggestion) {
         return (
-            <div className="home-region-suggestion" key={suggestion} onClick={this.onClick}>{suggestion}</div>
+            <div className="home-region-suggestion" 
+                key={suggestion} 
+                onClick={this.onClickSuggestion.bind(this, suggestion)}>
+                {suggestion}
+            </div>
         )
     },
 
@@ -87,7 +85,11 @@ var HomeHeader = React.createClass({
                 <h1 className="home-headline-header text-center">עזור לנו למצוא לך נכס</h1>       
                 <div className="row">
                     <div className="col-xs-8">
-                        <RegionInput  onChange={this.props.onInputChange} value={this.props.input} suggestions={this.props.suggestions}/>
+                        <RegionInput  
+                            onChange={this.props.onInputChange} 
+                            value={this.props.input} 
+                            suggestions={this.props.suggestions}
+                            onClickSuggestion={this.props.onClickSuggestion}/>
                     </div>
                     <div className="col-xs-4">
                         <RegionSelect onChange={this.props.onRegionChange} value={this.props.region} />
@@ -120,11 +122,19 @@ var HomeHeadline = React.createClass({
 
     onInputChange: function(value) {
         
-        var suggestions = value.length > 0 ?  [ "אופציה 1", "אופציה 2", "אופציה 3"] : [];
+        var suggestions = value.length > 0 
+                            ?  autoSuggest.getSuggestions(this.state.region, value)
+                            : []
+
         this.setState({
             input : value,
             suggestions : suggestions
         });
+    },
+
+    onClickSuggestion: function(suggestion) {
+        var path = "/search/" + this.state.region + "/" + suggestion;
+        browserHistory.push(path);
     },
 
     render: function() {
@@ -137,6 +147,7 @@ var HomeHeadline = React.createClass({
                 region={this.state.region}
                 input={this.state.input}
                 suggestions={this.state.suggestions}
+                onClickSuggestion={this.onClickSuggestion}
                 />
           </div>
         )
