@@ -1,3 +1,7 @@
+.search-layout {
+    position: relative;
+}
+
 .search-filter {
     height: 70px;
     padding-right: 5%;
@@ -57,6 +61,7 @@
 
 .search-map-container {
    height: 100%;
+   padding-left: 0;
 }
 
 .search-map {
@@ -70,9 +75,11 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
+    left: 0;
+    margin-left: 0;
 }
 
-.proprty-type-filter, .rooms-filter {
+.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {
     font-size: 16px;
     background-color: #f5f5f5 !important;
     color: #616161 !important;
@@ -100,3 +107,89 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.advanced-filter  {
+    padding-right: 30px;
+    padding-bottom: 20px;
+}
+
+.price-filter-label, .floors-filter-label {
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.price-filter input {
+    width: 100%;
+}
+
+.floors-filter {
+    margin-left: 7%;
+}
+
+.advanced-filter-section {
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.advanced-filter-section:last-child {
+    border: 0;
+}
+
+.advanced-filter-section-title h3 {
+    font-weight: bold;
+}
+
+.advanced-filters-container > div {
+    padding-right: 0;
+    margin-top: 7px;
+}
+
+/*Search apartment container*/
+.search-properties-container {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 0;
+}
+
+.search-properties-container > .delta-nav {
+    padding-right: 0;
+}
+
+.search-properties-container  .delta-nav-item {
+    font-size: 18px;
+}
+
+.search-property-container, .search-property > div  {
+    padding-right: 2px;
+}
+
+.search-property-container .thumbnail {
+    background-color: #eee; 
+}
+
+.search-property-container .thumbnail img {
+    height: 160px;
+    width: 100%;
+}
+
+
+.search-proprty-btn {
+    color: #fff;
+    background-color: #424242;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-proprty-btn:hover {
+    background-color: #424242;
+    color: #fff;
+}
+
+.propery-price { 
+   font-size: 16px;
+   color:  #616161;
+   font-weight: bold;
+}
+
+

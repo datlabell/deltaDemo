@@ -10,9 +10,9 @@ var SearchLayout = React.createClass( {
   
   render: function() {
     return (
-      <div className="row container-rtl">
+      <div className="row container-rtl search-layout">
           <SearchFilter region={this.props.params.region} suggestion={this.props.params.suggestion} />
-          <SearchView />
+          <SearchView region={this.props.params.region} suggestion={this.props.params.suggestion} />
       </div>
     )
   }

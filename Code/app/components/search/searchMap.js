@@ -13,7 +13,7 @@ var SearchMap = React.createClass({
         center:  MockLocation,
         scrollwheel: false,
         mapTypeControl: false,
-        zoom: 14
+        zoom: 15
     });
   },
 

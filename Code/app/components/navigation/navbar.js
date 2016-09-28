@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactRouter= require('react-router');
+var browserHistory = ReactRouter.browserHistory;
 
 var ReactBootstrap = require('react-bootstrap');
 var BSNavbar = ReactBootstrap.Navbar;
