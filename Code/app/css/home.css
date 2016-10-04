@@ -87,6 +87,10 @@
     border-bottom: 1px solid #ccc;
 }
 
+.home-regions-panel .thumbnail {
+    cursor: pointer;
+}
+
 .home-regions-panel > h2 {
     margin-bottom: 35px;
 }

@@ -85,7 +85,8 @@ html, body {
     float: right;
     padding-left: 15px;
     padding-right: 15px;
-    border-left: 1px solid #A5A5A5 
+    border-left: 1px solid #A5A5A5; 
+    cursor: pointer;
 }
 
 .footer-regions-list > li:first-child {

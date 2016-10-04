@@ -7,6 +7,23 @@ var BSNavbar = ReactBootstrap.Navbar;
 var BSNav = ReactBootstrap.Nav;
 var BSNavItem = ReactBootstrap.NavItem;
 var BSImage = ReactBootstrap.Image;
+var BSButton = ReactBootstrap.Button;
+
+var BackButton = React.createClass({
+
+    onClick: function() {
+        browserHistory.goBack();
+    },
+
+    render: function() {
+      return (
+        <BSButton className="nav-back-btn" onClick={this.onClick}>
+          חזרה
+          <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </BSButton>
+      )
+    }
+})
 
 var Navbar = React.createClass( {
   
@@ -17,8 +34,13 @@ var Navbar = React.createClass( {
   getNavBrandImage: function() {
     return  "/images/icons/delta-ico.png";
   },
+
+  renderBackButtonIfRequired: function() {
+      return this.props.goBack ?  <BSNavItem eventKey={0}><BackButton /></BSNavItem> : "";
+  },
   
   render: function() {
+
     return (
       <BSNavbar fixedTop className={this.getNavClass()}>
         <BSNavbar.Header>
@@ -33,6 +55,7 @@ var Navbar = React.createClass( {
             <BSNavItem eventKey={1} href="/home">
                 <span>דירות למכירה</span>
             </BSNavItem>
+            {this.renderBackButtonIfRequired()}
         </BSNav>
       </BSNavbar>
     )

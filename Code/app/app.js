@@ -5,6 +5,7 @@ var ReactRouter = require('react-router');
 var Route = ReactRouter.Route;
 var Router = ReactRouter.Router;
 var BrowserHistory = ReactRouter.browserHistory;
+
 var IndexRoute = ReactRouter.IndexRoute;
 var IndexRedirect = ReactRouter.IndexRedirect;
 
@@ -27,7 +28,7 @@ ReactDOM.render((
         <IndexRoute component={HomeLayout}  staticNav/>
         <Route path="home" component={HomeLayout} staticNav></Route>
         <Route path="search/:region/:suggestion" component={SearchLayout} staticNav></Route>
-        <Route path="apartment/:id" component={ApartmentLayout}></Route>
+        <Route path="apartment/:id" component={ApartmentLayout} goBack></Route>
     </Route>
   </Router>
 ), document.getElementById('main'))

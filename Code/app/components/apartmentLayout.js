@@ -56,6 +56,17 @@ var ApartmentLayout = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    
+    //Adding affix plugin to side dynamically.
+    $('.sidebar-container').affix({
+      offset: {
+        top: 550
+      }
+    });
+
+  },
+
   generateSections: function(views) {
     var sections = {};
     views.forEach(function(view) {
