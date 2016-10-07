@@ -1,0 +1,25 @@
+.not-implemented-modal-title > h3 {
+    font-weight: bold;
+}
+
+.not-implemented-modal-body {
+    font-size: 16px;
+}
+
+.not-implemented-modal-footer{
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+.not-implemented-modal-footer > div {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.not-implemented-modal-footer-text {
+    line-height: 45px;
+    font-weight: bold;
+}
+
+

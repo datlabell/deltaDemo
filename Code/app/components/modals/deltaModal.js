@@ -1,4 +1,8 @@
-module.exports = { 
+var React = require('react');
+var Modal = require('react-modal');
+
+var DeltaModalStyle =  { 
+  
   overlay : {
     position : 'fixed',
     top  : 0,
@@ -8,6 +12,7 @@ module.exports = {
     backgroundColor : "rgba(0, 0, 0, 0.8)",
     zIndex: "1031"
   },
+
   content : {
     position : 'absolute',
     top  : '40px',
@@ -22,4 +27,19 @@ module.exports = {
     width: "80%",
     height: "730px" 
   }
-}
+};
+
+
+var DeltaModal = React.createClass({
+    
+    render: function() {
+        return (
+            <Modal isOpen={this.props.isOpen} onRequestClose={this.props.onRequestClose} style={DeltaModalStyle}>
+                {this.props.children}
+            </Modal>
+        )
+    }
+
+})
+
+module.exports = DeltaModal;

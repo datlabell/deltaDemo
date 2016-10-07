@@ -14,7 +14,7 @@ var HomeSalesPanel = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <BSButton className="home-btn-sales" bsSize="large">מידע נוסף</BSButton>
+                    <BSButton className="home-btn-sales" bsSize="large" onClick={this.props.notImplementedAction}>מידע נוסף</BSButton>
                 </div>
             </div>
         )

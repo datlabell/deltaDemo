@@ -24,7 +24,7 @@ var HomeRegionPanel = React.createClass({
     renderRegion: function(region) {
         return (
             <div className="col-xs-4" key={region.title}>
-                <BSThumbnail src={region.src} alt="" >
+                <BSThumbnail src={region.src} alt="" onClick={this.props.notImplementedAction}>
                     <h3>{region.title}</h3>
                 </BSThumbnail>
             </div>

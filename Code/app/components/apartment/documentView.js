@@ -1,11 +1,11 @@
 var React = require('react');
-var Modal = require('react-modal');
-var ModalStyle = require('./styles/documentModalStyle');
 var ReactBootstrap = require('react-bootstrap');
 var BSButtonToolbar = ReactBootstrap.ButtonToolbar;
 var BSButton = ReactBootstrap.Button;
 var BSImage = ReactBootstrap.Image;
 
+var DeltaModal = require('../modals/deltaModal');
+var NotImplementedModal = require('../modals/notImplementedModal');
 
 
 var DocumentView = React.createClass({
@@ -25,6 +25,15 @@ var DocumentView = React.createClass({
         this.setState({isDocumentModalOpen: false});
     },
 
+    openOrderModal: function() {
+        this.setState({isOrderModalOpen: true});
+    },
+
+    closeOrderModal: function() {
+        this.setState({isOrderModalOpen: false});
+    },
+
+
     createIframe: function(src) {
         return (
             <iframe src={this.props.data.src} className="document-content-container"></iframe>
@@ -39,15 +48,16 @@ var DocumentView = React.createClass({
         )
     },
 
-    renderModal: function() {
+    renderModals: function() {
         return (
             <div>
-                <Modal isOpen={this.state.isDocumentModalOpen} onRequestClose={this.closeDocumentModal} style={ModalStyle}>
+                <DeltaModal isOpen={this.state.isDocumentModalOpen} onRequestClose={this.closeDocumentModal}>
                     {
                         this.props.data.documentType === "pdf" ?  
                         this.createIframe(this.props.data.src) : this.createJpg(this.props.data.src)
                     }
-                </Modal>
+                </DeltaModal>
+                <NotImplementedModal  isOpen={this.state.isOrderModalOpen} onRequestClose={this.closeOrderModal}/>
             </div>
         )
     },
@@ -55,10 +65,10 @@ var DocumentView = React.createClass({
     render: function() {
         return (
         <div className="row">
-            {this.renderModal()}
+            {this.renderModals()}
             <div className="col-xs-4">
                 <BSButtonToolbar>            
-                    <BSButton className="document-btn-order">הזמן מסמך חדש</BSButton>
+                    <BSButton className="document-btn-order" onClick={this.openOrderModal}>הזמן מסמך חדש</BSButton>
                     <BSButton className="document-btn-info" onClick={this.openDocumentModal}>הצג מסמך</BSButton>
                 </BSButtonToolbar>
             </div>

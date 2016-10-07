@@ -3,6 +3,8 @@ var ReactBootstrap = require('react-bootstrap');
 var BSImage = ReactBootstrap.Image;
 var BSButton = ReactBootstrap.Button;
 
+
+
 var Sections = [
     {
         title: "טנכלוגיות חדשניות",
@@ -56,7 +58,7 @@ var InformationPanel = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <BSButton className="home-btn-information" bsSize="large">למד עוד עלינו</BSButton>
+                    <BSButton className="home-btn-information" bsSize="large" onClick={this.props.notImplementedAction}>למד עוד עלינו</BSButton>
                 </div>
             </div>
         )
