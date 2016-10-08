@@ -17,11 +17,13 @@ var SearchMapView = React.createClass({
     render: function() {
         return (
             <div className="row search-view-map">
-                <div className="col-xs-12 search-map-container">
+                <div className="col-xs-12">
                     <SearchModeSelect onSelectSearchMode={this.props.onSelectSearchMode} 
                                       modes={this.state.modes} 
                                       value={this.state.modeTitle}
                                       selectSize={2}/>
+                </div>
+                <div className="col-xs-12 search-map-container">
                     <SearchMap properties={this.props.properties} location={this.props.location} />
                 </div>
             </div>

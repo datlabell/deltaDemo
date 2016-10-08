@@ -56320,11 +56320,15 @@
 	            { className: 'row search-view-map' },
 	            React.createElement(
 	                'div',
-	                { className: 'col-xs-12 search-map-container' },
+	                { className: 'col-xs-12' },
 	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
 	                    modes: this.state.modes,
 	                    value: this.state.modeTitle,
-	                    selectSize: 2 }),
+	                    selectSize: 2 })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12 search-map-container' },
 	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
 	            )
 	        );
