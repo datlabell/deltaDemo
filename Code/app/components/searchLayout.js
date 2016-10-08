@@ -1,8 +1,9 @@
 var React = require('react');
+var ReactRouter = require('react-router');
+var browserHistory = ReactRouter.browserHistory;
 
 //Get required component
 var SearchFilter = require('./search/searchFilter');
-var SearchView = require('./search/searchView');
 
 //Get search style. 
 var SearchStyle = require('../css/search.css');
@@ -166,20 +167,74 @@ var Properties = [
         size: 100,
         rooms: 5
     }
-]
-
-
+];
 
 var SearchLayout = React.createClass( {
   
-  render: function() {
+ getInitialState: function() {
+     return {
+         region: this.props.params.region,
+         suggestion: this.props.params.suggestion,
+         location: MockLocation,
+         properties: Properties,
+         modes: this.buildModes(this.props.params.region, this.props.params.suggestion)
+     };
+ },
+
+ buildModes: function(region, suggestion) {
+     
+     return [
+        
+        {
+            title: "חלון משולב",
+            action: this.buildFullActionPath(region, suggestion, "combined")
+        },
+
+        {
+            title: "נכסים בלבד",
+            action: this.buildFullActionPath(region, suggestion, "properties")
+        }, 
+
+        {
+            title: "מפה בלבד",
+            action: this.buildFullActionPath(region, suggestion, "map")
+        }
+     ]
+ },
+
+buildFullActionPath: function(region, suggestion, action) {
+
+     return "/search"  + "/" + region + "/" + suggestion + "/" + action;
+ },
+
+
+ getActionFromModeTitle: function(modeTitle) {
+     
+     for (var i = 0; i < this.state.modes.length; i++) {
+         if (this.state.modes[i].title === modeTitle) {
+             return this.state.modes[i].action;
+         }
+     }
+ },
+
+ onSelectSearchMode: function(modeTitle) {
+     var action = this.getActionFromModeTitle(modeTitle);
+     browserHistory.push(action);
+ },
+
+
+render: function() {
     return (
       <div className="row container-rtl search-layout">
-          <SearchFilter region={this.props.params.region} suggestion={this.props.params.suggestion} />
-          <SearchView region={this.props.params.region} 
-                      suggestion={this.props.params.suggestion} 
-                      location={MockLocation}
-                      properties={Properties}/>
+          <SearchFilter region={this.state.region} suggestion={this.state.suggestion} />
+          {React.cloneElement(this.props.children, {
+              region: this.state.region,
+              suggestion : this.state.suggestion,
+              location: this.state.location,
+              properties: this.state.properties,
+              modes: this.state.modes,
+              onSelectSearchMode: this.onSelectSearchMode
+          })}
       </div>
     )
   }

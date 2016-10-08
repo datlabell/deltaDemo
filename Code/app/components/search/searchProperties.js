@@ -43,10 +43,14 @@ var SearchProperties = React.createClass({
         return "/" + type +  "/" + id;
     },
 
+    getPropertyContainerSize: function() {
+        return "col-xs-" + this.props.propertySize + " search-property-container pull-right";
+    },
+
     renderProperty: function(property) {
         var action = this.constructClickAction(property.type, property.id);
         return (
-            <div className="col-xs-6 search-property-container" key={property.id}>
+            <div className={this.getPropertyContainerSize()} key={property.id}>
                 <SearchProperty action={action} address={property.location.address} 
                     image={property.image}  price={property.price} rooms={property.rooms} 
                     size={property.size}/>

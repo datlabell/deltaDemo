@@ -33,11 +33,45 @@
     padding-top: 8px;
 }
 
-.search-view {
+.search-view-combined, .search-view-properties {
     height: calc(100vh - 140px);
     background-color: #fff;
+}
+
+.search-view-combined {
     padding-right: 10px;
     padding-left: 10px;
+}
+
+.search-view-properties {
+    padding-right: 50px;
+}
+
+.search-view-map {
+  background-color: #fff;
+  height: calc(100vh - 200px);
+}
+
+.search-mode-select {
+    padding-top: 20px;
+}
+
+.search-view-properties .search-mode-select {
+    padding-right: 0.5%;
+}
+
+.search-view-map .search-mode-select {
+     padding-right: 2.8%; 
+}
+
+.search-mode-select select {
+    width: 150px;
+    font-size: 17px;
+    font-weight: bold;
+    height: 40px;
+    background-color: #f5f5f5 !important;
+    border-color: #bbb;
+    color: #616161;
 }
  
 .search-tab-filters {
@@ -146,19 +180,12 @@
     margin-top: 7px;
 }
 
+
 /*Search apartment container*/
 .search-properties-container {
     height: 100%;
     overflow-y: auto;
     padding-right: 0;
-}
-
-.search-properties-container > .delta-nav {
-    padding-right: 0;
-}
-
-.search-properties-container  .delta-nav-item {
-    font-size: 18px;
 }
 
 .search-property-container, .search-property > div  {

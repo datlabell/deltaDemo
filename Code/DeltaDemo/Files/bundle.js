@@ -64,7 +64,12 @@
 	//Get layouts
 	var HomeLayout = __webpack_require__(519);
 	var SearchLayout = __webpack_require__(527);
-	var ApartmentLayout = __webpack_require__(544);
+	var ApartmentLayout = __webpack_require__(538);
+
+	//Get search inner views
+	var SearchCombinedView = __webpack_require__(624);
+	var SearchPropertiesView = __webpack_require__(630);
+	var SearchMapView = __webpack_require__(631);
 
 	//Routing
 	ReactDOM.render(React.createElement(
@@ -75,7 +80,14 @@
 	    { path: '/', component: MainLayout },
 	    React.createElement(IndexRoute, { component: HomeLayout, staticNav: true }),
 	    React.createElement(Route, { path: 'home', component: HomeLayout, staticNav: true }),
-	    React.createElement(Route, { path: 'search/:region/:suggestion', component: SearchLayout, staticNav: true }),
+	    React.createElement(
+	      Route,
+	      { path: 'search/:region/:suggestion', component: SearchLayout, staticNav: true },
+	      React.createElement(IndexRoute, { component: SearchCombinedView }),
+	      React.createElement(Route, { path: 'combined', component: SearchCombinedView }),
+	      React.createElement(Route, { path: 'map', component: SearchMapView }),
+	      React.createElement(Route, { path: 'properties', component: SearchPropertiesView })
+	    ),
 	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout, goBack: true })
 	  )
 	), document.getElementById('main'));
@@ -49099,13 +49111,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(172);
+	var browserHistory = ReactRouter.browserHistory;
 
 	//Get required component
 	var SearchFilter = __webpack_require__(528);
-	var SearchView = __webpack_require__(536);
 
 	//Get search style. 
-	var SearchStyle = __webpack_require__(542);
+	var SearchStyle = __webpack_require__(536);
 
 	// Data
 	var MockLocation = {
@@ -49259,15 +49272,62 @@
 	    displayName: 'SearchLayout',
 
 
+	    getInitialState: function () {
+	        return {
+	            region: this.props.params.region,
+	            suggestion: this.props.params.suggestion,
+	            location: MockLocation,
+	            properties: Properties,
+	            modes: this.buildModes(this.props.params.region, this.props.params.suggestion)
+	        };
+	    },
+
+	    buildModes: function (region, suggestion) {
+
+	        return [{
+	            title: "חלון משולב",
+	            action: this.buildFullActionPath(region, suggestion, "combined")
+	        }, {
+	            title: "נכסים בלבד",
+	            action: this.buildFullActionPath(region, suggestion, "properties")
+	        }, {
+	            title: "מפה בלבד",
+	            action: this.buildFullActionPath(region, suggestion, "map")
+	        }];
+	    },
+
+	    buildFullActionPath: function (region, suggestion, action) {
+
+	        return "/search" + "/" + region + "/" + suggestion + "/" + action;
+	    },
+
+	    getActionFromModeTitle: function (modeTitle) {
+
+	        for (var i = 0; i < this.state.modes.length; i++) {
+	            if (this.state.modes[i].title === modeTitle) {
+	                return this.state.modes[i].action;
+	            }
+	        }
+	    },
+
+	    onSelectSearchMode: function (modeTitle) {
+	        var action = this.getActionFromModeTitle(modeTitle);
+	        browserHistory.push(action);
+	    },
+
 	    render: function () {
 	        return React.createElement(
 	            'div',
 	            { className: 'row container-rtl search-layout' },
-	            React.createElement(SearchFilter, { region: this.props.params.region, suggestion: this.props.params.suggestion }),
-	            React.createElement(SearchView, { region: this.props.params.region,
-	                suggestion: this.props.params.suggestion,
-	                location: MockLocation,
-	                properties: Properties })
+	            React.createElement(SearchFilter, { region: this.state.region, suggestion: this.state.suggestion }),
+	            React.cloneElement(this.props.children, {
+	                region: this.state.region,
+	                suggestion: this.state.suggestion,
+	                location: this.state.location,
+	                properties: this.state.properties,
+	                modes: this.state.modes,
+	                onSelectSearchMode: this.onSelectSearchMode
+	            })
 	        );
 	    }
 	});
@@ -49824,467 +49884,10 @@
 /* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-
-	var SearchMap = __webpack_require__(537);
-	var SearchProperties = __webpack_require__(540);
-	var SearchModeNav = __webpack_require__(541);
-
-	var modes = [{
-	    title: "נכסים בלבד"
-	}, {
-	    title: "מפה בלבד"
-	}, {
-	    title: "חלון משולב"
-	}];
-
-	var SearchView = React.createClass({
-	    displayName: 'SearchView',
-
-
-	    getInitialState: function () {
-	        return {
-	            modes: modes,
-	            activeModeKey: modes.length - 1
-	        };
-	    },
-
-	    onSelectSearchMode: function (key) {
-	        console.log("Search mode selected: " + this.state.modes[key].title);
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row search-view' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-5 search-properties-container' },
-	                React.createElement(SearchModeNav, { onSelect: this.onSelectSearchMode, items: this.state.modes }),
-	                React.createElement(SearchProperties, { properties: this.props.properties })
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-7 search-map-container' },
-	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SearchView;
-
-/***/ },
-/* 537 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(34);
-	var SearchPropertyInfoWindow = __webpack_require__(538);
-
-	MapClustersIconsStyles = {
-
-	  gridSize: 40,
-
-	  maxZoom: 15,
-
-	  styles: [{
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-40.png",
-	    height: 40,
-	    width: 40
-	  }, {
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-44.png",
-	    height: 44,
-	    width: 44
-	  }, {
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-48.png",
-	    height: 48,
-	    width: 48
-	  }, {
-	    textColor: '#eee',
-	    textSize: 18,
-	    url: "/images/icons/map-cluster-56.png",
-	    height: 56,
-	    width: 56
-	  }, {
-	    textColor: '#eee',
-	    textSize: 18,
-	    url: "/images/icons/map-cluster-64.png",
-	    height: 64,
-	    width: 64
-	  }]
-	};
-
-	//Required for using react component in google map info window.
-	var createInfoWindow = function (property) {
-
-	  var infoWindowContainer = document.createElement('div');
-	  ReactDOM.render(React.createElement(SearchPropertyInfoWindow, { property: property }), infoWindowContainer);
-	  return infoWindowContainer;
-	};
-
-	var SearchMap = React.createClass({
-	  displayName: 'SearchMap',
-
-
-	  createMap: function () {
-
-	    //Create map
-	    this.map = new google.maps.Map(this.refs.map, {
-	      center: this.props.location,
-	      scrollwheel: false,
-	      mapTypeControl: false,
-	      zoom: 13,
-	      minZoom: 12
-	    });
-
-	    //Add zoom listener
-	    this.map.addListener('zoom_changed', this.onZoom);
-	  },
-
-	  createMarkers: function () {
-
-	    this.markers = this.props.properties.map(function (property) {
-
-	      var marker = new google.maps.Marker({
-	        position: property.location,
-	        label: property.label,
-	        icon: "/images/icons/map-marker.png"
-	      });
-
-	      var infowindow = new google.maps.InfoWindow({
-	        content: createInfoWindow(property)
-	      });
-
-	      marker.addListener('click', function () {
-	        infowindow.open(this.map, marker);
-	      });
-
-	      return marker;
-	    });
-	  },
-
-	  componentDidMount: function () {
-
-	    //Create map
-	    this.createMap();
-
-	    //Create Markers
-	    this.createMarkers();
-
-	    //Create clusters
-	    this.markerCluster = new MarkerClusterer(this.map, this.markers, MapClustersIconsStyles);
-	  },
-
-	  onZoom: function () {
-
-	    //Get value of zoom
-	    var zoom = this.map.getZoom();
-
-	    //Change grid size based on zoom
-	    if (zoom <= 13) {
-	      this.markerCluster.setGridSize(50);
-	      return;
-	    }
-
-	    if (zoom == 14) {
-	      this.markerCluster.setGridSize(70);
-	      return;
-	    }
-
-	    //In case 15
-	    this.markerCluster.setGridSize(120);
-	    return;
-	  },
-
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      { className: 'row search-map' },
-	      React.createElement(
-	        'div',
-	        { className: 'col-xs-12 search-map' },
-	        React.createElement('div', { ref: 'map', className: 'search-map' })
-	      )
-	    );
-	  }
-	});
-
-	module.exports = SearchMap;
-
-/***/ },
-/* 538 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(172);
-	var browserHistory = ReactRouter.browserHistory;
-	var ReactBootstrap = __webpack_require__(241);
-	var BSImage = ReactBootstrap.Image;
-	var BSButton = ReactBootstrap.Button;
-
-	var SearchPropertyExtraInfo = __webpack_require__(539);
-
-	var SearchPropertyInfoWindow = React.createClass({
-	    displayName: 'SearchPropertyInfoWindow',
-
-
-	    onClick: function () {
-	        var actionPath = "/" + this.props.property.type + "/" + this.props.property.id;
-	        browserHistory.push(actionPath);
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row search-property-info-window container-rtl' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-7 image-container' },
-	                React.createElement(BSImage, { src: this.props.property.image, onClick: this.onClick })
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-5 details-container' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'row address-container' },
-	                    this.props.property.location.address
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'row price-container' },
-	                    this.props.property.price
-	                ),
-	                React.createElement(SearchPropertyExtraInfo, { size: this.props.property.size,
-	                    rooms: this.props.property.rooms }),
-	                React.createElement(
-	                    'div',
-	                    { className: 'row action-container' },
-	                    React.createElement(
-	                        BSButton,
-	                        { className: 'action-btn', onClick: this.onClick },
-	                        'הצג'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SearchPropertyInfoWindow;
-
-/***/ },
-/* 539 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	var SearchPropertyExtraInfo = React.createClass({
-	    displayName: "SearchPropertyExtraInfo",
-
-	    render: function () {
-	        return React.createElement(
-	            "div",
-	            { className: "row extra-info" },
-	            React.createElement(
-	                "div",
-	                { className: "col-xs-6 size-info" },
-	                React.createElement(
-	                    "p",
-	                    null,
-	                    this.props.size + " " + "מ״ר"
-	                )
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "col-xs-6 rooms-info" },
-	                React.createElement(
-	                    "p",
-	                    null,
-	                    this.props.rooms + " " + "חדרים"
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SearchPropertyExtraInfo;
-
-/***/ },
-/* 540 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(172);
-	var browserHistory = ReactRouter.browserHistory;
-	var ReactBootstrap = __webpack_require__(241);
-	var BSThumbnail = ReactBootstrap.Thumbnail;
-	var BSButton = ReactBootstrap.Button;
-
-	var SearchProperty = React.createClass({
-	    displayName: 'SearchProperty',
-
-
-	    onClick: function () {
-	        browserHistory.push(this.props.action);
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row search-property' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-10 col-xs-offset-1' },
-	                React.createElement(
-	                    BSThumbnail,
-	                    { src: this.props.image },
-	                    React.createElement(
-	                        'h4',
-	                        null,
-	                        this.props.address
-	                    ),
-	                    React.createElement(
-	                        'p',
-	                        { className: 'property-price' },
-	                        this.props.price
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row extra-info' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-4 col-xs-offset-5' },
-	                            React.createElement(
-	                                'p',
-	                                null,
-	                                this.props.rooms + " " + "חדרים"
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-3' },
-	                            React.createElement(
-	                                'p',
-	                                null,
-	                                this.props.size + " " + "מ״ר"
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'p',
-	                        null,
-	                        React.createElement(
-	                            BSButton,
-	                            { className: 'search-proprty-btn', onClick: this.onClick },
-	                            'הצג'
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	var SearchProperties = React.createClass({
-	    displayName: 'SearchProperties',
-
-
-	    constructClickAction: function (type, id) {
-	        return "/" + type + "/" + id;
-	    },
-
-	    renderProperty: function (property) {
-	        var action = this.constructClickAction(property.type, property.id);
-	        return React.createElement(
-	            'div',
-	            { className: 'col-xs-6 search-property-container', key: property.id },
-	            React.createElement(SearchProperty, { action: action, address: property.location.address,
-	                image: property.image, price: property.price, rooms: property.rooms,
-	                size: property.size })
-	        );
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row search-properties' },
-	            this.props.properties.map(this.renderProperty)
-	        );
-	    }
-	});
-
-	module.exports = SearchProperties;
-
-/***/ },
-/* 541 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactBootstrap = __webpack_require__(241);
-	var BSNav = ReactBootstrap.Nav;
-	var BSNavItem = ReactBootstrap.NavItem;
-
-	var Nav = React.createClass({
-	    displayName: 'Nav',
-
-
-	    getInitialState: function () {
-	        return {
-	            activeKey: (this.props.items.length - 1).toString()
-	        };
-	    },
-
-	    onSelect: function (key) {
-	        this.setState({
-	            activeKey: key
-	        });
-
-	        this.props.onSelect(key);
-	    },
-
-	    renderNavigationItem: function (key) {
-	        return React.createElement(
-	            BSNavItem,
-	            { eventKey: key, key: key },
-	            React.createElement(
-	                'span',
-	                { className: 'delta-nav-item' },
-	                this.props.items[key].title
-	            )
-	        );
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row delta-nav' },
-	            React.createElement(
-	                BSNav,
-	                { navbar: true, pullRight: true, activeKey: this.state.activeKey, onSelect: this.onSelect },
-	                Object.keys(this.props.items).map(this.renderNavigationItem)
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Nav;
-
-/***/ },
-/* 542 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(543);
+	var content = __webpack_require__(537);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -50304,7 +49907,7 @@
 	}
 
 /***/ },
-/* 543 */
+/* 537 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -50312,37 +49915,37 @@
 
 
 	// module
-	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n    padding-right: 10px;\n    padding-left: 10px;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-properties-container > .delta-nav {\n    padding-right: 0;\n}\n\n.search-properties-container  .delta-nav-item {\n    font-size: 18px;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}", ""]);
+	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view-combined, .search-view-properties {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n}\n\n.search-view-combined {\n    padding-right: 10px;\n    padding-left: 10px;\n}\n\n.search-view-properties {\n    padding-right: 50px;\n}\n\n.search-view-map {\n  background-color: #fff;\n  height: calc(100vh - 200px);\n}\n\n.search-mode-select {\n    padding-top: 20px;\n}\n\n.search-view-properties .search-mode-select {\n    padding-right: 0.5%;\n}\n\n.search-view-map .search-mode-select {\n     padding-right: 2.8%; \n}\n\n.search-mode-select select {\n    width: 150px;\n    font-size: 17px;\n    font-weight: bold;\n    height: 40px;\n    background-color: #f5f5f5 !important;\n    border-color: #bbb;\n    color: #616161;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 544 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//Get react.
 	var React = __webpack_require__(1);
 
 	//Get main apartment style
-	var ApartmentStyle = __webpack_require__(545);
+	var ApartmentStyle = __webpack_require__(539);
 
 	//Get Galery
-	var GalleryStyle = __webpack_require__(547);
-	var GalleryView = __webpack_require__(549);
+	var GalleryStyle = __webpack_require__(541);
+	var GalleryView = __webpack_require__(543);
 
 	//Get apartment headline
-	var ApartmentHeadline = __webpack_require__(600);
+	var ApartmentHeadline = __webpack_require__(594);
 
 	//Get Sidebar
-	var SidebarStyle = __webpack_require__(601);
-	var Sidebar = __webpack_require__(603);
+	var SidebarStyle = __webpack_require__(595);
+	var Sidebar = __webpack_require__(597);
 
 	//Get inner views
-	var Views = __webpack_require__(610);
+	var Views = __webpack_require__(604);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(628);
+	var ApartmentData = __webpack_require__(623);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -50467,13 +50070,13 @@
 	module.exports = ApartmentLayout;
 
 /***/ },
-/* 545 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(546);
+	var content = __webpack_require__(540);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -50493,7 +50096,7 @@
 	}
 
 /***/ },
-/* 546 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -50507,13 +50110,13 @@
 
 
 /***/ },
-/* 547 */
+/* 541 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(548);
+	var content = __webpack_require__(542);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -50533,7 +50136,7 @@
 	}
 
 /***/ },
-/* 548 */
+/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -50547,12 +50150,12 @@
 
 
 /***/ },
-/* 549 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactBootstrap = __webpack_require__(241);
-	var LightBox = __webpack_require__(550);
+	var LightBox = __webpack_require__(544);
 	var BSImage = ReactBootstrap.Image;
 
 	var GalleryView = React.createClass({
@@ -50653,7 +50256,7 @@
 	module.exports = GalleryView;
 
 /***/ },
-/* 550 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50676,39 +50279,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
 	// import Swipeable from 'react-swipeable';
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _componentsArrow = __webpack_require__(575);
+	var _componentsArrow = __webpack_require__(569);
 
 	var _componentsArrow2 = _interopRequireDefault(_componentsArrow);
 
-	var _componentsContainer = __webpack_require__(586);
+	var _componentsContainer = __webpack_require__(580);
 
 	var _componentsContainer2 = _interopRequireDefault(_componentsContainer);
 
-	var _componentsFooter = __webpack_require__(587);
+	var _componentsFooter = __webpack_require__(581);
 
 	var _componentsFooter2 = _interopRequireDefault(_componentsFooter);
 
-	var _componentsHeader = __webpack_require__(588);
+	var _componentsHeader = __webpack_require__(582);
 
 	var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
 
-	var _componentsPaginatedThumbnails = __webpack_require__(589);
+	var _componentsPaginatedThumbnails = __webpack_require__(583);
 
 	var _componentsPaginatedThumbnails2 = _interopRequireDefault(_componentsPaginatedThumbnails);
 
-	var _componentsPortal = __webpack_require__(591);
+	var _componentsPortal = __webpack_require__(585);
 
 	var _componentsPortal2 = _interopRequireDefault(_componentsPortal);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
 	var Lightbox = (function (_Component) {
 		_inherits(Lightbox, _Component);
@@ -51050,14 +50653,14 @@
 	*/
 
 /***/ },
-/* 551 */
+/* 545 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(552);
+	module.exports = __webpack_require__(546);
 
 
 /***/ },
-/* 552 */
+/* 546 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Module with the same interface as the core aphrodite module,
@@ -51070,9 +50673,9 @@
 	    value: true
 	});
 
-	var _inject = __webpack_require__(553);
+	var _inject = __webpack_require__(547);
 
-	var _indexJs = __webpack_require__(573);
+	var _indexJs = __webpack_require__(567);
 
 	var css = function css() {
 	    for (var _len = arguments.length, styleDefinitions = Array(_len), _key = 0; _key < _len; _key++) {
@@ -51089,7 +50692,7 @@
 	exports.css = css;
 
 /***/ },
-/* 553 */
+/* 547 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51100,13 +50703,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _asap = __webpack_require__(554);
+	var _asap = __webpack_require__(548);
 
 	var _asap2 = _interopRequireDefault(_asap);
 
-	var _generate = __webpack_require__(556);
+	var _generate = __webpack_require__(550);
 
-	var _util = __webpack_require__(572);
+	var _util = __webpack_require__(566);
 
 	// The current <style> tag we are inserting into, or null if we haven't
 	// inserted anything yet. We could find this each time using
@@ -51325,13 +50928,13 @@
 	exports.injectAndGetClassName = injectAndGetClassName;
 
 /***/ },
-/* 554 */
+/* 548 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// rawAsap provides everything we need except exception management.
-	var rawAsap = __webpack_require__(555);
+	var rawAsap = __webpack_require__(549);
 	// RawTasks are recycled to reduce GC churn.
 	var freeTasks = [];
 	// We queue errors to ensure they are thrown in right order (FIFO).
@@ -51397,7 +51000,7 @@
 
 
 /***/ },
-/* 555 */
+/* 549 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -51624,7 +51227,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 556 */
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51637,11 +51240,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _inlineStylePrefixerStatic = __webpack_require__(557);
+	var _inlineStylePrefixerStatic = __webpack_require__(551);
 
 	var _inlineStylePrefixerStatic2 = _interopRequireDefault(_inlineStylePrefixerStatic);
 
-	var _util = __webpack_require__(572);
+	var _util = __webpack_require__(566);
 
 	/**
 	 * Generate CSS for a selector and some styles.
@@ -51828,14 +51431,14 @@
 	exports.generateCSSRuleset = generateCSSRuleset;
 
 /***/ },
-/* 557 */
+/* 551 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(558)
+	module.exports = __webpack_require__(552)
 
 
 /***/ },
-/* 558 */
+/* 552 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51845,43 +51448,43 @@
 	});
 	exports.default = prefixAll;
 
-	var _prefixProps = __webpack_require__(559);
+	var _prefixProps = __webpack_require__(553);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _capitalizeString = __webpack_require__(560);
+	var _capitalizeString = __webpack_require__(554);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _calc = __webpack_require__(561);
+	var _calc = __webpack_require__(555);
 
 	var _calc2 = _interopRequireDefault(_calc);
 
-	var _cursor = __webpack_require__(564);
+	var _cursor = __webpack_require__(558);
 
 	var _cursor2 = _interopRequireDefault(_cursor);
 
-	var _flex = __webpack_require__(565);
+	var _flex = __webpack_require__(559);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
-	var _sizing = __webpack_require__(566);
+	var _sizing = __webpack_require__(560);
 
 	var _sizing2 = _interopRequireDefault(_sizing);
 
-	var _gradient = __webpack_require__(567);
+	var _gradient = __webpack_require__(561);
 
 	var _gradient2 = _interopRequireDefault(_gradient);
 
-	var _transition = __webpack_require__(568);
+	var _transition = __webpack_require__(562);
 
 	var _transition2 = _interopRequireDefault(_transition);
 
-	var _flexboxIE = __webpack_require__(570);
+	var _flexboxIE = __webpack_require__(564);
 
 	var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
 
-	var _flexboxOld = __webpack_require__(571);
+	var _flexboxOld = __webpack_require__(565);
 
 	var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
 
@@ -51947,7 +51550,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 559 */
+/* 553 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -51959,7 +51562,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 560 */
+/* 554 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -51976,7 +51579,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 561 */
+/* 555 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51986,11 +51589,11 @@
 	});
 	exports.default = calc;
 
-	var _joinPrefixedValue = __webpack_require__(562);
+	var _joinPrefixedValue = __webpack_require__(556);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(563);
+	var _isPrefixedValue = __webpack_require__(557);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -52006,7 +51609,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 562 */
+/* 556 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52031,7 +51634,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 563 */
+/* 557 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52049,7 +51652,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 564 */
+/* 558 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52059,7 +51662,7 @@
 	});
 	exports.default = cursor;
 
-	var _joinPrefixedValue = __webpack_require__(562);
+	var _joinPrefixedValue = __webpack_require__(556);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -52080,7 +51683,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 565 */
+/* 559 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52101,7 +51704,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 566 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52111,7 +51714,7 @@
 	});
 	exports.default = sizing;
 
-	var _joinPrefixedValue = __webpack_require__(562);
+	var _joinPrefixedValue = __webpack_require__(556);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
@@ -52142,7 +51745,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 567 */
+/* 561 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52152,11 +51755,11 @@
 	});
 	exports.default = gradient;
 
-	var _joinPrefixedValue = __webpack_require__(562);
+	var _joinPrefixedValue = __webpack_require__(556);
 
 	var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-	var _isPrefixedValue = __webpack_require__(563);
+	var _isPrefixedValue = __webpack_require__(557);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -52172,7 +51775,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 568 */
+/* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52182,19 +51785,19 @@
 	});
 	exports.default = transition;
 
-	var _hyphenateStyleName = __webpack_require__(569);
+	var _hyphenateStyleName = __webpack_require__(563);
 
 	var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
 
-	var _capitalizeString = __webpack_require__(560);
+	var _capitalizeString = __webpack_require__(554);
 
 	var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-	var _isPrefixedValue = __webpack_require__(563);
+	var _isPrefixedValue = __webpack_require__(557);
 
 	var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-	var _prefixProps = __webpack_require__(559);
+	var _prefixProps = __webpack_require__(553);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -52259,7 +51862,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 569 */
+/* 563 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52278,7 +51881,7 @@
 
 
 /***/ },
-/* 570 */
+/* 564 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52315,7 +51918,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 571 */
+/* 565 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52356,7 +51959,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 572 */
+/* 566 */
 /***/ function(module, exports) {
 
 	// {K1: V1, K2: V2, ...} -> [[K1, V1], [K2, V2]]
@@ -52594,7 +52197,7 @@
 	exports.importantify = importantify;
 
 /***/ },
-/* 573 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52605,9 +52208,9 @@
 
 	var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
-	var _util = __webpack_require__(572);
+	var _util = __webpack_require__(566);
 
-	var _inject = __webpack_require__(553);
+	var _inject = __webpack_require__(547);
 
 	var StyleSheet = {
 	    create: function create(sheetDefinition) {
@@ -52701,7 +52304,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 574 */
+/* 568 */
 /***/ function(module, exports) {
 
 	// ==============================
@@ -52763,7 +52366,7 @@
 	module.exports = theme;
 
 /***/ },
-/* 575 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52778,15 +52381,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
-	var _Icon = __webpack_require__(581);
+	var _Icon = __webpack_require__(575);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -52875,26 +52478,26 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 576 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _bindFunctions = __webpack_require__(577);
+	var _bindFunctions = __webpack_require__(571);
 
 	var _bindFunctions2 = _interopRequireDefault(_bindFunctions);
 
-	var _bodyScroll = __webpack_require__(578);
+	var _bodyScroll = __webpack_require__(572);
 
 	var _bodyScroll2 = _interopRequireDefault(_bodyScroll);
 
-	var _canUseDom = __webpack_require__(579);
+	var _canUseDom = __webpack_require__(573);
 
 	var _canUseDom2 = _interopRequireDefault(_canUseDom);
 
-	var _deepMerge = __webpack_require__(580);
+	var _deepMerge = __webpack_require__(574);
 
 	var _deepMerge2 = _interopRequireDefault(_deepMerge);
 
@@ -52906,7 +52509,7 @@
 	};
 
 /***/ },
-/* 577 */
+/* 571 */
 /***/ function(module, exports) {
 
 	/**
@@ -52932,7 +52535,7 @@
 	};
 
 /***/ },
-/* 578 */
+/* 572 */
 /***/ function(module, exports) {
 
 	// Don't try and apply overflow/padding if the scroll is already blocked
@@ -52982,7 +52585,7 @@
 	};
 
 /***/ },
-/* 579 */
+/* 573 */
 /***/ function(module, exports) {
 
 	// Return true if window + document
@@ -52992,7 +52595,7 @@
 	module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 /***/ },
-/* 580 */
+/* 574 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53022,7 +52625,7 @@
 	module.exports = deepMerge;
 
 /***/ },
-/* 581 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53041,7 +52644,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _icons = __webpack_require__(582);
+	var _icons = __webpack_require__(576);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -53070,19 +52673,19 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 582 */
+/* 576 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = {
-		arrowLeft: __webpack_require__(583),
-		arrowRight: __webpack_require__(584),
-		close: __webpack_require__(585)
+		arrowLeft: __webpack_require__(577),
+		arrowRight: __webpack_require__(578),
+		close: __webpack_require__(579)
 	};
 
 /***/ },
-/* 583 */
+/* 577 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53098,7 +52701,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 584 */
+/* 578 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53114,7 +52717,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 585 */
+/* 579 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53130,7 +52733,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 586 */
+/* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53145,13 +52748,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
 	function Container(_ref, _ref2) {
 		var props = _objectWithoutProperties(_ref, []);
@@ -53192,7 +52795,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 587 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53207,13 +52810,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
 	function Footer(_ref, _ref2) {
 		var caption = _ref.caption;
@@ -53288,7 +52891,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 588 */
+/* 582 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53303,15 +52906,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
-	var _Icon = __webpack_require__(581);
+	var _Icon = __webpack_require__(575);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -53377,7 +52980,7 @@
 	module.exports = Header;
 
 /***/ },
-/* 589 */
+/* 583 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53402,17 +53005,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _Thumbnail = __webpack_require__(590);
+	var _Thumbnail = __webpack_require__(584);
 
 	var _Thumbnail2 = _interopRequireDefault(_Thumbnail);
 
-	var _Arrow = __webpack_require__(575);
+	var _Arrow = __webpack_require__(569);
 
 	var _Arrow2 = _interopRequireDefault(_Arrow);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
@@ -53610,7 +53213,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 590 */
+/* 584 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53625,13 +53228,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aphroditeNoImportant = __webpack_require__(551);
+	var _aphroditeNoImportant = __webpack_require__(545);
 
-	var _theme = __webpack_require__(574);
+	var _theme = __webpack_require__(568);
 
 	var _theme2 = _interopRequireDefault(_theme);
 
-	var _utils = __webpack_require__(576);
+	var _utils = __webpack_require__(570);
 
 	function Thumbnail(_ref, _ref2) {
 		var index = _ref.index;
@@ -53687,7 +53290,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 591 */
+/* 585 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53712,13 +53315,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(592);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(586);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	var _reactDom = __webpack_require__(34);
 
-	var _PassContext = __webpack_require__(599);
+	var _PassContext = __webpack_require__(593);
 
 	var _PassContext2 = _interopRequireDefault(_PassContext);
 
@@ -53790,13 +53393,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 592 */
+/* 586 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(593);
+	module.exports = __webpack_require__(587);
 
 /***/ },
-/* 593 */
+/* 587 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -53816,8 +53419,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(594);
-	var ReactCSSTransitionGroupChild = __webpack_require__(596);
+	var ReactTransitionGroup = __webpack_require__(588);
+	var ReactCSSTransitionGroupChild = __webpack_require__(590);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -53888,7 +53491,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 594 */
+/* 588 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -53908,7 +53511,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(595);
+	var ReactTransitionChildMapping = __webpack_require__(589);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -54140,7 +53743,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 595 */
+/* 589 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -54249,7 +53852,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 596 */
+/* 590 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -54268,8 +53871,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(597);
-	var ReactTransitionEvents = __webpack_require__(598);
+	var CSSCore = __webpack_require__(591);
+	var ReactTransitionEvents = __webpack_require__(592);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -54421,7 +54024,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 597 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -54548,7 +54151,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 598 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -54626,7 +54229,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 599 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54685,7 +54288,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 600 */
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -54744,13 +54347,13 @@
 	module.exports = ApartmentHeadline;
 
 /***/ },
-/* 601 */
+/* 595 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(602);
+	var content = __webpack_require__(596);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -54770,7 +54373,7 @@
 	}
 
 /***/ },
-/* 602 */
+/* 596 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -54784,12 +54387,12 @@
 
 
 /***/ },
-/* 603 */
+/* 597 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//React requirements
 	var React = __webpack_require__(1);
-	var HashLink = __webpack_require__(604).HashLink;
+	var HashLink = __webpack_require__(598).HashLink;
 
 	//Bootstrap requirements
 	var ReactBootstrap = __webpack_require__(241);
@@ -54863,7 +54466,7 @@
 	module.exports = Sidebar;
 
 /***/ },
-/* 604 */
+/* 598 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54873,11 +54476,11 @@
 	});
 	exports.HashLinkHistory = exports.HashLink = undefined;
 
-	var _HashLink2 = __webpack_require__(605);
+	var _HashLink2 = __webpack_require__(599);
 
 	var _HashLink3 = _interopRequireDefault(_HashLink2);
 
-	var _HashLinkHistory2 = __webpack_require__(609);
+	var _HashLinkHistory2 = __webpack_require__(603);
 
 	var _HashLinkHistory3 = _interopRequireDefault(_HashLinkHistory2);
 
@@ -54887,7 +54490,7 @@
 	exports.HashLinkHistory = _HashLinkHistory3.default;
 
 /***/ },
-/* 605 */
+/* 599 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54900,11 +54503,11 @@
 
 	exports.default = HashLink;
 
-	var _hashLink2 = __webpack_require__(606);
+	var _hashLink2 = __webpack_require__(600);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(607);
+	var _scroll = __webpack_require__(601);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -54925,7 +54528,7 @@
 	}
 
 /***/ },
-/* 606 */
+/* 600 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55020,7 +54623,7 @@
 	exports.default = _hashLink;
 
 /***/ },
-/* 607 */
+/* 601 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55030,7 +54633,7 @@
 	});
 	exports.default = animateScroll;
 
-	var _utils = __webpack_require__(608);
+	var _utils = __webpack_require__(602);
 
 	function animateScroll(hash, animate) {
 	  var element = document.querySelector(hash);
@@ -55075,7 +54678,7 @@
 	}
 
 /***/ },
-/* 608 */
+/* 602 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -55101,7 +54704,7 @@
 	}
 
 /***/ },
-/* 609 */
+/* 603 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55114,11 +54717,11 @@
 
 	exports.default = HashLinkHistory;
 
-	var _hashLink2 = __webpack_require__(606);
+	var _hashLink2 = __webpack_require__(600);
 
 	var _hashLink3 = _interopRequireDefault(_hashLink2);
 
-	var _scroll = __webpack_require__(607);
+	var _scroll = __webpack_require__(601);
 
 	var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -55140,27 +54743,27 @@
 	}
 
 /***/ },
-/* 610 */
+/* 604 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Get apartment views
-	var DocumentStyle = __webpack_require__(611);
-	var DocumentView = __webpack_require__(613);
+	var DocumentStyle = __webpack_require__(605);
+	var DocumentView = __webpack_require__(607);
 
-	var ReviewsStyle = __webpack_require__(615);
-	var ReviewsView = __webpack_require__(617);
+	var ReviewsStyle = __webpack_require__(609);
+	var ReviewsView = __webpack_require__(611);
 
-	var OwnerNotesStyle = __webpack_require__(618);
-	var OwnerNotesView = __webpack_require__(620);
+	var OwnerNotesStyle = __webpack_require__(612);
+	var OwnerNotesView = __webpack_require__(614);
 
-	var MapView = __webpack_require__(621);
+	var MapView = __webpack_require__(615);
 
-	var ToursStyle = __webpack_require__(624);
-	var ToursView = __webpack_require__(626);
+	var ToursStyle = __webpack_require__(619);
+	var ToursView = __webpack_require__(621);
 
-	var VirtualizationView = __webpack_require__(627);
+	var VirtualizationView = __webpack_require__(622);
 
 	var ApartmentViews = [{
 	    section: "מידע ויזואלי",
@@ -55221,13 +54824,13 @@
 	module.exports = ApartmentViews;
 
 /***/ },
-/* 611 */
+/* 605 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(612);
+	var content = __webpack_require__(606);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55247,7 +54850,7 @@
 	}
 
 /***/ },
-/* 612 */
+/* 606 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55261,7 +54864,7 @@
 
 
 /***/ },
-/* 613 */
+/* 607 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -55270,7 +54873,7 @@
 	var BSButton = ReactBootstrap.Button;
 	var BSImage = ReactBootstrap.Image;
 
-	var DeltaModal = __webpack_require__(614);
+	var DeltaModal = __webpack_require__(608);
 	var NotImplementedModal = __webpack_require__(495);
 
 	var DocumentView = React.createClass({
@@ -55386,7 +54989,7 @@
 	module.exports = DocumentView;
 
 /***/ },
-/* 614 */
+/* 608 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -55437,13 +55040,13 @@
 	module.exports = DeltaModal;
 
 /***/ },
-/* 615 */
+/* 609 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(616);
+	var content = __webpack_require__(610);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55463,7 +55066,7 @@
 	}
 
 /***/ },
-/* 616 */
+/* 610 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55477,7 +55080,7 @@
 
 
 /***/ },
-/* 617 */
+/* 611 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -55485,7 +55088,7 @@
 	var BSImage = ReactBootstrap.Image;
 
 	//Get style
-	var ReviewStyle = __webpack_require__(615);
+	var ReviewStyle = __webpack_require__(609);
 
 	var ReviewUserContainer = React.createClass({
 	    displayName: 'ReviewUserContainer',
@@ -55592,13 +55195,13 @@
 	module.exports = ReviewsView;
 
 /***/ },
-/* 618 */
+/* 612 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(619);
+	var content = __webpack_require__(613);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55618,7 +55221,7 @@
 	}
 
 /***/ },
-/* 619 */
+/* 613 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55632,13 +55235,13 @@
 
 
 /***/ },
-/* 620 */
+/* 614 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	//Add style
-	var ReviewStyle = __webpack_require__(618);
+	var ReviewStyle = __webpack_require__(612);
 
 	var FeaturesView = React.createClass({
 	    displayName: "FeaturesView",
@@ -55742,13 +55345,13 @@
 	module.exports = OwnerNotesView;
 
 /***/ },
-/* 621 */
+/* 615 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(622);
-	var DeltaNav = __webpack_require__(541);
+	var NavStyle = __webpack_require__(616);
+	var DeltaNav = __webpack_require__(618);
 
 	var Maps = [{
 	  title: "Google Maps"
@@ -55796,13 +55399,13 @@
 	module.exports = MapView;
 
 /***/ },
-/* 622 */
+/* 616 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(623);
+	var content = __webpack_require__(617);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55822,7 +55425,7 @@
 	}
 
 /***/ },
-/* 623 */
+/* 617 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55836,13 +55439,67 @@
 
 
 /***/ },
-/* 624 */
+/* 618 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSNav = ReactBootstrap.Nav;
+	var BSNavItem = ReactBootstrap.NavItem;
+
+	var Nav = React.createClass({
+	    displayName: 'Nav',
+
+
+	    getInitialState: function () {
+	        return {
+	            activeKey: (this.props.items.length - 1).toString()
+	        };
+	    },
+
+	    onSelect: function (key) {
+	        this.setState({
+	            activeKey: key
+	        });
+
+	        this.props.onSelect(key);
+	    },
+
+	    renderNavigationItem: function (key) {
+	        return React.createElement(
+	            BSNavItem,
+	            { eventKey: key, key: key },
+	            React.createElement(
+	                'span',
+	                { className: 'delta-nav-item' },
+	                this.props.items[key].title
+	            )
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row delta-nav' },
+	            React.createElement(
+	                BSNav,
+	                { navbar: true, pullRight: true, activeKey: this.state.activeKey, onSelect: this.onSelect },
+	                Object.keys(this.props.items).map(this.renderNavigationItem)
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Nav;
+
+/***/ },
+/* 619 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(625);
+	var content = __webpack_require__(620);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55862,7 +55519,7 @@
 	}
 
 /***/ },
-/* 625 */
+/* 620 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55876,13 +55533,13 @@
 
 
 /***/ },
-/* 626 */
+/* 621 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NavStyle = __webpack_require__(622);
-	var DeltaNav = __webpack_require__(541);
+	var NavStyle = __webpack_require__(616);
+	var DeltaNav = __webpack_require__(618);
 
 	var TourFrame = React.createClass({
 	    displayName: 'TourFrame',
@@ -55930,7 +55587,7 @@
 	module.exports = ToursView;
 
 /***/ },
-/* 627 */
+/* 622 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -55946,7 +55603,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 628 */
+/* 623 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -56140,6 +55797,541 @@
 	};
 
 	module.exports = ApartmentData;
+
+/***/ },
+/* 624 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchModeSelect = __webpack_require__(625);
+	var SearchMap = __webpack_require__(626);
+	var SearchProperties = __webpack_require__(629);
+
+	var SearchCombinedView = React.createClass({
+	    displayName: 'SearchCombinedView',
+
+
+	    getInitialState: function () {
+	        return {
+	            modes: this.props.modes,
+	            activeModeKey: this.props.modes.length - 1,
+	            modeTitle: "חלון משולב"
+	        };
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-view-combined' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-5 search-properties-container' },
+	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
+	                    modes: this.state.modes,
+	                    value: this.state.modeTitle,
+	                    selectSize: 3 }),
+	                React.createElement(SearchProperties, { properties: this.props.properties, propertySize: 6 })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-7 search-map-container' },
+	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchCombinedView;
+
+/***/ },
+/* 625 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(241);
+	var BSFormGroup = ReactBootstrap.FormGroup;
+	var BSFormControl = ReactBootstrap.FormControl;
+
+	var SearchModeSelect = React.createClass({
+	    displayName: 'SearchModeSelect',
+
+
+	    onChange: function (e) {
+	        this.props.onSelectSearchMode(e.target.value);
+	    },
+
+	    renderOption: function (mode) {
+	        return React.createElement(
+	            'option',
+	            { value: mode.title, key: mode.title },
+	            mode.title
+	        );
+	    },
+
+	    getSelectSize: function () {
+	        return "col-xs-" + this.props.selectSize + " pull-right";
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-mode-select' },
+	            React.createElement(
+	                'div',
+	                { className: this.getSelectSize() },
+	                React.createElement(
+	                    BSFormGroup,
+	                    { controlId: 'formControlsSelect' },
+	                    React.createElement(
+	                        BSFormControl,
+	                        { componentClass: 'select',
+	                            bsClass: 'form-control',
+	                            value: this.props.value,
+	                            onChange: this.onChange
+	                        },
+	                        this.props.modes.map(this.renderOption)
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchModeSelect;
+
+/***/ },
+/* 626 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(34);
+	var SearchPropertyInfoWindow = __webpack_require__(627);
+
+	MapClustersIconsStyles = {
+
+	  gridSize: 40,
+
+	  maxZoom: 15,
+
+	  styles: [{
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-40.png",
+	    height: 40,
+	    width: 40
+	  }, {
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-44.png",
+	    height: 44,
+	    width: 44
+	  }, {
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-48.png",
+	    height: 48,
+	    width: 48
+	  }, {
+	    textColor: '#eee',
+	    textSize: 18,
+	    url: "/images/icons/map-cluster-56.png",
+	    height: 56,
+	    width: 56
+	  }, {
+	    textColor: '#eee',
+	    textSize: 18,
+	    url: "/images/icons/map-cluster-64.png",
+	    height: 64,
+	    width: 64
+	  }]
+	};
+
+	//Required for using react component in google map info window.
+	var createInfoWindow = function (property) {
+
+	  var infoWindowContainer = document.createElement('div');
+	  ReactDOM.render(React.createElement(SearchPropertyInfoWindow, { property: property }), infoWindowContainer);
+	  return infoWindowContainer;
+	};
+
+	var SearchMap = React.createClass({
+	  displayName: 'SearchMap',
+
+
+	  createMap: function () {
+
+	    //Create map
+	    this.map = new google.maps.Map(this.refs.map, {
+	      center: this.props.location,
+	      scrollwheel: false,
+	      mapTypeControl: false,
+	      zoom: 13,
+	      minZoom: 12
+	    });
+
+	    //Add zoom listener
+	    this.map.addListener('zoom_changed', this.onZoom);
+	  },
+
+	  createMarkers: function () {
+
+	    this.markers = this.props.properties.map(function (property) {
+
+	      var marker = new google.maps.Marker({
+	        position: property.location,
+	        label: property.label,
+	        icon: "/images/icons/map-marker.png"
+	      });
+
+	      var infowindow = new google.maps.InfoWindow({
+	        content: createInfoWindow(property)
+	      });
+
+	      marker.addListener('click', function () {
+	        infowindow.open(this.map, marker);
+	      });
+
+	      return marker;
+	    });
+	  },
+
+	  componentDidMount: function () {
+
+	    //Create map
+	    this.createMap();
+
+	    //Create Markers
+	    this.createMarkers();
+
+	    //Create clusters
+	    this.markerCluster = new MarkerClusterer(this.map, this.markers, MapClustersIconsStyles);
+	  },
+
+	  onZoom: function () {
+
+	    //Get value of zoom
+	    var zoom = this.map.getZoom();
+
+	    //Change grid size based on zoom
+	    if (zoom <= 13) {
+	      this.markerCluster.setGridSize(50);
+	      return;
+	    }
+
+	    if (zoom == 14) {
+	      this.markerCluster.setGridSize(70);
+	      return;
+	    }
+
+	    //In case 15
+	    this.markerCluster.setGridSize(120);
+	    return;
+	  },
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'row search-map' },
+	      React.createElement(
+	        'div',
+	        { className: 'col-xs-12 search-map' },
+	        React.createElement('div', { ref: 'map', className: 'search-map' })
+	      )
+	    );
+	  }
+	});
+
+	module.exports = SearchMap;
+
+/***/ },
+/* 627 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(172);
+	var browserHistory = ReactRouter.browserHistory;
+	var ReactBootstrap = __webpack_require__(241);
+	var BSImage = ReactBootstrap.Image;
+	var BSButton = ReactBootstrap.Button;
+
+	var SearchPropertyExtraInfo = __webpack_require__(628);
+
+	var SearchPropertyInfoWindow = React.createClass({
+	    displayName: 'SearchPropertyInfoWindow',
+
+
+	    onClick: function () {
+	        var actionPath = "/" + this.props.property.type + "/" + this.props.property.id;
+	        browserHistory.push(actionPath);
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-property-info-window container-rtl' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-7 image-container' },
+	                React.createElement(BSImage, { src: this.props.property.image, onClick: this.onClick })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-5 details-container' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row address-container' },
+	                    this.props.property.location.address
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row price-container' },
+	                    this.props.property.price
+	                ),
+	                React.createElement(SearchPropertyExtraInfo, { size: this.props.property.size,
+	                    rooms: this.props.property.rooms }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row action-container' },
+	                    React.createElement(
+	                        BSButton,
+	                        { className: 'action-btn', onClick: this.onClick },
+	                        'הצג'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchPropertyInfoWindow;
+
+/***/ },
+/* 628 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchPropertyExtraInfo = React.createClass({
+	    displayName: "SearchPropertyExtraInfo",
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row extra-info" },
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-6 size-info" },
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    this.props.size + " " + "מ״ר"
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-6 rooms-info" },
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    this.props.rooms + " " + "חדרים"
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchPropertyExtraInfo;
+
+/***/ },
+/* 629 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(172);
+	var browserHistory = ReactRouter.browserHistory;
+	var ReactBootstrap = __webpack_require__(241);
+	var BSThumbnail = ReactBootstrap.Thumbnail;
+	var BSButton = ReactBootstrap.Button;
+
+	var SearchProperty = React.createClass({
+	    displayName: 'SearchProperty',
+
+
+	    onClick: function () {
+	        browserHistory.push(this.props.action);
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-property' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-10 col-xs-offset-1' },
+	                React.createElement(
+	                    BSThumbnail,
+	                    { src: this.props.image },
+	                    React.createElement(
+	                        'h4',
+	                        null,
+	                        this.props.address
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        { className: 'property-price' },
+	                        this.props.price
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row extra-info' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-4 col-xs-offset-5' },
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                this.props.rooms + " " + "חדרים"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-3' },
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                this.props.size + " " + "מ״ר"
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        React.createElement(
+	                            BSButton,
+	                            { className: 'search-proprty-btn', onClick: this.onClick },
+	                            'הצג'
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	var SearchProperties = React.createClass({
+	    displayName: 'SearchProperties',
+
+
+	    constructClickAction: function (type, id) {
+	        return "/" + type + "/" + id;
+	    },
+
+	    getPropertyContainerSize: function () {
+	        return "col-xs-" + this.props.propertySize + " search-property-container pull-right";
+	    },
+
+	    renderProperty: function (property) {
+	        var action = this.constructClickAction(property.type, property.id);
+	        return React.createElement(
+	            'div',
+	            { className: this.getPropertyContainerSize(), key: property.id },
+	            React.createElement(SearchProperty, { action: action, address: property.location.address,
+	                image: property.image, price: property.price, rooms: property.rooms,
+	                size: property.size })
+	        );
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-properties' },
+	            this.props.properties.map(this.renderProperty)
+	        );
+	    }
+	});
+
+	module.exports = SearchProperties;
+
+/***/ },
+/* 630 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchProperties = __webpack_require__(629);
+	var SearchModeSelect = __webpack_require__(625);
+
+	var SearchPropertiesView = React.createClass({
+	    displayName: 'SearchPropertiesView',
+
+
+	    getInitialState: function () {
+	        return {
+	            modes: this.props.modes,
+	            activeModeKey: this.props.modes.length - 1,
+	            modeTitle: "נכסים בלבד"
+	        };
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-view-properties' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12 search-properties-container' },
+	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
+	                    modes: this.state.modes,
+	                    value: this.state.modeTitle,
+	                    selectSize: 2 }),
+	                React.createElement(SearchProperties, { properties: this.props.properties, propertySize: 3 })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchPropertiesView;
+
+/***/ },
+/* 631 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchMap = __webpack_require__(626);
+	var SearchModeSelect = __webpack_require__(625);
+
+	var SearchMapView = React.createClass({
+	    displayName: 'SearchMapView',
+
+
+	    getInitialState: function () {
+	        return {
+	            modes: this.props.modes,
+	            activeModeKey: this.props.modes.length - 1,
+	            modeTitle: "מפה בלבד"
+	        };
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-view-map' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12 search-map-container' },
+	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
+	                    modes: this.state.modes,
+	                    value: this.state.modeTitle,
+	                    selectSize: 2 }),
+	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchMapView;
 
 /***/ }
 /******/ ]);
