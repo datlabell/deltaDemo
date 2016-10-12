@@ -1,17 +1,35 @@
 var React = require('react');
 
+var NotImplementedFrame = require('../frames/notImplementedFrame');
+
 var NavStyle = require('../../css/nav.css');
 var DeltaNav = require('../navigation/nav');
 
 
 var TourFrame = React.createClass( {
+  
+  renderNotImplementedFrame: function() {
+      return (
+          <div className="row tours-frame">
+                <NotImplementedFrame />
+          </div>
+      )
+  },
+
+  renderFrame: function() {
+      return (
+        <div className="row tours-frame">
+          <iframe src={this.props.src}  allowFullScreen />
+        </div>
+      )
+  },
+  
   render: function() {
     return (
-      <div className="row tours-frame">
-          <iframe src={this.props.src}  allowFullScreen />
-      </div>
+      this.props.src === undefined ? this.renderNotImplementedFrame() : this.renderFrame()
     )
   }
+
 });
 
 

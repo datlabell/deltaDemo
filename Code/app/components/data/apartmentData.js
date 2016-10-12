@@ -217,8 +217,7 @@ var ApartmentData = {
   "tours": {
     sources: [
       {
-        title: "הדמיית תלת מימד",
-        src: ""
+        title: "הדמיית תלת מימד"
       },
       {
         title: "וידאו",

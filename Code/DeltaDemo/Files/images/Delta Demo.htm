@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<!-- saved from url=(0153)http://ec2-54-159-45-22.compute-1.amazonaws.com/search/%D7%94%D7%9E%D7%A8%D7%9B%D7%96/%D7%A8%D7%90%D7%A9%D7%95%D7%9F%20%D7%9C%D7%A6%D7%99%D7%95%D7%9F/map -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}</style><link type="text/css" rel="stylesheet" href="./Delta Demo_files/css"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="./Delta Demo_files/delta-ico.png">
+  <title>Delta Demo</title>
+  <link rel="stylesheet" type="text/css" href="./Delta Demo_files/bootstrap.min.css">
+  <script src="./Delta Demo_files/jquery-3.1.1.min.js"></script>
+  <script src="./Delta Demo_files/bootstrap.min.js"></script>
+  <script src="./Delta Demo_files/js"></script>
+  <script src="./Delta Demo_files/markerclusterer.js"></script>
+<style type="text/css">html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: delta;
+}
+
+.delta-navbar {
+    color: #424242;
+    height: 70px;
+    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+    margin-bottom: 0;
+    background-color: #f5f5f5 !important;
+    border-bottom: 1px solid #555;
+}
+
+.delta-navbar-static {
+    position: absolute;
+}
+
+.navbar-brand, .delta-navbar-nav {
+    margin-top: 5px;
+    font-size: 22px;
+}
+
+
+.main-content {
+    color: #424242;
+    margin-top: 70px;
+}
+
+.delta-navbar-nav > li > a > span {
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 34px;
+}
+
+
+#delta-brand {
+    line-height: 30px;
+    font-family: deltaBrand;
+    font-size: 26px;
+}
+
+#delta-brand  > span {
+    display: inline;
+    margin-right: 8px;
+}
+
+#delta-brand-text {
+    vertical-align: bottom;
+}
+
+.container-rtl {
+    direction: rtl;
+}
+
+.delta-footer-container { 
+    padding-right: 15%;
+    padding-left: 15%;
+    padding-bottom: 40px;
+    padding-top: 90px;
+    background-color:  #424242;
+}
+
+.footer-copyright-container {
+    padding-top: 20px;
+    color: #eee;
+}
+
+.footer-regions-container {
+    border-bottom: 2px solid #eee;
+    color: #A5A5A5 !important;
+    padding-bottom: 20px;
+}
+
+.footer-regions-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-regions-list > li {
+    float: right;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: 1px solid #A5A5A5; 
+    cursor: pointer;
+}
+
+.footer-regions-list > li:first-child {
+    padding-right: 0;
+}
+
+.footer-regions-list > li:last-child {
+    border-left: 0;
+}
+
+
+/*Colors Helpers*/
+.title-primary {
+    color: #555;
+}
+
+
+/*Fonts*/
+@font-face {
+    font-family: delta;
+    src: url('/fonts/Assistant-Regular.ttf');
+}
+
+@font-face {
+    font-family: delta;
+    src: url('/fonts/Assistant-Bold.ttf');
+    font-weight: bold;
+}
+
+
+@font-face {
+    font-family: deltaBrand;
+    src: url('/fonts/Courgette-Regular.ttf');
+    font-weight: bold;
+}
+
+</style><style type="text/css">.not-implemented-modal-title > h3 {
+    font-weight: bold;
+}
+
+.not-implemented-modal-body {
+    font-size: 16px;
+}
+
+.not-implemented-modal-footer{
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+.not-implemented-modal-footer > div {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.not-implemented-modal-footer-text {
+    line-height: 45px;
+    font-weight: bold;
+}
+
+
+</style><style type="text/css">
+#homeImage {
+    height: 600px !important;
+    width: 100% !important;
+    -webkit-filter: brightness(80%);
+    filter: brightness(80%);
+}
+
+.home-headline {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.home-headline-header {
+    text-shadow: 2px 2px #424242;
+    margin-bottom: 100px;
+    font-size: 55px;
+    color: white;
+    opacity: 0.9;
+}
+
+.home-region-form {
+    height: 50px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.home-information-panel , .home-sales-panel {
+    padding-top: 45px;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-bottom: 30px;
+    min-height: 250px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5 !important;
+}
+
+.home-btn-sales {
+    margin-top: 20px;
+    color: #fff;
+    background-color: #424242;
+}
+
+.home-btn-sales:hover {
+    background-color: #424242;
+}
+
+.home-sales-panel h2 , .home-information-panel h2, .home-regions-panel h2 {
+    font-weight: bold !important;
+    margin-bottom: 15px;
+}
+
+.home-sales-panel p {
+    font-size: 18px;
+}
+
+.home-information-panel-sections {
+    padding-top: 30px;
+    font-size: 20px;
+}
+
+.panel-section-icon-container {
+    padding: 30px;
+}
+
+.home-btn-information {
+    background-color: #F44336;
+    border-color: #ccc;
+    margin: auto;
+    margin-top: 40px;
+    color: white;
+}
+
+.home-btn-information:hover {
+    color: #777;
+    border-color: #F44336;
+}
+
+.home-regions-panel {
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-bottom: 30px;
+    min-height: 250px;
+    border-bottom: 1px solid #ccc;
+}
+
+.home-regions-panel .thumbnail {
+    cursor: pointer;
+}
+
+.home-regions-panel > h2 {
+    margin-bottom: 35px;
+}
+
+.home-region-suggestion {
+    font-size: 18px;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    opacity: 0.9; 
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    direction: rtl;
+}
+
+.home-region-suggestion:hover {
+    background-color: #ccc;
+}
+</style><style type="text/css">.search-layout {
+    position: relative;
+}
+
+.search-filter {
+    height: 70px;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: #424242 !important;
+}
+
+
+.search-input-container {
+    background-color: #616161;
+    margin-top: 15px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.search-input > input {
+    width: 100%;
+    background-color: #616161;
+    border: 0;
+    height: 40px;
+    font-size: 16px;
+}
+
+.search-input > input:focus {
+     outline: none;
+}
+
+.search-input-icon {
+    padding-top: 8px;
+}
+
+.search-view-combined, .search-view-properties {
+    height: calc(100vh - 140px);
+    background-color: #fff;
+}
+
+.search-view-combined {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.search-view-properties {
+    padding-right: 50px;
+}
+
+.search-view-map {
+  background-color: #fff;
+  height: calc(100vh - 200px);
+}
+
+.search-mode-select {
+    padding-top: 20px;
+}
+
+.search-view-properties .search-mode-select {
+    padding-right: 0.5%;
+}
+
+.search-view-map .search-mode-select {
+     padding-right: 2.8%; 
+}
+
+.search-mode-select select {
+    width: 120px;
+    font-size: 17px;
+    height: 32px;
+    background-color: #F44336;
+    border-color: #bbb;
+    color: #fff;
+}
+ 
+.search-tab-filters {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.tab-filter  {
+    font-size: 16px;
+    color: #eee;
+    cursor: pointer;
+}
+
+.tab-filter:hover  {
+    color: #fff;
+    text-decoration: none;
+}
+
+.tab-filter   .caret {
+    margin-right: 8px;
+}
+
+.search-map-container {
+   height: 100%;
+   padding-left: 0;
+}
+
+.search-map {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*Filters views section*/
+.active-filter-container {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    left: 0;
+    margin-left: 0;
+}
+
+.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {
+    font-size: 16px;
+    background-color: #f5f5f5 !important;
+    color: #616161 !important;
+    border: 1px solid #E0E0E0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 5px 5px rgba(0,0,0,.2);
+}
+
+.proprty-type-filter {
+    padding-right: 15px;
+}
+
+.rooms-filter {
+    padding-right: 30px;
+}
+
+.rooms-filter input {
+    margin-right: 4px;
+}
+
+.search-filter-checkbox-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.advanced-filter  {
+    padding-right: 30px;
+    padding-bottom: 45px;
+}
+
+.price-filter-label, .floors-filter-label {
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.price-filter input {
+    width: 100%;
+}
+
+.floors-filter {
+    margin-left: 7%;
+}
+
+.advanced-filter-section {
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.advanced-filter-section:last-child {
+    border: 0;
+}
+
+.advanced-filter-section-title h3 {
+    font-weight: bold;
+}
+
+.advanced-filters-container > div {
+    padding-right: 0;
+    margin-top: 7px;
+}
+
+
+/*Search apartment container*/
+.search-properties-container {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 0;
+}
+
+.search-property-container, .search-property > div  {
+    padding-right: 2px;
+}
+
+.search-property-container .thumbnail {
+    background-color: #eee; 
+}
+
+.search-property-container .thumbnail img {
+    height: 160px;
+    width: 100%;
+}
+
+
+.search-proprty-btn {
+    color: #fff;
+    background-color: #424242;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {
+    background-color: #424242;
+    color: #fff;
+}
+
+.property-price { 
+   font-size: 16px;
+   color:  #616161;
+   font-weight: bold;
+}
+
+.search-property .extra-info {
+    font-weight: bold;
+    color: #757575;
+}
+
+.search-property .extra-info > div:last-child {
+    padding-left: 0;
+}
+
+.search-property .extra-info > div:first-child {
+    padding-right: 4%;
+}
+
+.search-property-info-window {
+    width: 320px;
+}
+
+.search-property-info-window > .image-container  img {
+    width: 100%;
+    height: 120px;
+    cursor: pointer;
+}
+
+.search-property-info-window > .details-container {
+    padding-right: 30px;
+}
+
+.search-property-info-window > .details-container > div {
+    margin-bottom: 4px;
+}
+
+.search-property-info-window > .details-container > div:last-child {
+    margin-bottom: 0;
+}
+
+.search-property-info-window > .details-container > .address-container {
+    font-size: 18px;
+    font-weight: bold;   
+}
+
+.search-property-info-window > .details-container > .price-container {
+    font-size: 16px;
+    font-weight: bold;
+    color: #616161;
+}
+
+.search-property-info-window > .details-container > .action-container {
+    margin-top: 13px;
+}
+
+.search-property-info-window > .details-container > .action-container > .action-btn {
+    
+    color: #fff;
+    background-color: #424242;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-property-info-window > .details-container > .action-container > .action-btn:hover {
+    background-color: #424242;
+    color: #fff;
+}
+
+.search-property-info-window > .details-container > .extra-info {
+    font-size: 12px;
+    font-weight: bold;
+    color: #757575;
+}
+
+.search-property-info-window > .details-container > .extra-info > div:last-child {
+    border-left: 1px solid #757575;;
+    padding-right: 0;
+    padding-left: 0;
+    width: 40%;
+}
+
+.search-property-info-window > .details-container > .extra-info > div:first-child {
+    padding-left: 0;
+    padding-right: 5%;
+    margin-left: 10%;
+} 
+
+.search-property-info-window > .details-container > .extra-info > div > p {
+    margin: 0;
+}</style><style type="text/css">
+.apt-headline {
+    padding-top: 30px;
+    padding-right: 148px;
+    padding-left: 100px;
+    min-height: 180px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+.apt-section > .row {
+    font-size: 18px;
+}
+
+.apt-detail-key {
+    font-weight: bold;
+}
+
+.apt-detail-emphasize {
+    color: #4CAF50;
+    font-size: 24px;
+}
+
+.apt-content {
+    padding-top: 20px;
+}
+
+.apt-items-container {
+    padding-right: 40px;
+    padding-bottom: 300px;
+}
+
+.apt-content-item-title > .page-header {
+    border-bottom-color: #ccc !important;
+    font-size: 22px !important
+}
+
+.apt-content-item-title > .page-header > .glyphicon {
+    padding-left: 15px;
+    font-size: 20px;
+    color: #757575;
+}
+
+
+.apt-content-item-body {
+    min-height: 50px;
+    font-size: 18px;
+}
+
+a.anchor {
+    display: block; 
+    position: relative; 
+    top: -250px; 
+    visibility: hidden;
+}
+
+.affix {
+    top: 90px;
+}
+
+.delta-map-container {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.delta-map {
+   width: 100%;
+   height: 520px;
+   border: 1px solid #ccc;
+}
+
+</style><style type="text/css">.gallery-container > div {
+    height: 380px;
+}
+
+.gallery-img-bg {
+    height: 100%;
+}
+
+.gallery-img-sm {
+    height: 50%;
+}
+
+.gallery-img-sm  > img, .gallery-img-bg > img {
+    height: 100%;
+    width: 100%;
+    padding: 1px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+.gallery-disbled-padding-left {
+    padding-left: 0px !important;;
+}
+
+.gallery-disbled-padding-right {
+    padding-right: 0px !important;
+}
+
+</style><style type="text/css">.sidebar-container {
+    padding-left: 0;
+}
+
+.sidebar {
+    padding-top: 15px;
+    padding-bottom: 50px;
+    font-size: 18px;
+    border-width: 0;
+    border-left: 1px solid #424242;
+}
+
+.sidebar > ul > li {
+    padding-bottom: 15px;
+}
+.sidebar-section-title {
+    font-weight: bold;
+    color: #555;
+    font-size: 20px;
+}
+
+.sidebar-section-links {
+    list-style: none;
+    font-size: 16px;
+    padding-top: 3px;
+    padding-right: 10px;
+}
+
+.sidebar-section-link > a {
+    color: #777;
+}
+
+.sidebar-section-link > a:hover,  .sidebar-section-link > a:active{
+    font-weight: bold;
+    color: #777;
+    text-decoration: none; 
+}</style><style type="text/css">.document-date-val {
+    direction: ltr !important;
+}
+
+.document-date-seperator {
+    padding-right: 2px;
+}
+
+.document-date-title {
+    font-weight: bold;
+}
+
+
+.document-btn-info {
+    color: #fff;
+    background-color: #424242;
+}
+.document-btn-info:hover {
+    background-color: #424242;
+}
+
+.document-btn-order {
+    border-color: #F44336;
+    background-color: #f5f5f5;
+}
+
+.document-btn-order:hover {
+    border-color: #F44336;
+    background-color: #f5f5f5;
+}
+
+
+.document-content-container, .document-content-container > img {
+    width: 100%;
+    height: 100%;
+}
+
+
+</style><style type="text/css">.review {
+    padding-top: 30px;
+    margin-bottom: 25px;
+}
+
+.review-data {
+    padding-bottom: 55px;
+    border-bottom: 1px solid #ccc;
+}
+
+.review-data-content {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.review-data-date {
+    color: #757575;
+    font-size: 14px;
+    padding-right: 0;
+}
+
+.review-data-role {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.review-data-role > span {
+    color: #ff5a5f;
+    padding-left: 5px;
+}
+
+.review-user > .border-box {
+    box-sizing: border-box;
+}
+
+.review-user > .border-box > img {
+    height: 67px;
+    width: 67px;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}</style><style type="text/css">.owner-notes-features, .owner-notes-descriptions {
+    padding-right: 15px;
+}
+
+.feature-title {
+    color: #757575;
+    font-weight: bold;
+}
+
+.feature-check > .glyphicon-ok {
+    color: #4CAF50;
+}
+
+.feature-check > .glyphicon-remove {
+    color: #F44336;
+}
+
+.owner-notes-description {
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+.description-title, .description-text {
+    padding-right: 15px;
+}
+
+.description-title > h3 {
+    color: #555;
+    font-weight: bold;
+}</style><style type="text/css">.delta-nav {
+    padding: 20px;
+}
+
+.delta-nav > .navbar-nav {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.delta-nav > .navbar-nav > li {
+    border-right: 1px solid #ccc;
+}
+
+.delta-nav > .navbar-nav > li:last-child {
+    border: 0;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    color: #757575;
+}
+
+.delta-nav > .navbar-nav > li > a {
+    background-color: #fff !important;
+}
+
+.delta-nav > .navbar-nav > li > a:hover {
+    color: #1565C0;
+}
+
+.delta-nav > .navbar-nav > li.active > a  {
+    font-weight: bold;
+    color: #757575;
+}
+
+/*Back button*/
+.nav-back-btn {
+    padding-right: 14px;
+    padding-left: 14px;
+    color: #fff;
+    background-color: #424242;
+}
+
+.nav-back-btn:hover, .nav-back-btn:focus {
+    color: #fff;
+    background-color: #424242;
+}
+
+.nav-back-btn > span {
+    margin-left: 4px;
+}
+</style><style type="text/css">.tours-frame {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tours-frame > iframe {
+    width: 100%;
+    min-height: 520px;
+    border: 1px solid #ccc;
+}
+
+</style><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/map.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/marker.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/overlay.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/infowindow.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/onion.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/stats.js"></script><script type="text/javascript" charset="UTF-8" src="./Delta Demo_files/controls.js"></script></head>
+<body>
+  <div id="main"><div data-reactroot=""><nav class="delta-navbar delta-navbar-static navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a href="http://ec2-54-159-45-22.compute-1.amazonaws.com/home" id="delta-brand" class="navbar-brand"><span><img alt="Delta" src="./Delta Demo_files/delta-ico.png" class=""></span><span id="delta-brand-text">Delta Project</span></a></div><ul class="delta-navbar-nav nav navbar-nav navbar-right"><li role="presentation" class=""><a href="http://ec2-54-159-45-22.compute-1.amazonaws.com/home"><span>דירות למכירה</span></a></li><!-- react-text: 13 --><!-- /react-text --></ul></div></nav><div class="main-content"><div class="row container-rtl search-layout"><div><div class="row search-filter"><div class="col-xs-7"><div class="row"><div class="row search-tab-filters"><div class="col-xs-2"><div class="tab-filter" id="מתקדם"><!-- react-text: 23 -->מתקדם<!-- /react-text --><span class="caret"></span></div></div><div class="col-xs-2"><div class="tab-filter" id="קומה"><!-- react-text: 27 -->קומה<!-- /react-text --><span class="caret"></span></div></div><div class="col-xs-2"><div class="tab-filter" id="מחיר"><!-- react-text: 31 -->מחיר<!-- /react-text --><span class="caret"></span></div></div><div class="col-xs-2"><div class="tab-filter" id="חדרים"><!-- react-text: 35 -->חדרים<!-- /react-text --><span class="caret"></span></div></div><div class="col-xs-2"><div class="tab-filter" id="סוג נכס"><!-- react-text: 39 -->סוג נכס<!-- /react-text --><span class="caret"></span></div></div></div></div></div><div class="col-xs-5"><div class="row search-input-container"><div class="col-xs-8 col-xs-offset-3 search-input"><input type="text" placeholder="חפש איזור, עיר, שכונה או כתובת" value="ראשון לציון"></div><div class="col-xs-1 search-input-icon"><img src="./Delta Demo_files/search-small-white.png" class=""></div></div></div></div><div class="row active-filter-container"></div></div><div class="row search-view-map"><div class="col-xs-12 search-map-container"><div class="row search-mode-select"><div class="col-xs-2 pull-right"><div class="form-group"><select id="formControlsSelect" class="form-control"><option value="חלון משולב">חלון משולב</option><option value="נכסים בלבד">נכסים בלבד</option><option value="מפה בלבד">מפה בלבד</option></select></div></div></div><div class="row search-map"><div class="col-xs-12 search-map"><div class="search-map" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: 641px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 385px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 641px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 897px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 385px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 897px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 1153px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 129px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 1153px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 129px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 1409px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -127px; top: 171px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -127px; top: -85px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 1409px; top: -85px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 641px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 385px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 641px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 897px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 385px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 897px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 1153px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 129px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 1153px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 129px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 1409px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -127px; top: 171px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -127px; top: -85px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 1409px; top: -85px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: 641px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 385px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(1)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 641px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(2)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 897px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(3)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 385px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(4)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 897px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(5)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 1153px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(6)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 129px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(7)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 1153px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(8)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 129px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(9)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 1409px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(10)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -127px; top: 171px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(11)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -127px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(12)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 1409px; top: -85px; transition: opacity 200ms ease-out;"><img src="./Delta Demo_files/vt(13)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%; transition-duration: 0.3s; opacity: 0; display: none;" class="gm-style-pbc"><p class="gm-style-pbt">הזז את המפה באמצעות שתי אצבעות</p></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><div style="height: 40px; line-height: 40px; width: 40px; text-align: center; cursor: pointer; top: 229.08px; left: 708.118px; color: rgb(238, 238, 238); position: absolute; font-size: 16px; font-family: Arial, sans-serif; font-weight: bold; background-image: url(&quot;/images/icons/map-cluster-40.png&quot;); background-position: 0px 0px;">4</div><div style="height: 40px; line-height: 40px; width: 40px; text-align: center; cursor: pointer; top: 310.836px; left: 682.521px; color: rgb(238, 238, 238); position: absolute; font-size: 16px; font-family: Arial, sans-serif; font-weight: bold; background-image: url(&quot;/images/icons/map-cluster-40.png&quot;); background-position: 0px 0px;">3</div><div style="height: 40px; line-height: 40px; width: 40px; text-align: center; cursor: pointer; top: 240.727px; left: 785.445px; color: rgb(238, 238, 238); position: absolute; font-size: 16px; font-family: Arial, sans-serif; font-weight: bold; background-image: url(&quot;/images/icons/map-cluster-40.png&quot;); background-position: 0px 0px;">3</div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=32.110159,34.77558&amp;z=13&amp;t=m&amp;hl=iw&amp;gl=US&amp;mapclient=apiv3" title="‏לחץ כדי לראות אזור זה במפות Google" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img src="./Delta Demo_files/google4.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 578px; top: 20px; background-color: white;"><div style="padding: 0px 0px 10px; font-size: 16px;">נתוני מפה</div><div style="font-size: 13px;">Map data ©2016 Google, Mapa GISrael</div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; left: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="./Delta Demo_files/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 163px; bottom: 0px; width: 185px;"><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">נתוני מפה</a><span>Map data ©2016 Google, Mapa GISrael</span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Map data ©2016 Google, Mapa GISrael</div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 93px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/iw_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">תנאים והגבלות</a></div></div><div style="width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;"><img src="./Delta Demo_files/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="‏דווח ל-Google על שגיאות במפת הדרכים או בתמונות" href="https://www.google.com/maps/@32.1101585,34.77558,13z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">דווח על שגיאה במפה</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28" controlheight="93" style="margin: 10px; -webkit-user-select: none; position: absolute; bottom: 107px; right: 28px;"><div class="gmnoprint" controlwidth="28" controlheight="55" style="position: absolute; left: 0px; top: 38px;"><div draggable="false" style="-webkit-user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; width: 28px; height: 55px; background-color: rgb(255, 255, 255);"><div title="הגדלת התצוגה" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="./Delta Demo_files/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div><div style="position: relative; overflow: hidden; width: 67%; height: 1px; right: 16%; top: 0px; background-color: rgb(230, 230, 230);"></div><div title="הקטנת התצוגה" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="./Delta Demo_files/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: -15px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; position: absolute; left: 0px; top: 0px; background-color: rgb(255, 255, 255);"><div style="position: absolute; left: 1px; top: 1px;"></div><div style="position: absolute; left: 1px; top: 1px;"><div aria-label="‏בקרת אטב-איש של Street View" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img src="./Delta Demo_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="אטב-איש נמצא על גבי המפה" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./Delta Demo_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="‏בקרת אטב-איש של Street View" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./Delta Demo_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="סובב את המפה ב-90 מעלות" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; display: none; background-color: rgb(255, 255, 255);"><img src="./Delta Demo_files/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);"><img src="./Delta Demo_files/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div></div></div></div><div class="clear"></div></div></div></div></div></div><div class="delta-footer-container container-rtl"><noscript></noscript><footer><div class="row footer-regions-container"><ul class="footer-regions-list"><li>המרכז</li><li>הצפון</li><li>הדרום</li><li>השרון</li><li>תל אביב</li><li>ירושלים</li></ul></div><div class="row footer-copyright-container">כל הזכויות שמורות לדלתא, 2016</div></footer></div></div></div>
+
+  <script src="./Delta Demo_files/bundle.js"></script><div class="ReactModalPortal"><div data-reactroot=""></div></div>
+
+
+</body></html>

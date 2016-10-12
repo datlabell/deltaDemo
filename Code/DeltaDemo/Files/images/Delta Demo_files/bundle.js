@@ -67,9 +67,9 @@
 	var ApartmentLayout = __webpack_require__(538);
 
 	//Get search inner views
-	var SearchCombinedView = __webpack_require__(627);
-	var SearchPropertiesView = __webpack_require__(633);
-	var SearchMapView = __webpack_require__(634);
+	var SearchCombinedView = __webpack_require__(624);
+	var SearchPropertiesView = __webpack_require__(630);
+	var SearchMapView = __webpack_require__(631);
 
 	//Routing
 	ReactDOM.render(React.createElement(
@@ -48695,7 +48695,7 @@
 
 
 	// module
-	exports.push([module.id, "\n#homeImage {\n    height: 600px !important;\n    width: 100% !important;\n    -webkit-filter: brightness(80%);\n    filter: brightness(80%);\n}\n\n.home-headline {\n    position: absolute;\n    top: 220px;\n    width: 100%;\n    padding-right: 15%;\n    padding-left: 15%;\n}\n\n.home-headline-header {\n    text-shadow: 2px 2px #424242;\n    margin-bottom: 100px;\n    font-size: 55px;\n    color: white;\n    opacity: 0.9;\n}\n\n.home-region-form {\n    height: 50px;\n    font-size: 18px;\n    opacity: 0.9;\n}\n\n.home-information-panel , .home-sales-panel {\n    padding-top: 45px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5 !important;\n}\n\n.home-btn-sales {\n    margin-top: 20px;\n    color: #fff;\n    background-color: #424242;\n}\n\n.home-btn-sales:hover {\n    background-color: #424242;\n}\n\n.home-sales-panel h2 , .home-information-panel h2, .home-regions-panel h2 {\n    font-weight: bold !important;\n    margin-bottom: 15px;\n}\n\n.home-sales-panel p {\n    font-size: 18px;\n}\n\n.home-information-panel-sections {\n    padding-top: 30px;\n    font-size: 20px;\n}\n\n.panel-section-icon-container {\n    padding: 30px;\n}\n\n.home-btn-information {\n    background-color: #B71C1C;\n    border-color: #ccc;\n    margin: auto;\n    margin-top: 40px;\n    color: white;\n}\n\n.home-btn-information:hover {\n    color: #777;\n    border-color: #B71C1C;\n}\n\n.home-regions-panel {\n    padding-top: 30px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n}\n\n.home-regions-panel .thumbnail {\n    cursor: pointer;\n}\n\n.home-regions-panel > h2 {\n    margin-bottom: 35px;\n}\n\n.home-region-suggestion {\n    font-size: 18px;\n    width: 100%;\n    height: 50px;\n    background-color: #fff;\n    opacity: 0.9; \n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    direction: rtl;\n}\n\n.home-region-suggestion:hover {\n    background-color: #ccc;\n}\n", ""]);
+	exports.push([module.id, "\n#homeImage {\n    height: 600px !important;\n    width: 100% !important;\n    -webkit-filter: brightness(80%);\n    filter: brightness(80%);\n}\n\n.home-headline {\n    position: absolute;\n    top: 220px;\n    width: 100%;\n    padding-right: 15%;\n    padding-left: 15%;\n}\n\n.home-headline-header {\n    text-shadow: 2px 2px #424242;\n    margin-bottom: 100px;\n    font-size: 55px;\n    color: white;\n    opacity: 0.9;\n}\n\n.home-region-form {\n    height: 50px;\n    font-size: 18px;\n    opacity: 0.9;\n}\n\n.home-information-panel , .home-sales-panel {\n    padding-top: 45px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n    background-color: #f5f5f5 !important;\n}\n\n.home-btn-sales {\n    margin-top: 20px;\n    color: #fff;\n    background-color: #424242;\n}\n\n.home-btn-sales:hover {\n    background-color: #424242;\n}\n\n.home-sales-panel h2 , .home-information-panel h2, .home-regions-panel h2 {\n    font-weight: bold !important;\n    margin-bottom: 15px;\n}\n\n.home-sales-panel p {\n    font-size: 18px;\n}\n\n.home-information-panel-sections {\n    padding-top: 30px;\n    font-size: 20px;\n}\n\n.panel-section-icon-container {\n    padding: 30px;\n}\n\n.home-btn-information {\n    background-color: #F44336;\n    border-color: #ccc;\n    margin: auto;\n    margin-top: 40px;\n    color: white;\n}\n\n.home-btn-information:hover {\n    color: #777;\n    border-color: #F44336;\n}\n\n.home-regions-panel {\n    padding-top: 30px;\n    padding-right: 100px;\n    padding-left: 100px;\n    padding-bottom: 30px;\n    min-height: 250px;\n    border-bottom: 1px solid #ccc;\n}\n\n.home-regions-panel .thumbnail {\n    cursor: pointer;\n}\n\n.home-regions-panel > h2 {\n    margin-bottom: 35px;\n}\n\n.home-region-suggestion {\n    font-size: 18px;\n    width: 100%;\n    height: 50px;\n    background-color: #fff;\n    opacity: 0.9; \n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    direction: rtl;\n}\n\n.home-region-suggestion:hover {\n    background-color: #ccc;\n}\n", ""]);
 
 	// exports
 
@@ -49915,7 +49915,7 @@
 
 
 	// module
-	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view-combined, .search-view-properties {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n}\n\n.search-view-combined {\n    padding-right: 10px;\n    padding-left: 10px;\n}\n\n.search-view-properties {\n    padding-right: 50px;\n}\n\n.search-view-map {\n  background-color: #fff;\n  height: calc(100vh - 200px);\n}\n\n.search-mode-select {\n    padding-top: 20px;\n}\n\n.search-view-properties .search-mode-select {\n    padding-right: 0.5%;\n}\n\n.search-view-map .search-mode-select {\n     padding-right: 2.8%; \n}\n\n.search-mode-select select {\n    width: 130px;\n    font-size: 17px;\n    height: 40px;\n    background-color: #B71C1C;\n    border-color: #bbb;\n    color: #fff;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}", ""]);
+	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view-combined, .search-view-properties {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n}\n\n.search-view-combined {\n    padding-right: 10px;\n    padding-left: 10px;\n}\n\n.search-view-properties {\n    padding-right: 50px;\n}\n\n.search-view-map {\n  background-color: #fff;\n  height: calc(100vh - 200px);\n}\n\n.search-mode-select {\n    padding-top: 20px;\n}\n\n.search-view-properties .search-mode-select {\n    padding-right: 0.5%;\n}\n\n.search-view-map .search-mode-select {\n     padding-right: 2.8%; \n}\n\n.search-mode-select select {\n    width: 120px;\n    font-size: 17px;\n    height: 32px;\n    background-color: #F44336;\n    border-color: #bbb;\n    color: #fff;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}", ""]);
 
 	// exports
 
@@ -49945,7 +49945,7 @@
 	var Views = __webpack_require__(604);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(626);
+	var ApartmentData = __webpack_require__(623);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -54763,7 +54763,7 @@
 	var ToursStyle = __webpack_require__(619);
 	var ToursView = __webpack_require__(621);
 
-	var VirtualizationView = __webpack_require__(625);
+	var VirtualizationView = __webpack_require__(622);
 
 	var ApartmentViews = [{
 	    section: "מידע ויזואלי",
@@ -54858,7 +54858,7 @@
 
 
 	// module
-	exports.push([module.id, ".document-date-val {\n    direction: ltr !important;\n}\n\n.document-date-seperator {\n    padding-right: 2px;\n}\n\n.document-date-title {\n    font-weight: bold;\n}\n\n\n.document-btn-info {\n    color: #fff;\n    background-color: #424242;\n}\n.document-btn-info:hover {\n    background-color: #424242;\n}\n\n.document-btn-order {\n    border-color: #B71C1C;\n    background-color: #f5f5f5;\n}\n\n.document-btn-order:hover {\n    border-color: #B71C1C;\n    background-color: #f5f5f5;\n}\n\n\n.document-content-container, .document-content-container > img {\n    width: 100%;\n    height: 100%;\n}\n\n\n", ""]);
+	exports.push([module.id, ".document-date-val {\n    direction: ltr !important;\n}\n\n.document-date-seperator {\n    padding-right: 2px;\n}\n\n.document-date-title {\n    font-weight: bold;\n}\n\n\n.document-btn-info {\n    color: #fff;\n    background-color: #424242;\n}\n.document-btn-info:hover {\n    background-color: #424242;\n}\n\n.document-btn-order {\n    border-color: #F44336;\n    background-color: #f5f5f5;\n}\n\n.document-btn-order:hover {\n    border-color: #F44336;\n    background-color: #f5f5f5;\n}\n\n\n.document-content-container, .document-content-container > img {\n    width: 100%;\n    height: 100%;\n}\n\n\n", ""]);
 
 	// exports
 
@@ -55527,7 +55527,7 @@
 
 
 	// module
-	exports.push([module.id, ".tours-frame {\n    padding-right: 20px;\n    padding-left: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.tours-frame > iframe, .tours-frame > .not-implemented-frame {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
+	exports.push([module.id, ".tours-frame {\n    padding-right: 20px;\n    padding-left: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.tours-frame > iframe {\n    width: 100%;\n    min-height: 520px;\n    border: 1px solid #ccc;\n}\n\n", ""]);
 
 	// exports
 
@@ -55538,35 +55538,19 @@
 
 	var React = __webpack_require__(1);
 
-	var NotImplementedFrame = __webpack_require__(622);
-
 	var NavStyle = __webpack_require__(616);
 	var DeltaNav = __webpack_require__(618);
 
 	var TourFrame = React.createClass({
 	    displayName: 'TourFrame',
 
-
-	    renderNotImplementedFrame: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row tours-frame' },
-	            React.createElement(NotImplementedFrame, null)
-	        );
-	    },
-
-	    renderFrame: function () {
+	    render: function () {
 	        return React.createElement(
 	            'div',
 	            { className: 'row tours-frame' },
 	            React.createElement('iframe', { src: this.props.src, allowFullScreen: true })
 	        );
-	    },
-
-	    render: function () {
-	        return this.props.src === undefined ? this.renderNotImplementedFrame() : this.renderFrame();
 	    }
-
 	});
 
 	var ToursView = React.createClass({
@@ -55608,129 +55592,6 @@
 
 	var React = __webpack_require__(1);
 
-	// Get style
-	var FrameStyle = __webpack_require__(623);
-
-	var NotImplementedFrameTitle = React.createClass({
-	    displayName: 'NotImplementedFrameTitle',
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row not-implemented-frame-title' },
-	            React.createElement(
-	                'h3',
-	                null,
-	                'פעולה עדיין לא נתמכת'
-	            )
-	        );
-	    }
-	});
-
-	var NotImplementedFrameBody = React.createClass({
-	    displayName: 'NotImplementedFrameBody',
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row not-implemented-frame-body container-rtl' },
-	            React.createElement(
-	                'p',
-	                null,
-	                'האתר בתהליכי בנייה, ועדיין קיימות פעולות שאינן נתמכות. אנחנו עושים מאמצים רבים לתמוך בפעולות ופיצ׳רים שונים.'
-	            )
-	        );
-	    }
-	});
-
-	var NotImplementedFrameFooter = React.createClass({
-	    displayName: 'NotImplementedFrameFooter',
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row not-implemented-frame-footer' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-9 col-xs-offset-1' },
-	                React.createElement('img', { alt: 'Delta', src: '/images/icons/delta-ico.png' })
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-2 not-implemented-frame-footer-text' },
-	                'צוות דלתא'
-	            )
-	        );
-	    }
-	});
-
-	var NotImplementedFrame = React.createClass({
-	    displayName: 'NotImplementedFrame',
-
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row not-implemented-frame' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-12' },
-	                React.createElement(NotImplementedFrameTitle, null),
-	                React.createElement(NotImplementedFrameBody, null),
-	                React.createElement(NotImplementedFrameFooter, null)
-	            )
-	        );
-	    }
-	});
-
-	module.exports = NotImplementedFrame;
-
-/***/ },
-/* 623 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(624);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(238)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./frames.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./frames.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 624 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(237)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".not-implemented-frame {\n    padding: 5%;\n    background-color: #eee;\n}\n\n.not-implemented-frame > div > div {\n    margin-top: 4%;\n}\n\n.not-implemented-frame > div > div::first-child {\n    margin-top: 0;\n}\n\n.not-implemented-frame-title > h3 {\n    font-weight: bold;\n}\n\n.not-implemented-frame-body {\n    font-size: 18px;\n}\n\n.not-implemented-frame-footer{\n    padding-right: 0;\n    padding-left: 0;\n    font-size: 18px;\n}\n\n.not-implemented-frame-footer > div {\n    padding-right: 0;\n    padding-left: 5px;\n}\n\n.not-implemented-frame-footer-text {\n    line-height: 45px;\n    font-weight: bold;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 625 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
 	var VirtualizationView = React.createClass({
 	  displayName: "VirtualizationView",
 
@@ -55742,7 +55603,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 626 */
+/* 623 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -55922,7 +55783,8 @@
 
 	  "tours": {
 	    sources: [{
-	      title: "הדמיית תלת מימד"
+	      title: "הדמיית תלת מימד",
+	      src: ""
 	    }, {
 	      title: "וידאו",
 	      src: "https://www.youtube.com/embed/FNAnRp7X33I"
@@ -55937,14 +55799,14 @@
 	module.exports = ApartmentData;
 
 /***/ },
-/* 627 */
+/* 624 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchModeSelect = __webpack_require__(628);
-	var SearchMap = __webpack_require__(629);
-	var SearchProperties = __webpack_require__(632);
+	var SearchModeSelect = __webpack_require__(625);
+	var SearchMap = __webpack_require__(626);
+	var SearchProperties = __webpack_require__(629);
 
 	var SearchCombinedView = React.createClass({
 	    displayName: 'SearchCombinedView',
@@ -55983,7 +55845,7 @@
 	module.exports = SearchCombinedView;
 
 /***/ },
-/* 628 */
+/* 625 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56039,12 +55901,12 @@
 	module.exports = SearchModeSelect;
 
 /***/ },
-/* 629 */
+/* 626 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var SearchPropertyInfoWindow = __webpack_require__(630);
+	var SearchPropertyInfoWindow = __webpack_require__(627);
 
 	MapClustersIconsStyles = {
 
@@ -56183,7 +56045,7 @@
 	module.exports = SearchMap;
 
 /***/ },
-/* 630 */
+/* 627 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56193,7 +56055,7 @@
 	var BSImage = ReactBootstrap.Image;
 	var BSButton = ReactBootstrap.Button;
 
-	var SearchPropertyExtraInfo = __webpack_require__(631);
+	var SearchPropertyExtraInfo = __webpack_require__(628);
 
 	var SearchPropertyInfoWindow = React.createClass({
 	    displayName: 'SearchPropertyInfoWindow',
@@ -56245,7 +56107,7 @@
 	module.exports = SearchPropertyInfoWindow;
 
 /***/ },
-/* 631 */
+/* 628 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56282,7 +56144,7 @@
 	module.exports = SearchPropertyExtraInfo;
 
 /***/ },
-/* 632 */
+/* 629 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56392,13 +56254,13 @@
 	module.exports = SearchProperties;
 
 /***/ },
-/* 633 */
+/* 630 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchProperties = __webpack_require__(632);
-	var SearchModeSelect = __webpack_require__(628);
+	var SearchProperties = __webpack_require__(629);
+	var SearchModeSelect = __webpack_require__(625);
 
 	var SearchPropertiesView = React.createClass({
 	    displayName: 'SearchPropertiesView',
@@ -56432,13 +56294,13 @@
 	module.exports = SearchPropertiesView;
 
 /***/ },
-/* 634 */
+/* 631 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchMap = __webpack_require__(629);
-	var SearchModeSelect = __webpack_require__(628);
+	var SearchMap = __webpack_require__(626);
+	var SearchModeSelect = __webpack_require__(625);
 
 	var SearchMapView = React.createClass({
 	    displayName: 'SearchMapView',
@@ -56458,15 +56320,11 @@
 	            { className: 'row search-view-map' },
 	            React.createElement(
 	                'div',
-	                { className: 'col-xs-12' },
+	                { className: 'col-xs-12 search-map-container' },
 	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
 	                    modes: this.state.modes,
 	                    value: this.state.modeTitle,
-	                    selectSize: 2 })
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-12 search-map-container' },
+	                    selectSize: 2 }),
 	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
 	            )
 	        );
