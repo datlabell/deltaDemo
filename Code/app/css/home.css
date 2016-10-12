@@ -67,7 +67,7 @@
 }
 
 .home-btn-information {
-    background-color: #F44336;
+    background-color: #B71C1C;
     border-color: #ccc;
     margin: auto;
     margin-top: 40px;
@@ -76,7 +76,7 @@
 
 .home-btn-information:hover {
     color: #777;
-    border-color: #F44336;
+    border-color: #B71C1C;
 }
 
 .home-regions-panel {

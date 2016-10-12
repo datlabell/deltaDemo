@@ -65,10 +65,10 @@
 }
 
 .search-mode-select select {
-    width: 120px;
+    width: 130px;
     font-size: 17px;
-    height: 32px;
-    background-color: #F44336;
+    height: 40px;
+    background-color: #B71C1C;
     border-color: #bbb;
     color: #fff;
 }
