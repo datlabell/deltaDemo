@@ -67,9 +67,10 @@
 	var ApartmentLayout = __webpack_require__(538);
 
 	//Get search inner views
-	var SearchCombinedView = __webpack_require__(627);
-	var SearchPropertiesView = __webpack_require__(633);
-	var SearchMapView = __webpack_require__(634);
+	var SearchCombinedView = __webpack_require__(629);
+	var SearchPropertiesView = __webpack_require__(636);
+	var SearchMapView = __webpack_require__(637);
+	var SearchMap3DView = __webpack_require__(638);
 
 	//Routing
 	ReactDOM.render(React.createElement(
@@ -86,6 +87,7 @@
 	      React.createElement(IndexRoute, { component: SearchCombinedView }),
 	      React.createElement(Route, { path: 'combined', component: SearchCombinedView }),
 	      React.createElement(Route, { path: 'map', component: SearchMapView }),
+	      React.createElement(Route, { path: 'map3D', component: SearchMap3DView }),
 	      React.createElement(Route, { path: 'properties', component: SearchPropertiesView })
 	    ),
 	    React.createElement(Route, { path: 'apartment/:id', component: ApartmentLayout, goBack: true })
@@ -49293,6 +49295,9 @@
 	        }, {
 	            title: "מפה בלבד",
 	            action: this.buildFullActionPath(region, suggestion, "map")
+	        }, {
+	            title: "מפה תלת מימד",
+	            action: this.buildFullActionPath(region, suggestion, "map3D")
 	        }];
 	    },
 
@@ -49915,7 +49920,7 @@
 
 
 	// module
-	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view-combined, .search-view-properties {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n}\n\n.search-view-combined {\n    padding-right: 10px;\n    padding-left: 10px;\n}\n\n.search-view-properties {\n    padding-right: 50px;\n}\n\n.search-view-map {\n  background-color: #fff;\n  height: calc(100vh - 200px);\n}\n\n.search-mode-select {\n    padding-top: 20px;\n}\n\n.search-view-properties .search-mode-select {\n    padding-right: 0.5%;\n}\n\n.search-view-map .search-mode-select {\n     padding-right: 2.8%; \n}\n\n.search-mode-select select {\n    width: 130px;\n    font-size: 17px;\n    height: 40px;\n    background-color: #B71C1C;\n    border-color: #bbb;\n    color: #fff;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}", ""]);
+	exports.push([module.id, ".search-layout {\n    position: relative;\n}\n\n.search-filter {\n    height: 70px;\n    padding-right: 5%;\n    padding-left: 5%;\n    background-color: #424242 !important;\n}\n\n\n.search-input-container {\n    background-color: #616161;\n    margin-top: 15px;\n    border-radius: 4px;\n    color: #fff;\n}\n\n.search-input > input {\n    width: 100%;\n    background-color: #616161;\n    border: 0;\n    height: 40px;\n    font-size: 16px;\n}\n\n.search-input > input:focus {\n     outline: none;\n}\n\n.search-input-icon {\n    padding-top: 8px;\n}\n\n.search-view-combined, .search-view-properties {\n    height: calc(100vh - 140px);\n    background-color: #fff;\n}\n\n.search-view-combined {\n    padding-right: 10px;\n    padding-left: 10px;\n}\n\n.search-view-properties {\n    padding-right: 50px;\n}\n\n.search-view-map {\n  background-color: #fff;\n  height: calc(100vh - 200px);\n}\n\n.search-mode-select {\n    padding-top: 20px;\n}\n\n.search-view-properties .search-mode-select {\n    padding-right: 0.5%;\n}\n\n.search-view-map .search-mode-select {\n     padding-right: 2.8%; \n}\n\n.search-view-map .search-map {\n    padding-right: 7px;\n}\n\n.search-mode-select select {\n    width: 140px;\n    font-size: 17px;\n    height: 40px;\n    background-color: #B71C1C;\n    border-color: #bbb;\n    color: #fff;\n}\n \n.search-tab-filters {\n    padding-top: 30px;\n    padding-left: 30px;\n}\n\n.tab-filter  {\n    font-size: 16px;\n    color: #eee;\n    cursor: pointer;\n}\n\n.tab-filter:hover  {\n    color: #fff;\n    text-decoration: none;\n}\n\n.tab-filter   .caret {\n    margin-right: 8px;\n}\n\n.search-map-container {\n   height: 100%;\n   padding-left: 0;\n}\n\n.search-map {\n    width: 100%;\n    height: 100%;\n}\n\n\n/*Filters views section*/\n.active-filter-container {\n    position: absolute;\n    z-index: 1000;\n    width: 100%;\n    left: 0;\n    margin-left: 0;\n}\n\n.proprty-type-filter, .rooms-filter, .price-filter, .floors-filter, .advanced-filter {\n    font-size: 16px;\n    background-color: #f5f5f5 !important;\n    color: #616161 !important;\n    border: 1px solid #E0E0E0;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    padding-top: 15px;\n    padding-bottom: 15px;\n    box-shadow: 0 5px 5px rgba(0,0,0,.2);\n}\n\n.proprty-type-filter {\n    padding-right: 15px;\n}\n\n.rooms-filter {\n    padding-right: 30px;\n}\n\n.rooms-filter input {\n    margin-right: 4px;\n}\n\n.search-filter-checkbox-container {\n    margin-top: 5px;\n    margin-bottom: 5px;\n}\n\n.advanced-filter  {\n    padding-right: 30px;\n    padding-bottom: 45px;\n}\n\n.price-filter-label, .floors-filter-label {\n    line-height: 30px;\n    font-weight: bold;\n}\n\n.price-filter input {\n    width: 100%;\n}\n\n.floors-filter {\n    margin-left: 7%;\n}\n\n.advanced-filter-section {\n    border-bottom: 1px solid #eee;\n    padding-top: 10px;\n    padding-bottom: 10px;\n}\n\n.advanced-filter-section:last-child {\n    border: 0;\n}\n\n.advanced-filter-section-title h3 {\n    font-weight: bold;\n}\n\n.advanced-filters-container > div {\n    padding-right: 0;\n    margin-top: 7px;\n}\n\n\n/*Search apartment container*/\n.search-properties-container {\n    height: 100%;\n    overflow-y: auto;\n    padding-right: 0;\n}\n\n.search-property-container, .search-property > div  {\n    padding-right: 2px;\n}\n\n.search-property-container .thumbnail {\n    background-color: #eee; \n}\n\n.search-property-container .thumbnail img {\n    height: 160px;\n    width: 100%;\n}\n\n\n.search-proprty-btn {\n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-proprty-btn:hover, .search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.property-price { \n   font-size: 16px;\n   color:  #616161;\n   font-weight: bold;\n}\n\n.search-property .extra-info {\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property .extra-info > div:last-child {\n    padding-left: 0;\n}\n\n.search-property .extra-info > div:first-child {\n    padding-right: 4%;\n}\n\n.search-property-info-window {\n    width: 320px;\n}\n\n.search-property-info-window > .image-container  img {\n    width: 100%;\n    height: 120px;\n    cursor: pointer;\n}\n\n.search-property-info-window > .details-container {\n    padding-right: 30px;\n}\n\n.search-property-info-window > .details-container > div {\n    margin-bottom: 4px;\n}\n\n.search-property-info-window > .details-container > div:last-child {\n    margin-bottom: 0;\n}\n\n.search-property-info-window > .details-container > .address-container {\n    font-size: 18px;\n    font-weight: bold;   \n}\n\n.search-property-info-window > .details-container > .price-container {\n    font-size: 16px;\n    font-weight: bold;\n    color: #616161;\n}\n\n.search-property-info-window > .details-container > .action-container {\n    margin-top: 13px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn {\n    \n    color: #fff;\n    background-color: #424242;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n\n.search-property-info-window > .details-container > .action-container > .action-btn:hover {\n    background-color: #424242;\n    color: #fff;\n}\n\n.search-property-info-window > .details-container > .extra-info {\n    font-size: 12px;\n    font-weight: bold;\n    color: #757575;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:last-child {\n    border-left: 1px solid #757575;;\n    padding-right: 0;\n    padding-left: 0;\n    width: 40%;\n}\n\n.search-property-info-window > .details-container > .extra-info > div:first-child {\n    padding-left: 0;\n    padding-right: 5%;\n    margin-left: 10%;\n} \n\n.search-property-info-window > .details-container > .extra-info > div > p {\n    margin: 0;\n}\n\n\n/*Map Select nav styles*/\n.map-select-nav {\n    position: absolute;\n    height: 50px;\n    width: 14%;\n    left: 86%;\n    background-color: #616161;\n    z-index: 1;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    box-shadow: 0 2px 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);\n}\n\n.map-select-nav > .navbar-nav {\n    width: 100%;\n    padding-right: 10%;\n    padding-left: 10%;\n    height: 100%;\n    overflow-y: hidden;\n}\n\n.map-select-nav > .navbar-nav > li {\n    width: 50%;\n}\n\n.map-select-nav > .navbar-nav > li > a:hover, .map-select-nav > .navbar-nav > li > a:focus{\n    background-color: #616161 !important;\n}", ""]);
 
 	// exports
 
@@ -49945,7 +49950,7 @@
 	var Views = __webpack_require__(604);
 
 	//Get apt data.
-	var ApartmentData = __webpack_require__(626);
+	var ApartmentData = __webpack_require__(628);
 
 	var ApartmentViewContainer = React.createClass({
 	  displayName: 'ApartmentViewContainer',
@@ -54760,10 +54765,10 @@
 
 	var MapView = __webpack_require__(615);
 
-	var ToursStyle = __webpack_require__(619);
-	var ToursView = __webpack_require__(621);
+	var ToursStyle = __webpack_require__(621);
+	var ToursView = __webpack_require__(623);
 
-	var VirtualizationView = __webpack_require__(625);
+	var VirtualizationView = __webpack_require__(627);
 
 	var ApartmentViews = [{
 	    section: "מידע ויזואלי",
@@ -55353,33 +55358,43 @@
 	var NavStyle = __webpack_require__(616);
 	var DeltaNav = __webpack_require__(618);
 
+	// Get maps
+	var SinglePropertyGoogleMap = __webpack_require__(619);
+	var SingleProperty3DMap = __webpack_require__(620);
+
 	var Maps = [{
-	  title: "Google Maps"
+	  title: "מפה תלת מימדית",
+	  component: SingleProperty3DMap
 	}, {
-	  title: "מפה תלת מימדית"
+	  title: "Google Maps",
+	  component: SinglePropertyGoogleMap
 	}];
 
 	var MapView = React.createClass({
 	  displayName: 'MapView',
 
 
-	  componentDidMount: function () {
-	    this.map = new google.maps.Map(this.refs.map, {
-	      center: this.props.data.location,
-	      scrollwheel: false,
-	      mapTypeControl: false,
-	      zoom: 18
-	    });
+	  getInitialState: function () {
+	    return {
+	      maps: Maps,
+	      activeMapKey: Maps.length - 1
+	    };
+	  },
 
-	    this.marker = new google.maps.Marker({
-	      position: this.props.data.location,
-	      map: this.map,
-	      title: 'דירה'
-	    });
+	  renderActiveMap: function () {
+	    var activeMap = this.state.maps[this.state.activeMapKey].component;
+	    return React.createElement(activeMap, { location: this.props.data.location });
 	  },
 
 	  onSelectMap: function (key) {
-	    console.log("Selected map with key: " + key);
+
+	    if (key == this.state.activeMapKey) {
+	      return;
+	    }
+
+	    this.setState({
+	      activeMapKey: parseInt(key)
+	    });
 	  },
 
 	  render: function () {
@@ -55389,8 +55404,8 @@
 	      React.createElement(
 	        'div',
 	        { className: 'col-xs-12' },
-	        React.createElement(DeltaNav, { items: Maps, onSelect: this.onSelectMap }),
-	        React.createElement('div', { ref: 'map', className: 'delta-map' })
+	        React.createElement(DeltaNav, { items: this.state.maps, onSelect: this.onSelectMap }),
+	        this.renderActiveMap()
 	      )
 	    );
 	  }
@@ -55496,10 +55511,67 @@
 /* 619 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var React = __webpack_require__(1);
+
+	var SinglePropertyGoogleMap = React.createClass({
+	    displayName: 'SinglePropertyGoogleMap',
+
+
+	    componentDidMount: function () {
+
+	        // Create map
+	        this.map = new google.maps.Map(this.refs.map, {
+	            center: this.props.location,
+	            scrollwheel: false,
+	            mapTypeControl: false,
+	            zoom: 18
+	        });
+
+	        // Create marker
+	        this.marker = new google.maps.Marker({
+	            position: this.props.location,
+	            map: this.map,
+	            title: 'דירה'
+	        });
+	    },
+
+	    render: function () {
+	        return React.createElement('div', { ref: 'map', className: 'delta-map' });
+	    }
+	});
+
+	module.exports = SinglePropertyGoogleMap;
+
+/***/ },
+/* 620 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SingleProperty3DMap = React.createClass({
+	    displayName: "SingleProperty3DMap",
+
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "delta-map" },
+	            React.createElement("iframe", { src: "http://simplex-mapping.ccc-cloud.com/Jerusalem_Example/app/#%2F", className: "delta-map", allowFullScreen: true })
+	        );
+	    }
+
+	});
+
+	module.exports = SingleProperty3DMap;
+
+/***/ },
+/* 621 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(620);
+	var content = __webpack_require__(622);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55519,7 +55591,7 @@
 	}
 
 /***/ },
-/* 620 */
+/* 622 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55533,12 +55605,12 @@
 
 
 /***/ },
-/* 621 */
+/* 623 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var NotImplementedFrame = __webpack_require__(622);
+	var NotImplementedFrame = __webpack_require__(624);
 
 	var NavStyle = __webpack_require__(616);
 	var DeltaNav = __webpack_require__(618);
@@ -55603,13 +55675,13 @@
 	module.exports = ToursView;
 
 /***/ },
-/* 622 */
+/* 624 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
 	// Get style
-	var FrameStyle = __webpack_require__(623);
+	var FrameStyle = __webpack_require__(625);
 
 	var NotImplementedFrameTitle = React.createClass({
 	    displayName: 'NotImplementedFrameTitle',
@@ -55686,13 +55758,13 @@
 	module.exports = NotImplementedFrame;
 
 /***/ },
-/* 623 */
+/* 625 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(624);
+	var content = __webpack_require__(626);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(238)(content, {});
@@ -55712,7 +55784,7 @@
 	}
 
 /***/ },
-/* 624 */
+/* 626 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(237)();
@@ -55726,7 +55798,7 @@
 
 
 /***/ },
-/* 625 */
+/* 627 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -55742,7 +55814,7 @@
 	module.exports = VirtualizationView;
 
 /***/ },
-/* 626 */
+/* 628 */
 /***/ function(module, exports) {
 
 	var RightSection = [{
@@ -55937,14 +56009,17 @@
 	module.exports = ApartmentData;
 
 /***/ },
-/* 627 */
+/* 629 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchModeSelect = __webpack_require__(628);
-	var SearchMap = __webpack_require__(629);
-	var SearchProperties = __webpack_require__(632);
+	var SearchModeSelect = __webpack_require__(630);
+	var SearchProperties = __webpack_require__(631);
+
+	// Get google map
+	var SearchMap = __webpack_require__(632);
+	var MultiplePropertiesGoogleMap = __webpack_require__(633);
 
 	var SearchCombinedView = React.createClass({
 	    displayName: 'SearchCombinedView',
@@ -55953,9 +56028,16 @@
 	    getInitialState: function () {
 	        return {
 	            modes: this.props.modes,
-	            activeModeKey: this.props.modes.length - 1,
-	            modeTitle: "חלון משולב"
+	            modeTitle: "חלון משולב",
+	            map: this.createMap()
 	        };
+	    },
+
+	    createMap: function () {
+	        return React.createElement(MultiplePropertiesGoogleMap, {
+	            location: this.props.location,
+	            properties: this.props.properties
+	        });
 	    },
 
 	    render: function () {
@@ -55974,7 +56056,7 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-xs-7 search-map-container' },
-	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
+	                React.createElement(SearchMap, { map: this.state.map })
 	            )
 	        );
 	    }
@@ -55983,7 +56065,7 @@
 	module.exports = SearchCombinedView;
 
 /***/ },
-/* 628 */
+/* 630 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56039,250 +56121,7 @@
 	module.exports = SearchModeSelect;
 
 /***/ },
-/* 629 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(34);
-	var SearchPropertyInfoWindow = __webpack_require__(630);
-
-	MapClustersIconsStyles = {
-
-	  gridSize: 40,
-
-	  maxZoom: 15,
-
-	  styles: [{
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-40.png",
-	    height: 40,
-	    width: 40
-	  }, {
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-44.png",
-	    height: 44,
-	    width: 44
-	  }, {
-	    textColor: '#eee',
-	    textSize: 16,
-	    url: "/images/icons/map-cluster-48.png",
-	    height: 48,
-	    width: 48
-	  }, {
-	    textColor: '#eee',
-	    textSize: 18,
-	    url: "/images/icons/map-cluster-56.png",
-	    height: 56,
-	    width: 56
-	  }, {
-	    textColor: '#eee',
-	    textSize: 18,
-	    url: "/images/icons/map-cluster-64.png",
-	    height: 64,
-	    width: 64
-	  }]
-	};
-
-	//Required for using react component in google map info window.
-	var createInfoWindow = function (property) {
-
-	  var infoWindowContainer = document.createElement('div');
-	  ReactDOM.render(React.createElement(SearchPropertyInfoWindow, { property: property }), infoWindowContainer);
-	  return infoWindowContainer;
-	};
-
-	var SearchMap = React.createClass({
-	  displayName: 'SearchMap',
-
-
-	  createMap: function () {
-
-	    //Create map
-	    this.map = new google.maps.Map(this.refs.map, {
-	      center: this.props.location,
-	      scrollwheel: false,
-	      mapTypeControl: false,
-	      zoom: 13,
-	      minZoom: 12
-	    });
-
-	    //Add zoom listener
-	    this.map.addListener('zoom_changed', this.onZoom);
-	  },
-
-	  createMarkers: function () {
-
-	    this.markers = this.props.properties.map(function (property) {
-
-	      var marker = new google.maps.Marker({
-	        position: property.location,
-	        label: property.label,
-	        icon: "/images/icons/map-marker.png"
-	      });
-
-	      var infowindow = new google.maps.InfoWindow({
-	        content: createInfoWindow(property)
-	      });
-
-	      marker.addListener('click', function () {
-	        infowindow.open(this.map, marker);
-	      });
-
-	      return marker;
-	    });
-	  },
-
-	  componentDidMount: function () {
-
-	    //Create map
-	    this.createMap();
-
-	    //Create Markers
-	    this.createMarkers();
-
-	    //Create clusters
-	    this.markerCluster = new MarkerClusterer(this.map, this.markers, MapClustersIconsStyles);
-	  },
-
-	  onZoom: function () {
-
-	    //Get value of zoom
-	    var zoom = this.map.getZoom();
-
-	    //Change grid size based on zoom
-	    if (zoom <= 13) {
-	      this.markerCluster.setGridSize(50);
-	      return;
-	    }
-
-	    if (zoom == 14) {
-	      this.markerCluster.setGridSize(70);
-	      return;
-	    }
-
-	    //In case 15
-	    this.markerCluster.setGridSize(120);
-	    return;
-	  },
-
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      { className: 'row search-map' },
-	      React.createElement(
-	        'div',
-	        { className: 'col-xs-12 search-map' },
-	        React.createElement('div', { ref: 'map', className: 'search-map' })
-	      )
-	    );
-	  }
-	});
-
-	module.exports = SearchMap;
-
-/***/ },
-/* 630 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(172);
-	var browserHistory = ReactRouter.browserHistory;
-	var ReactBootstrap = __webpack_require__(241);
-	var BSImage = ReactBootstrap.Image;
-	var BSButton = ReactBootstrap.Button;
-
-	var SearchPropertyExtraInfo = __webpack_require__(631);
-
-	var SearchPropertyInfoWindow = React.createClass({
-	    displayName: 'SearchPropertyInfoWindow',
-
-
-	    onClick: function () {
-	        var actionPath = "/" + this.props.property.type + "/" + this.props.property.id;
-	        browserHistory.push(actionPath);
-	    },
-
-	    render: function () {
-	        return React.createElement(
-	            'div',
-	            { className: 'row search-property-info-window container-rtl' },
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-7 image-container' },
-	                React.createElement(BSImage, { src: this.props.property.image, onClick: this.onClick })
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'col-xs-5 details-container' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'row address-container' },
-	                    this.props.property.location.address
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'row price-container' },
-	                    this.props.property.price
-	                ),
-	                React.createElement(SearchPropertyExtraInfo, { size: this.props.property.size,
-	                    rooms: this.props.property.rooms }),
-	                React.createElement(
-	                    'div',
-	                    { className: 'row action-container' },
-	                    React.createElement(
-	                        BSButton,
-	                        { className: 'action-btn', onClick: this.onClick },
-	                        'הצג'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SearchPropertyInfoWindow;
-
-/***/ },
 /* 631 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	var SearchPropertyExtraInfo = React.createClass({
-	    displayName: "SearchPropertyExtraInfo",
-
-	    render: function () {
-	        return React.createElement(
-	            "div",
-	            { className: "row extra-info" },
-	            React.createElement(
-	                "div",
-	                { className: "col-xs-6 size-info" },
-	                React.createElement(
-	                    "p",
-	                    null,
-	                    this.props.size + " " + "מ״ר"
-	                )
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "col-xs-6 rooms-info" },
-	                React.createElement(
-	                    "p",
-	                    null,
-	                    this.props.rooms + " " + "חדרים"
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SearchPropertyExtraInfo;
-
-/***/ },
-/* 632 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -56392,13 +56231,273 @@
 	module.exports = SearchProperties;
 
 /***/ },
-/* 633 */
+/* 632 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchProperties = __webpack_require__(632);
-	var SearchModeSelect = __webpack_require__(628);
+	var SearchMap = React.createClass({
+	  displayName: "SearchMap",
+
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "row search-map" },
+	      React.createElement(
+	        "div",
+	        { className: "col-xs-12 search-map" },
+	        this.props.map
+	      )
+	    );
+	  }
+	});
+
+	module.exports = SearchMap;
+
+/***/ },
+/* 633 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(34);
+	var SearchPropertyInfoWindow = __webpack_require__(634);
+
+	MapClustersIconsStyles = {
+
+	  gridSize: 40,
+
+	  maxZoom: 15,
+
+	  styles: [{
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-40.png",
+	    height: 40,
+	    width: 40
+	  }, {
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-44.png",
+	    height: 44,
+	    width: 44
+	  }, {
+	    textColor: '#eee',
+	    textSize: 16,
+	    url: "/images/icons/map-cluster-48.png",
+	    height: 48,
+	    width: 48
+	  }, {
+	    textColor: '#eee',
+	    textSize: 18,
+	    url: "/images/icons/map-cluster-56.png",
+	    height: 56,
+	    width: 56
+	  }, {
+	    textColor: '#eee',
+	    textSize: 18,
+	    url: "/images/icons/map-cluster-64.png",
+	    height: 64,
+	    width: 64
+	  }]
+	};
+
+	//Required for using react component in google map info window.
+	var createInfoWindow = function (property) {
+
+	  var infoWindowContainer = document.createElement('div');
+	  ReactDOM.render(React.createElement(SearchPropertyInfoWindow, { property: property }), infoWindowContainer);
+	  return infoWindowContainer;
+	};
+
+	var MultiplePropertiesGoogleMap = React.createClass({
+	  displayName: 'MultiplePropertiesGoogleMap',
+
+
+	  createMap: function () {
+
+	    //Create map
+	    this.map = new google.maps.Map(this.refs.map, {
+	      center: this.props.location,
+	      scrollwheel: false,
+	      mapTypeControl: false,
+	      zoom: 13,
+	      minZoom: 12
+	    });
+
+	    //Add zoom listener
+	    this.map.addListener('zoom_changed', this.onZoom);
+	  },
+
+	  createMarkers: function () {
+
+	    this.markers = this.props.properties.map(function (property) {
+
+	      var marker = new google.maps.Marker({
+	        position: property.location,
+	        label: property.label,
+	        icon: "/images/icons/map-marker.png"
+	      });
+
+	      var infowindow = new google.maps.InfoWindow({
+	        content: createInfoWindow(property)
+	      });
+
+	      marker.addListener('click', function () {
+	        infowindow.open(this.map, marker);
+	      });
+
+	      return marker;
+	    });
+	  },
+
+	  componentDidMount: function () {
+
+	    //Create map
+	    this.createMap();
+
+	    //Create Markers
+	    this.createMarkers();
+
+	    //Create clusters
+	    this.markerCluster = new MarkerClusterer(this.map, this.markers, MapClustersIconsStyles);
+	  },
+
+	  onZoom: function () {
+
+	    //Get value of zoom
+	    var zoom = this.map.getZoom();
+
+	    //Change grid size based on zoom
+	    if (zoom <= 13) {
+	      this.markerCluster.setGridSize(50);
+	      return;
+	    }
+
+	    if (zoom == 14) {
+	      this.markerCluster.setGridSize(70);
+	      return;
+	    }
+
+	    //In case 15
+	    this.markerCluster.setGridSize(120);
+	    return;
+	  },
+
+	  render: function () {
+	    return React.createElement('div', { ref: 'map', className: 'search-map' });
+	  }
+	});
+
+	module.exports = MultiplePropertiesGoogleMap;
+
+/***/ },
+/* 634 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(172);
+	var browserHistory = ReactRouter.browserHistory;
+	var ReactBootstrap = __webpack_require__(241);
+	var BSImage = ReactBootstrap.Image;
+	var BSButton = ReactBootstrap.Button;
+
+	var SearchPropertyExtraInfo = __webpack_require__(635);
+
+	var SearchPropertyInfoWindow = React.createClass({
+	    displayName: 'SearchPropertyInfoWindow',
+
+
+	    onClick: function () {
+	        var actionPath = "/" + this.props.property.type + "/" + this.props.property.id;
+	        browserHistory.push(actionPath);
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-property-info-window container-rtl' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-7 image-container' },
+	                React.createElement(BSImage, { src: this.props.property.image, onClick: this.onClick })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-5 details-container' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row address-container' },
+	                    this.props.property.location.address
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row price-container' },
+	                    this.props.property.price
+	                ),
+	                React.createElement(SearchPropertyExtraInfo, { size: this.props.property.size,
+	                    rooms: this.props.property.rooms }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row action-container' },
+	                    React.createElement(
+	                        BSButton,
+	                        { className: 'action-btn', onClick: this.onClick },
+	                        'הצג'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchPropertyInfoWindow;
+
+/***/ },
+/* 635 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchPropertyExtraInfo = React.createClass({
+	    displayName: "SearchPropertyExtraInfo",
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "row extra-info" },
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-6 size-info" },
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    this.props.size + " " + "מ״ר"
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-6 rooms-info" },
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    this.props.rooms + " " + "חדרים"
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchPropertyExtraInfo;
+
+/***/ },
+/* 636 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchProperties = __webpack_require__(631);
+	var SearchModeSelect = __webpack_require__(630);
 
 	var SearchPropertiesView = React.createClass({
 	    displayName: 'SearchPropertiesView',
@@ -56407,7 +56506,6 @@
 	    getInitialState: function () {
 	        return {
 	            modes: this.props.modes,
-	            activeModeKey: this.props.modes.length - 1,
 	            modeTitle: "נכסים בלבד"
 	        };
 	    },
@@ -56432,13 +56530,16 @@
 	module.exports = SearchPropertiesView;
 
 /***/ },
-/* 634 */
+/* 637 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 
-	var SearchMap = __webpack_require__(629);
-	var SearchModeSelect = __webpack_require__(628);
+	var SearchMap = __webpack_require__(632);
+	var SearchModeSelect = __webpack_require__(630);
+
+	// Get google map
+	var MultiplePropertiesGoogleMap = __webpack_require__(633);
 
 	var SearchMapView = React.createClass({
 	    displayName: 'SearchMapView',
@@ -56447,9 +56548,16 @@
 	    getInitialState: function () {
 	        return {
 	            modes: this.props.modes,
-	            activeModeKey: this.props.modes.length - 1,
-	            modeTitle: "מפה בלבד"
+	            modeTitle: "מפה בלבד",
+	            map: this.createMap()
 	        };
+	    },
+
+	    createMap: function () {
+	        return React.createElement(MultiplePropertiesGoogleMap, {
+	            location: this.props.location,
+	            properties: this.props.properties
+	        });
 	    },
 
 	    render: function () {
@@ -56467,13 +56575,89 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-xs-12 search-map-container' },
-	                React.createElement(SearchMap, { properties: this.props.properties, location: this.props.location })
+	                React.createElement(SearchMap, { map: this.state.map })
 	            )
 	        );
 	    }
 	});
 
 	module.exports = SearchMapView;
+
+/***/ },
+/* 638 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var SearchMap = __webpack_require__(632);
+	var SearchModeSelect = __webpack_require__(630);
+
+	// Get map
+	var MultipleProperties3DMap = __webpack_require__(639);
+
+	var SearchMap3DView = React.createClass({
+	    displayName: 'SearchMap3DView',
+
+
+	    getInitialState: function () {
+	        return {
+	            modes: this.props.modes,
+	            modeTitle: "מפה תלת מימד",
+	            map: this.createMap()
+	        };
+	    },
+
+	    createMap: function () {
+	        return React.createElement(MultipleProperties3DMap, {
+	            location: this.props.location,
+	            properties: this.props.properties
+	        });
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'row search-view-map' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                React.createElement(SearchModeSelect, { onSelectSearchMode: this.props.onSelectSearchMode,
+	                    modes: this.state.modes,
+	                    value: this.state.modeTitle,
+	                    selectSize: 2 })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-xs-12 search-map-container' },
+	                React.createElement(SearchMap, { map: this.state.map })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SearchMap3DView;
+
+/***/ },
+/* 639 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var MultipleProperties3DMap = React.createClass({
+	    displayName: "MultipleProperties3DMap",
+
+
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            { className: "search-map" },
+	            React.createElement("iframe", { src: "http://simplex-mapping.ccc-cloud.com/Jerusalem_Example/app/#%2F", className: "search-map", allowFullScreen: true })
+	        );
+	    }
+
+	});
+
+	module.exports = MultipleProperties3DMap;
 
 /***/ }
 /******/ ]);

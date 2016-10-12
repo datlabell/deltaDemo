@@ -64,8 +64,12 @@
      padding-right: 2.8%; 
 }
 
+.search-view-map .search-map {
+    padding-right: 7px;
+}
+
 .search-mode-select select {
-    width: 130px;
+    width: 140px;
     font-size: 17px;
     height: 40px;
     background-color: #B71C1C;
@@ -303,4 +307,34 @@
 
 .search-property-info-window > .details-container > .extra-info > div > p {
     margin: 0;
+}
+
+
+/*Map Select nav styles*/
+.map-select-nav {
+    position: absolute;
+    height: 50px;
+    width: 14%;
+    left: 86%;
+    background-color: #616161;
+    z-index: 1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+.map-select-nav > .navbar-nav {
+    width: 100%;
+    padding-right: 10%;
+    padding-left: 10%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.map-select-nav > .navbar-nav > li {
+    width: 50%;
+}
+
+.map-select-nav > .navbar-nav > li > a:hover, .map-select-nav > .navbar-nav > li > a:focus{
+    background-color: #616161 !important;
 }

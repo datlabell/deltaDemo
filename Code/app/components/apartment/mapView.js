@@ -3,43 +3,53 @@ var React = require('react');
 var NavStyle = require('../../css/nav.css');
 var DeltaNav = require('../navigation/nav');
 
+// Get maps
+var SinglePropertyGoogleMap = require('../maps/singlePropertyGoogleMap');
+var SingleProperty3DMap = require('../maps/singleProperty3DMap')
+
 var Maps = [
   {
-    title: "Google Maps"
+    title: "מפה תלת מימדית",
+    component: SingleProperty3DMap
   },
   {
-    title: "מפה תלת מימדית"
+    title: "Google Maps",
+    component: SinglePropertyGoogleMap
   }
 ]
 
 var MapView = React.createClass( {
 
-  componentDidMount: function() {
-    this.map = new google.maps.Map(this.refs.map, {
-        center:  this.props.data.location,
-        scrollwheel: false,
-        mapTypeControl: false,
-        zoom: 18
-    });
+  getInitialState: function() {
+    return {
+      maps: Maps,
+      activeMapKey: Maps.length - 1
+    }
+  },
 
-    this.marker = new google.maps.Marker({
-        position: this.props.data.location,
-        map: this.map,
-        title: 'דירה'
-    });
-    
+  renderActiveMap : function() {
+    var activeMap = this.state.maps[this.state.activeMapKey].component;
+    return React.createElement(activeMap, {location: this.props.data.location})
   },
 
   onSelectMap: function(key) {
-    console.log("Selected map with key: " + key);
+    
+    if (key == this.state.activeMapKey) {
+      return;
+    }
+
+    this.setState({
+      activeMapKey: parseInt(key)
+    });
   },
+
 
   render: function() {
     return (
       <div className="row delta-map-container">
         <div className="col-xs-12">
-            <DeltaNav items={Maps}  onSelect={this.onSelectMap}/>
-            <div ref="map" className="delta-map"></div>
+            <DeltaNav items={this.state.maps}  onSelect={this.onSelectMap}/>
+            {this.renderActiveMap()}
         </div>
       </div>
     )

@@ -9,7 +9,6 @@ var SearchPropertiesView = React.createClass({
     getInitialState: function() {
         return {
             modes: this.props.modes,
-            activeModeKey: this.props.modes.length - 1,
             modeTitle: "נכסים בלבד"
         }
     },

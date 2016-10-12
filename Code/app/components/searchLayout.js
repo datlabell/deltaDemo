@@ -198,6 +198,10 @@ var SearchLayout = React.createClass( {
         {
             title: "מפה בלבד",
             action: this.buildFullActionPath(region, suggestion, "map")
+        },
+        {
+            title: "מפה תלת מימד",
+            action: this.buildFullActionPath(region, suggestion, "map3D")
         }
      ]
  },

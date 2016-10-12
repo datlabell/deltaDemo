@@ -23,7 +23,8 @@ var ApartmentLayout = require('./components/apartmentLayout');
 //Get search inner views
 var SearchCombinedView = require('./components/search/searchCombinedView');
 var SearchPropertiesView = require('./components/search/searchPropertiesView');
-var SearchMapView = require('./components/search/searchMapView')
+var SearchMapView = require('./components/search/searchMapView');
+var SearchMap3DView = require('./components/search/searchMap3DView');
 
 //Routing
 ReactDOM.render((
@@ -35,6 +36,7 @@ ReactDOM.render((
           <IndexRoute component={SearchCombinedView} />
           <Route path="combined" component={SearchCombinedView}></Route>
           <Route path="map" component={SearchMapView}></Route>
+          <Route path="map3D" component={SearchMap3DView}></Route>
           <Route path="properties" component={SearchPropertiesView}></Route>
         </Route>
         <Route path="apartment/:id" component={ApartmentLayout} goBack></Route>

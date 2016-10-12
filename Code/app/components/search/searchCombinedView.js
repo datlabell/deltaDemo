@@ -1,17 +1,29 @@
 var React = require('react')
 
 var SearchModeSelect= require('./searchModeSelect');
-var SearchMap = require('./searchMap');
 var SearchProperties= require('./searchProperties');
+
+// Get google map
+var SearchMap = require('./searchMap');
+var MultiplePropertiesGoogleMap = require('../maps/multiplePropertiesGoogleMap');
 
 var SearchCombinedView = React.createClass({
 
     getInitialState: function() {
         return {
             modes: this.props.modes,
-            activeModeKey: this.props.modes.length - 1,
-            modeTitle: "חלון משולב"
+            modeTitle: "חלון משולב",
+            map: this.createMap()
         }
+    },
+
+    createMap: function() {
+        return (
+            React.createElement(MultiplePropertiesGoogleMap, {
+                location: this.props.location,
+                properties: this.props.properties
+            })
+        )
     },
 
     render: function() {
@@ -25,7 +37,7 @@ var SearchCombinedView = React.createClass({
                     <SearchProperties properties={this.props.properties} propertySize={6}/>
                 </div>
                 <div className="col-xs-7 search-map-container">
-                    <SearchMap properties={this.props.properties} location={this.props.location} />
+                    <SearchMap map={this.state.map} />
                 </div>
             </div>
         )

@@ -3,22 +3,22 @@ var React = require('react')
 var SearchMap = require('./searchMap');
 var SearchModeSelect = require('./searchModeSelect');
 
-// Get google map
-var MultiplePropertiesGoogleMap = require('../maps/multiplePropertiesGoogleMap');
+// Get map
+var MultipleProperties3DMap = require('../maps/multipleProperties3DMap');
 
-var SearchMapView = React.createClass({
+var SearchMap3DView = React.createClass({
 
     getInitialState: function() {
         return {
             modes: this.props.modes,
-            modeTitle: "מפה בלבד",
+            modeTitle: "מפה תלת מימד",
             map: this.createMap()
         }
     },
 
     createMap: function() {
         return (
-            React.createElement(MultiplePropertiesGoogleMap, {
+            React.createElement(MultipleProperties3DMap, {
                 location: this.props.location,
                 properties: this.props.properties
             })
@@ -42,4 +42,4 @@ var SearchMapView = React.createClass({
     }
 });
 
-module.exports = SearchMapView;
+module.exports = SearchMap3DView;
