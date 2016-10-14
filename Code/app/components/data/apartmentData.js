@@ -217,7 +217,8 @@ var ApartmentData = {
   "tours": {
     sources: [
       {
-        title: "הדמיית תלת מימד"
+        title: "הדמיית תלת מימד",
+        src: "https://depot.floored.com/scenes/e52f746c-09e4-42a4-be76-65dffaca053a/simplex"
       },
       {
         title: "וידאו",
